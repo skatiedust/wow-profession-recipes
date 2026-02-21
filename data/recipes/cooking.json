@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Stormchops",
+    "source": "quest",
+    "zone": "Shattrath City",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Broiled Bloodfin",
+    "source": "quest",
+    "zone": "Shattrath City",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Skullfish Soup",
+    "source": "quest",
+    "zone": "Shattrath City",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Delicious Chocolate Cake",
+    "source": "quest",
+    "zone": "Shattrath City",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Fisherman's Feast",
+    "source": "reputation",
+    "zone": "Zangarmarsh",
+    "reputation_requirement": "Cenarion Expedition - Friendly",
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  }
+]

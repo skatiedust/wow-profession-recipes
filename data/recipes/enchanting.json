@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Enchant Weapon - Mongoose",
+    "source": "drop",
+    "zone": "Karazhan",
+    "reputation_requirement": null,
+    "dropped_by": ["Moroes", "Karazhan Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Enchant Weapon - Executioner",
+    "source": "drop",
+    "zone": "Karazhan",
+    "reputation_requirement": null,
+    "dropped_by": ["Karazhan Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Enchant Weapon - Soulfrost",
+    "source": "drop",
+    "zone": "Black Temple",
+    "reputation_requirement": null,
+    "dropped_by": ["Black Temple Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Enchant Weapon - Sunfire",
+    "source": "drop",
+    "zone": "Black Temple",
+    "reputation_requirement": null,
+    "dropped_by": ["Black Temple Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Enchant Ring - Spellpower",
+    "source": "reputation",
+    "zone": "Shattrath City",
+    "reputation_requirement": "The Sha'tar - Revered",
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  }
+]

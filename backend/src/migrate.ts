@@ -46,6 +46,8 @@ CREATE TABLE IF NOT EXISTS recipes (
   zone                   VARCHAR(255),
   reputation_requirement VARCHAR(255),
   dropped_by             TEXT[],
+  url                    TEXT,
+  rarity                 VARCHAR(50),
   created_at             TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
   updated_at             TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
   deleted_at             TIMESTAMPTZ

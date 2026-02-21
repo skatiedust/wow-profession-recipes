@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Stabilized Eternium Scope",
+    "source": "drop",
+    "zone": "Black Temple",
+    "reputation_requirement": null,
+    "dropped_by": ["Black Temple Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Quad Deathblow X44 Goggles",
+    "source": "drop",
+    "zone": "Black Temple",
+    "reputation_requirement": null,
+    "dropped_by": ["Mother Shahraz"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Hyper-Vision Goggles",
+    "source": "drop",
+    "zone": "Black Temple",
+    "reputation_requirement": null,
+    "dropped_by": ["Gurtogg Bloodboil"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Khorium Scope",
+    "source": "drop",
+    "zone": "Blade's Edge Mountains",
+    "reputation_requirement": null,
+    "dropped_by": ["Various Outland mobs"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Crashin' Thrashin' Robot",
+    "source": "drop",
+    "zone": "Nagrand",
+    "reputation_requirement": null,
+    "dropped_by": ["Various Outland mobs"],
+    "url": null,
+    "rarity": null
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Leather Chestguard of the Sun",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Leather Gauntlets of the Sun",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Drums of Battle",
+    "source": "reputation",
+    "zone": "Shattrath City",
+    "reputation_requirement": "The Sha'tar - Exalted",
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Belt of Natural Power",
+    "source": "drop",
+    "zone": "Hyjal Summit",
+    "reputation_requirement": null,
+    "dropped_by": ["Hyjal Summit Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Belt of the Black Eagle",
+    "source": "drop",
+    "zone": "Black Temple",
+    "reputation_requirement": null,
+    "dropped_by": ["Black Temple Trash"],
+    "url": null,
+    "rarity": null
+  }
+]

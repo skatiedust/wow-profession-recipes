@@ -60,7 +60,7 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 ### Recipe Checklist (Authenticated)
 
 11. After selecting a character and profession, the app must display the curated list of rare recipes for that profession.
-12. Each recipe in the list must show: recipe name, source (e.g., drop, vendor, quest, reputation), zone, reputation requirement (if applicable), and dropped-by enemies (if applicable).
+12. Each recipe in the list must show: recipe name (linked to Wowhead if URL is available), source (e.g., drop, vendor, quest, reputation), zone, reputation requirement (if applicable), rarity (if available), and dropped-by enemies (if applicable).
 13. The user must be able to toggle individual recipes on/off to indicate whether their character knows them.
 14. Toggling a recipe must persist the change to the database immediately (optimistic UI update with server confirmation).
 
@@ -75,7 +75,7 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 ### Recipe Seed Data
 
 20. Recipe data must be stored in static JSON files in the repository, organized by profession (e.g., `data/recipes/alchemy.json`).
-21. Each recipe entry in the JSON must include: `name` (string), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), and `dropped_by` (array of strings, nullable — enemy types that drop the recipe).
+21. Each recipe entry in the JSON must include: `name` (string, without profession prefix like "Recipe:" or "Plans:"), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), `dropped_by` (array of strings, nullable — enemy types that drop the recipe), `url` (string, nullable — Wowhead link), and `rarity` (string, nullable — item rarity).
 22. A database seed/migration script must load these JSON files into the database on deployment or when recipe data changes.
 
 ## 5. Non-Goals (Out of Scope)
@@ -144,6 +144,9 @@ erDiagram
         string zone
         string reputation_requirement
         string_array dropped_by
+        string url
+        string rarity
+        timestamp deleted_at
     }
     character_recipes {
         int character_id FK
