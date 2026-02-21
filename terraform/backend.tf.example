@@ -1,0 +1,12 @@
+# Copy this file to backend.tf and update the bucket name, then run:
+#   bash bootstrap.sh
+#
+# This stores Terraform state in a GCS bucket instead of locally.
+# Required for CI/CD with GitHub Actions; optional for manual deploys.
+
+terraform {
+  backend "gcs" {
+    bucket = "YOUR_BUCKET_NAME-tf-state"
+    prefix = "terraform/state"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "wow-professions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WoW BC Anniversary guild profession recipe tracker",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend"
+  }
+}

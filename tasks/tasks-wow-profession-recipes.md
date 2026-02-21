@@ -78,40 +78,40 @@ Update the file after completing each sub-task, not just after completing an ent
 
 ## Tasks
 
-- [ ] 0.0 Create feature branch
-  - [ ] 0.1 Create and checkout a new branch for this feature (e.g., `git checkout -b feature/wow-profession-recipes`)
+- [x] 0.0 Create feature branch
+  - [x] 0.1 Create and checkout a new branch for this feature (e.g., `git checkout -b feature/wow-profession-recipes`)
 
-- [ ] 1.0 Project scaffolding and dev environment setup
-  - [ ] 1.1 Initialize the root `package.json` with npm workspaces configured for `backend` and `frontend`
-  - [ ] 1.2 Scaffold the backend: create `backend/package.json`, install Express, TypeScript, `ts-node`, `pg`, `cors`, `dotenv`, `express-session` and dev dependencies (`@types/*`, `jest`, `ts-jest`)
-  - [ ] 1.3 Create `backend/tsconfig.json` with strict TypeScript settings and ES module output
-  - [ ] 1.4 Create `backend/src/index.ts` with a minimal Express server that listens on `PORT` env var and has a `GET /health` endpoint returning `{ status: "ok" }`
-  - [ ] 1.5 Scaffold the frontend: create `frontend/package.json`, install React, React Router, TypeScript, Vite, and dev dependencies
-  - [ ] 1.6 Initialize the Vite project: `frontend/vite.config.ts`, `frontend/index.html`, `frontend/src/main.tsx` with a placeholder `<App />` component
-  - [ ] 1.7 Configure Vite to proxy `/api` requests to the backend (e.g., `http://localhost:3000`) for local development
-  - [ ] 1.8 Add root-level npm scripts: `dev:backend`, `dev:frontend`, `build:backend`, `build:frontend`
-  - [ ] 1.9 Create a `.env.example` file documenting all required environment variables (PORT, DATABASE_URL, BNET_CLIENT_ID, BNET_CLIENT_SECRET, SESSION_SECRET, FRONTEND_URL)
-  - [ ] 1.10 Verify local dev: run backend and frontend simultaneously, confirm the health endpoint responds and the React app loads
+- [x] 1.0 Project scaffolding and dev environment setup
+  - [x] 1.1 Initialize the root `package.json` with npm workspaces configured for `backend` and `frontend`
+  - [x] 1.2 Scaffold the backend: create `backend/package.json`, install Express, TypeScript, `ts-node`, `pg`, `cors`, `dotenv`, `express-session` and dev dependencies (`@types/*`, `jest`, `ts-jest`)
+  - [x] 1.3 Create `backend/tsconfig.json` with strict TypeScript settings and ES module output
+  - [x] 1.4 Create `backend/src/index.ts` with a minimal Express server that listens on `PORT` env var and has a `GET /health` endpoint returning `{ status: "ok" }`
+  - [x] 1.5 Scaffold the frontend: create `frontend/package.json`, install React, React Router, TypeScript, Vite, and dev dependencies
+  - [x] 1.6 Initialize the Vite project: `frontend/vite.config.ts`, `frontend/index.html`, `frontend/src/main.tsx` with a placeholder `<App />` component
+  - [x] 1.7 Configure Vite to proxy `/api` requests to the backend (e.g., `http://localhost:3000`) for local development
+  - [x] 1.8 Add root-level npm scripts: `dev:backend`, `dev:frontend`, `build:backend`, `build:frontend`
+  - [x] 1.9 Create a `.env.example` file documenting all required environment variables (PORT, DATABASE_URL, BNET_CLIENT_ID, BNET_CLIENT_SECRET, SESSION_SECRET, FRONTEND_URL)
+  - [x] 1.10 Verify local dev: run backend and frontend simultaneously, confirm the health endpoint responds and the React app loads
 
-- [ ] 2.0 Terraform infrastructure and GCP deployment pipeline
-  - [ ] 2.1 Create `terraform/variables.tf` with input variables: `gcp_project_id`, `gcp_region`, `bnet_client_id`, `bnet_client_secret`, `database_password`
-  - [ ] 2.2 Create `terraform/main.tf` with the Google provider configuration and references to child modules
-  - [ ] 2.3 Create `terraform/modules/networking/main.tf` — VPC, subnet, and Serverless VPC Access connector for Cloud Run to reach Cloud SQL via private IP
-  - [ ] 2.4 Create `terraform/modules/cloud-sql/main.tf` — Cloud SQL PostgreSQL instance (db-f1-micro), database, and user; output connection name and private IP
-  - [ ] 2.5 Create `terraform/modules/secrets/main.tf` — Secret Manager secrets for `BNET_CLIENT_ID`, `BNET_CLIENT_SECRET`, `SESSION_SECRET`, and `DATABASE_URL`; output secret resource IDs
-  - [ ] 2.6 Create `terraform/modules/cloud-run/main.tf` — parameterized Cloud Run service module (used for both backend and frontend); accept image/source, env vars, secret references, VPC connector, and Cloud SQL connection
-  - [ ] 2.7 Wire up the backend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing Cloud SQL connection, secret references, and VPC connector
-  - [ ] 2.8 Wire up the frontend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing the backend URL as an env var
-  - [ ] 2.9 Create `terraform/outputs.tf` — output the frontend URL, backend URL, and Cloud SQL connection name
-  - [ ] 2.10 Add IAM bindings: Cloud Run invoker (allUsers for public access), Cloud SQL client role for backend service account, Secret Manager accessor for backend service account
-  - [ ] 2.11 Run `terraform init` and `terraform plan` to validate the configuration
-  - [ ] 2.12 Run `terraform apply` to provision infrastructure, then deploy the skeleton backend and frontend using `gcloud run deploy --source .` and verify the health endpoint is reachable at the Cloud Run URL
+- [x] 2.0 Terraform infrastructure and GCP deployment pipeline
+  - [x] 2.1 Create `terraform/variables.tf` with input variables: `gcp_project_id`, `gcp_region`, `bnet_client_id`, `bnet_client_secret`, `database_password`
+  - [x] 2.2 Create `terraform/main.tf` with the Google provider configuration and references to child modules
+  - [x] 2.3 Create `terraform/modules/networking/main.tf` — VPC, subnet, and Serverless VPC Access connector for Cloud Run to reach Cloud SQL via private IP
+  - [x] 2.4 Create `terraform/modules/cloud-sql/main.tf` — Cloud SQL PostgreSQL instance (db-f1-micro), database, and user; output connection name and private IP
+  - [x] 2.5 Create `terraform/modules/secrets/main.tf` — Secret Manager secrets for `BNET_CLIENT_ID`, `BNET_CLIENT_SECRET`, `SESSION_SECRET`, and `DATABASE_URL`; output secret resource IDs
+  - [x] 2.6 Create `terraform/modules/cloud-run/main.tf` — parameterized Cloud Run service module (used for both backend and frontend); accept image/source, env vars, secret references, VPC connector, and Cloud SQL connection
+  - [x] 2.7 Wire up the backend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing Cloud SQL connection, secret references, and VPC connector
+  - [x] 2.8 Wire up the frontend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing the backend URL as an env var
+  - [x] 2.9 Create `terraform/outputs.tf` — output the frontend URL, backend URL, and Cloud SQL connection name
+  - [x] 2.10 Add IAM bindings: Cloud Run invoker (allUsers for public access), Cloud SQL client role for backend service account, Secret Manager accessor for backend service account
+  - [x] 2.11 Run `terraform init` and `terraform plan` to validate the configuration
+  - [x] 2.12 Run `terraform apply` to provision infrastructure, then deploy the skeleton backend and frontend using `gcloud run deploy --source .` and verify the health endpoint is reachable at the Cloud Run URL
 
 - [ ] 3.0 Database schema, migrations, and recipe seed data
   - [ ] 3.1 Create `backend/src/db.ts` — a connection pool using `pg.Pool` configured from `DATABASE_URL` env var
   - [ ] 3.2 Create `backend/src/migrate.ts` — a migration script that creates the `users`, `characters`, `professions`, `recipes`, and `character_recipes` tables with the schema from the PRD data model; include `created_at`/`updated_at` timestamps
   - [ ] 3.3 Include an `INSERT` in the migration for the 8 TBC professions (Alchemy, Blacksmithing, Enchanting, Engineering, Jewelcrafting, Leatherworking, Tailoring, Cooking) with placeholder icon URLs
-  - [ ] 3.4 Create the `data/recipes/` directory and add JSON seed files for each profession (at minimum, a few example recipes per profession with `name`, `source`, `zone`, and `reputation_requirement` fields)
+  - [ ] 3.4 Create the `data/recipes/` directory and add JSON seed files for each profession (at minimum, a few example recipes per profession with `name`, `source`, `zone`, `reputation_requirement`, and `dropped_by` fields)
   - [ ] 3.5 Create `backend/src/seed.ts` — reads each JSON file from `data/recipes/`, upserts recipes into the `recipes` table, and soft-deletes recipes no longer in the JSON (set a `deleted_at` column rather than removing rows)
   - [ ] 3.6 Add npm scripts: `migrate` and `seed` in `backend/package.json` that run the migration and seed scripts respectively
   - [ ] 3.7 Run the migration and seed scripts against the live Cloud SQL instance and verify the tables and data exist

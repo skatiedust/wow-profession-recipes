@@ -1,0 +1,11 @@
+gcp_project_id     = "your-gcp-project-id"
+gcp_region         = "us-central1"
+bnet_client_id     = "your-battle-net-client-id"
+bnet_client_secret = "your-battle-net-client-secret"
+database_password  = "a-strong-random-password"
+session_secret     = "a-different-random-string"
+frontend_url       = ""
+
+# Optional: set to enable Workload Identity Federation for GitHub Actions CI/CD.
+# Leave commented out (or empty) if you only deploy manually.
+# github_repo      = "your-github-username/your-repo-name"
