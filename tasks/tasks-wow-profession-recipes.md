@@ -95,7 +95,7 @@ Update the file after completing each sub-task, not just after completing an ent
 
 - [ ] 2.0 Terraform infrastructure and GCP deployment pipeline
   - [x] 2.1 Create `terraform/variables.tf` with input variables: `gcp_project_id`, `gcp_region`, `bnet_client_id`, `bnet_client_secret`, `database_password`
-  - [ ] 2.2 Create `terraform/main.tf` with the Google provider configuration and references to child modules
+  - [x] 2.2 Create `terraform/main.tf` with the Google provider configuration and references to child modules
   - [ ] 2.3 Create `terraform/modules/networking/main.tf` — VPC, subnet, and Serverless VPC Access connector for Cloud Run to reach Cloud SQL via private IP
   - [ ] 2.4 Create `terraform/modules/cloud-sql/main.tf` — Cloud SQL PostgreSQL instance (db-f1-micro), database, and user; output connection name and private IP
   - [ ] 2.5 Create `terraform/modules/secrets/main.tf` — Secret Manager secrets for `BNET_CLIENT_ID`, `BNET_CLIENT_SECRET`, `SESSION_SECRET`, and `DATABASE_URL`; output secret resource IDs
