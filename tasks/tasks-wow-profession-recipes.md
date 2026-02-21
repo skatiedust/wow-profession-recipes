@@ -93,7 +93,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 1.9 Create a `.env.example` file documenting all required environment variables (PORT, DATABASE_URL, BNET_CLIENT_ID, BNET_CLIENT_SECRET, SESSION_SECRET, FRONTEND_URL)
   - [x] 1.10 Verify local dev: run backend and frontend simultaneously, confirm the health endpoint responds and the React app loads
 
-- [ ] 2.0 Terraform infrastructure and GCP deployment pipeline
+- [x] 2.0 Terraform infrastructure and GCP deployment pipeline
   - [x] 2.1 Create `terraform/variables.tf` with input variables: `gcp_project_id`, `gcp_region`, `bnet_client_id`, `bnet_client_secret`, `database_password`
   - [x] 2.2 Create `terraform/main.tf` with the Google provider configuration and references to child modules
   - [x] 2.3 Create `terraform/modules/networking/main.tf` — VPC, subnet, and Serverless VPC Access connector for Cloud Run to reach Cloud SQL via private IP
@@ -104,14 +104,14 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 2.8 Wire up the frontend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing the backend URL as an env var
   - [x] 2.9 Create `terraform/outputs.tf` — output the frontend URL, backend URL, and Cloud SQL connection name
   - [x] 2.10 Add IAM bindings: Cloud Run invoker (allUsers for public access), Cloud SQL client role for backend service account, Secret Manager accessor for backend service account
-  - [ ] 2.11 Run `terraform init` and `terraform plan` to validate the configuration
-  - [ ] 2.12 Run `terraform apply` to provision infrastructure, then deploy the skeleton backend and frontend using `gcloud run deploy --source .` and verify the health endpoint is reachable at the Cloud Run URL
+  - [x] 2.11 Run `terraform init` and `terraform plan` to validate the configuration
+  - [x] 2.12 Run `terraform apply` to provision infrastructure, then deploy the skeleton backend and frontend using `gcloud run deploy --source .` and verify the health endpoint is reachable at the Cloud Run URL
 
 - [ ] 3.0 Database schema, migrations, and recipe seed data
   - [ ] 3.1 Create `backend/src/db.ts` — a connection pool using `pg.Pool` configured from `DATABASE_URL` env var
   - [ ] 3.2 Create `backend/src/migrate.ts` — a migration script that creates the `users`, `characters`, `professions`, `recipes`, and `character_recipes` tables with the schema from the PRD data model; include `created_at`/`updated_at` timestamps
   - [ ] 3.3 Include an `INSERT` in the migration for the 8 TBC professions (Alchemy, Blacksmithing, Enchanting, Engineering, Jewelcrafting, Leatherworking, Tailoring, Cooking) with placeholder icon URLs
-  - [ ] 3.4 Create the `data/recipes/` directory and add JSON seed files for each profession (at minimum, a few example recipes per profession with `name`, `source`, `zone`, and `reputation_requirement` fields)
+  - [ ] 3.4 Create the `data/recipes/` directory and add JSON seed files for each profession (at minimum, a few example recipes per profession with `name`, `source`, `zone`, `reputation_requirement`, and `dropped_by` fields)
   - [ ] 3.5 Create `backend/src/seed.ts` — reads each JSON file from `data/recipes/`, upserts recipes into the `recipes` table, and soft-deletes recipes no longer in the JSON (set a `deleted_at` column rather than removing rows)
   - [ ] 3.6 Add npm scripts: `migrate` and `seed` in `backend/package.json` that run the migration and seed scripts respectively
   - [ ] 3.7 Run the migration and seed scripts against the live Cloud SQL instance and verify the tables and data exist

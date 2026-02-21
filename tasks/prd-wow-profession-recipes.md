@@ -60,7 +60,7 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 ### Recipe Checklist (Authenticated)
 
 11. After selecting a character and profession, the app must display the curated list of rare recipes for that profession.
-12. Each recipe in the list must show: recipe name, source (e.g., drop, vendor, quest, reputation), zone, and reputation requirement (if applicable).
+12. Each recipe in the list must show: recipe name, source (e.g., drop, vendor, quest, reputation), zone, reputation requirement (if applicable), and dropped-by enemies (if applicable).
 13. The user must be able to toggle individual recipes on/off to indicate whether their character knows them.
 14. Toggling a recipe must persist the change to the database immediately (optimistic UI update with server confirmation).
 
@@ -68,14 +68,14 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 
 15. The app must display a profession picker on the home page (accessible without login).
 16. After selecting a profession, the app must display all tracked recipes for that profession.
-17. Each recipe row must show: recipe name, source, zone, reputation requirement, and a list of character names who know it.
+17. Each recipe row must show: recipe name, source, zone, reputation requirement, dropped-by enemies (if any), and a list of character names who know it.
 18. The app must provide a search/filter input that filters the recipe list by recipe name in real time (client-side filtering).
 19. If no characters know a recipe, the row must still appear but indicate that no crafters are available.
 
 ### Recipe Seed Data
 
 20. Recipe data must be stored in static JSON files in the repository, organized by profession (e.g., `data/recipes/alchemy.json`).
-21. Each recipe entry in the JSON must include: `name` (string), `source` (enum: drop, vendor, quest, reputation), `zone` (string), and `reputation_requirement` (string, nullable).
+21. Each recipe entry in the JSON must include: `name` (string), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), and `dropped_by` (array of strings, nullable — enemy types that drop the recipe).
 22. A database seed/migration script must load these JSON files into the database on deployment or when recipe data changes.
 
 ## 5. Non-Goals (Out of Scope)
@@ -143,6 +143,7 @@ erDiagram
         string source
         string zone
         string reputation_requirement
+        string_array dropped_by
     }
     character_recipes {
         int character_id FK

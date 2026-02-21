@@ -33,6 +33,8 @@ module "cloud_sql" {
   database_user     = local.database_user
   database_password = var.database_password
   network_id        = module.networking.vpc_id
+
+  depends_on = [module.networking]
 }
 
 module "secrets" {
@@ -54,7 +56,6 @@ module "backend" {
   cloud_sql_connection  = module.cloud_sql.connection_name
 
   env_vars = {
-    PORT         = "8080"
     NODE_ENV     = "production"
     FRONTEND_URL = var.frontend_url
   }
@@ -76,7 +77,6 @@ module "frontend" {
   cloud_sql_connection = null
 
   env_vars = {
-    PORT        = "8080"
     BACKEND_URL = module.backend.service_url
   }
 
