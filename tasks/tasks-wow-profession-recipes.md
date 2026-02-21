@@ -128,34 +128,34 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 4.8 Deploy the backend to Cloud Run and test the full OAuth login flow end-to-end in a browser (login → callback → session → /api/auth/me)
   - [x] 4.9 Write tests for auth routes (mock OAuth flow), auth middleware (valid/invalid sessions), and the Blizzard API service (mock HTTP responses)
 
-- [ ] 5.0 Backend API — Recipe endpoints (checklist and public browse)
-  - [ ] 5.1 Add to `backend/src/routes/recipes.ts` — `GET /api/recipes?profession_id=X` — returns all non-deleted recipes for a profession, each with an array of character names/realms who know it (public, no auth required)
-  - [ ] 5.2 Add `GET /api/recipes/checklist?character_id=X` — returns all recipes for the character's profession, each with a boolean `known` flag indicating if the character has it (auth required, character must belong to current user)
-  - [ ] 5.3 Add `POST /api/recipes/checklist` — accepts `{ character_id, recipe_id, known: boolean }` and inserts or deletes the `character_recipes` row accordingly (auth required)
-  - [ ] 5.4 Add `GET /api/professions` — returns the list of all professions with id, name, and icon_url (public, no auth)
-  - [ ] 5.5 Deploy and test: verify the public recipe list returns recipes with crafter names, and the checklist toggle persists correctly
-  - [ ] 5.6 Write tests for all recipe routes — mock the database layer and verify correct SQL queries, auth enforcement, and response shapes
+- [ ] 5.0 Frontend — Minimal UI for testing auth and character endpoints (no styling)
+  - [x] 5.1 Create `frontend/src/hooks/useAuth.ts` — a React context + hook that calls `GET /api/auth/me` on mount to determine if the user is logged in; exposes `user`, `isLoggedIn`, `login()` (redirects to `/api/auth/login`), and `logout()` (calls `POST /api/auth/logout`)
+  - [ ] 5.2 Create `frontend/src/components/LoginButton.tsx` — shows "Login with Battle.net" when logged out, and the user's BattleTag + "Logout" when logged in
+  - [ ] 5.3 Create `frontend/src/hooks/useCharacters.ts` — hook that fetches the user's saved characters (`GET /api/characters`), exposes import from Blizzard (`GET /api/characters/import`), and create (`POST /api/characters`) / delete (`DELETE /api/characters/:id`) functions
+  - [ ] 5.4 Create `frontend/src/components/CharacterManager.tsx` — list saved characters with a delete button each, an "Import from Battle.net" button that fetches and displays importable characters, and a manual add form (name, realm fields)
+  - [ ] 5.5 Wire up `frontend/src/App.tsx` with React Router and `AuthProvider` — `/` shows `LoginButton` and, when logged in, the `CharacterManager`; when logged out, prompt to log in
+  - [ ] 5.6 Deploy frontend to Cloud Run and test the full flow in a browser (login → view characters → import from Blizzard → add/delete character → logout)
 
-- [ ] 6.0 Frontend — Public recipe browse and search
-  - [ ] 6.1 Set up global styles in `frontend/src/styles/global.css` — dark background, light text, gold accent color (`#FFD100` or similar), responsive typography, and CSS variables for the theme
-  - [ ] 6.2 Create `frontend/src/App.tsx` with React Router — routes for `/` (home), `/profession/:id` (recipe list), and `/my-recipes` (authenticated checklist)
-  - [ ] 6.3 Create `frontend/src/pages/HomePage.tsx` — displays a grid of profession icons/names using the `ProfessionPicker` component; fetches from `GET /api/professions`
-  - [ ] 6.4 Create `frontend/src/components/ProfessionPicker.tsx` — renders profession cards/buttons with icons and names; clicking navigates to `/profession/:id`
-  - [ ] 6.5 Create `frontend/src/pages/ProfessionPage.tsx` — fetches recipes from `GET /api/recipes?profession_id=X`, displays them using `RecipeList`, and includes `RecipeSearch` at the top
-  - [ ] 6.6 Create `frontend/src/components/RecipeList.tsx` — renders a table or card list of recipes showing name, source, zone, reputation requirement, and a list of character names who know it; shows "No crafters yet" if the crafter list is empty
-  - [ ] 6.7 Create `frontend/src/components/RecipeSearch.tsx` — a search input that filters the recipe list by name in real time (client-side); passes the filter string up to the parent via a callback
-  - [ ] 6.8 Create `frontend/src/hooks/useRecipes.ts` — hook that fetches recipes for a profession and exposes the data, loading state, and a filter function
-  - [ ] 6.9 Add a navigation header with the app name, a link back to home, and the login button (placeholder for now)
-  - [ ] 6.10 Deploy the frontend to Cloud Run and verify the public browse flow works end-to-end with live data
-  - [ ] 6.11 Write tests for `HomePage`, `ProfessionPage`, `RecipeList`, and `RecipeSearch` — mock API responses and verify rendering and filter behavior
+- [ ] 6.0 Backend API — Recipe endpoints (checklist and public browse)
+  - [ ] 6.1 Add to `backend/src/routes/recipes.ts` — `GET /api/recipes?profession_id=X` — returns all non-deleted recipes for a profession, each with an array of character names/realms who know it (public, no auth required)
+  - [ ] 6.2 Add `GET /api/recipes/checklist?character_id=X` — returns all recipes for the character's profession, each with a boolean `known` flag indicating if the character has it (auth required, character must belong to current user)
+  - [ ] 6.3 Add `POST /api/recipes/checklist` — accepts `{ character_id, recipe_id, known: boolean }` and inserts or deletes the `character_recipes` row accordingly (auth required)
+  - [ ] 6.4 Add `GET /api/professions` — returns the list of all professions with id, name, and icon_url (public, no auth)
+  - [ ] 6.5 Deploy and test: verify the public recipe list returns recipes with crafter names, and the checklist toggle persists correctly
+  - [ ] 6.6 Write tests for all recipe routes — mock the database layer and verify correct SQL queries, auth enforcement, and response shapes
 
-- [ ] 7.0 Frontend — Authentication, character management, and recipe checklist
-  - [ ] 7.1 Create `frontend/src/hooks/useAuth.ts` — a React context + hook that calls `GET /api/auth/me` on mount to determine if the user is logged in; exposes `user`, `isLoggedIn`, `login()` (redirects to `/api/auth/login`), and `logout()` (calls `/api/auth/logout`)
-  - [ ] 7.2 Create `frontend/src/components/LoginButton.tsx` — shows "Login with Battle.net" when logged out, and the user's BattleTag + "Logout" when logged in
-  - [ ] 7.3 Create `frontend/src/hooks/useCharacters.ts` — hook that fetches the user's saved characters (`GET /api/characters`), exposes import from Blizzard (`GET /api/characters/import`), and save/delete functions
-  - [ ] 7.4 Create `frontend/src/components/CharacterSelector.tsx` — displays the user's saved characters as a list; includes an "Import from Battle.net" button that fetches and displays importable characters; includes a manual entry form (name, realm, profession dropdown) as a fallback or alternative
-  - [ ] 7.5 Create `frontend/src/pages/MyRecipesPage.tsx` — authenticated page: if not logged in, prompt to log in; if logged in, show `CharacterSelector`; once a character is selected, show `RecipeChecklist` for that character's profession
-  - [ ] 7.6 Create `frontend/src/components/RecipeChecklist.tsx` — fetches the checklist from `GET /api/recipes/checklist?character_id=X`, renders checkboxes for each recipe with name and metadata; toggling a checkbox calls `POST /api/recipes/checklist` with optimistic UI update
-  - [ ] 7.7 Add route protection: the `/my-recipes` route should redirect to login if the user is not authenticated
-  - [ ] 7.8 Deploy and test the full authenticated flow end-to-end: login → import characters → select character → toggle recipes → verify changes appear on the public browse page
-  - [ ] 7.9 Write tests for `LoginButton`, `CharacterSelector`, `MyRecipesPage`, and `RecipeChecklist` — mock auth state and API calls, verify UI states for logged-in/logged-out, optimistic toggle behavior
+- [ ] 7.0 Frontend — Styling, public recipe browse, and recipe checklist
+  - [ ] 7.1 Set up global styles in `frontend/src/styles/global.css` — dark background, light text, gold accent color (`#FFD100` or similar), responsive typography, and CSS variables for the theme
+  - [ ] 7.2 Update `frontend/src/App.tsx` with routes for `/` (home), `/profession/:id` (recipe list), and `/my-recipes` (authenticated checklist); add a navigation header with the app name, home link, and `LoginButton`
+  - [ ] 7.3 Create `frontend/src/pages/HomePage.tsx` — displays a grid of profession icons/names using the `ProfessionPicker` component; fetches from `GET /api/professions`
+  - [ ] 7.4 Create `frontend/src/components/ProfessionPicker.tsx` — renders profession cards/buttons with icons and names; clicking navigates to `/profession/:id`
+  - [ ] 7.5 Create `frontend/src/hooks/useRecipes.ts` — hook that fetches recipes for a profession and exposes the data, loading state, and a filter function
+  - [ ] 7.6 Create `frontend/src/pages/ProfessionPage.tsx` — fetches recipes from `GET /api/recipes?profession_id=X`, displays them using `RecipeList`, and includes `RecipeSearch` at the top
+  - [ ] 7.7 Create `frontend/src/components/RecipeList.tsx` — renders a table or card list of recipes showing name, source, zone, reputation requirement, and a list of character names who know it; shows "No crafters yet" if the crafter list is empty
+  - [ ] 7.8 Create `frontend/src/components/RecipeSearch.tsx` — a search input that filters the recipe list by name in real time (client-side); passes the filter string up to the parent via a callback
+  - [ ] 7.9 Update `frontend/src/components/CharacterManager.tsx` into a full `CharacterSelector.tsx` — add profession dropdown to manual entry form, style to match the theme
+  - [ ] 7.10 Create `frontend/src/pages/MyRecipesPage.tsx` — authenticated page: if not logged in, prompt to log in; if logged in, show `CharacterSelector`; once a character is selected, show `RecipeChecklist` for that character's profession
+  - [ ] 7.11 Create `frontend/src/components/RecipeChecklist.tsx` — fetches the checklist from `GET /api/recipes/checklist?character_id=X`, renders checkboxes for each recipe with name and metadata; toggling a checkbox calls `POST /api/recipes/checklist` with optimistic UI update
+  - [ ] 7.12 Add route protection: the `/my-recipes` route should redirect to login if the user is not authenticated
+  - [ ] 7.13 Deploy and test the full flow end-to-end: public browse with search, login → import characters → select character → toggle recipes → verify changes appear on the public browse page
+  - [ ] 7.14 Write tests for `HomePage`, `ProfessionPage`, `RecipeList`, `RecipeSearch`, `LoginButton`, `CharacterSelector`, `MyRecipesPage`, and `RecipeChecklist` — mock API responses and auth state, verify rendering, filter behavior, and optimistic toggle
