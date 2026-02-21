@@ -1,0 +1,223 @@
+import { Request, Response } from "express";
+
+const mockQuery = jest.fn();
+jest.mock("../db", () => ({ query: (...args: unknown[]) => mockQuery(...args) }));
+
+const mockExchangeCodeForToken = jest.fn();
+const mockFetchUserInfo = jest.fn();
+jest.mock("../services/blizzard", () => ({
+  exchangeCodeForToken: (...args: unknown[]) => mockExchangeCodeForToken(...args),
+  fetchUserInfo: (...args: unknown[]) => mockFetchUserInfo(...args),
+}));
+
+import authRouter from "./auth";
+
+type HandlerFn = (req: Request, res: Response) => void | Promise<void>;
+interface Layer {
+  route?: { path: string; methods: Record<string, boolean>; stack: Array<{ handle: HandlerFn }> };
+}
+
+function findHandler(method: string, path: string): HandlerFn {
+  const layer = (authRouter as unknown as { stack: Layer[] }).stack.find(
+    (l) => l.route?.path === path && l.route.methods[method]
+  );
+  if (!layer?.route) throw new Error(`No handler for ${method.toUpperCase()} ${path}`);
+  return layer.route.stack[0].handle;
+}
+
+function buildReq(overrides: Record<string, unknown> = {}): Request {
+  const session: Record<string, unknown> = {};
+  return {
+    protocol: "https",
+    get: jest.fn().mockReturnValue("example.com"),
+    query: {},
+    session,
+    ...overrides,
+  } as unknown as Request;
+}
+
+function buildRes(): Response & { _redirectUrl?: string } {
+  const res = {} as Response & { _redirectUrl?: string };
+  res.status = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockReturnValue(res);
+  res.redirect = jest.fn().mockImplementation((url: string) => {
+    res._redirectUrl = url;
+  });
+  res.clearCookie = jest.fn().mockReturnValue(res);
+  return res;
+}
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  process.env.BNET_CLIENT_ID = "test-client-id";
+  delete process.env.BNET_REDIRECT_URI;
+  process.env.FRONTEND_URL = "https://frontend.example.com";
+});
+
+describe("GET /login", () => {
+  const handler = findHandler("get", "/login");
+
+  it("redirects to Battle.net with correct query parameters", () => {
+    const req = buildReq();
+    const res = buildRes();
+
+    handler(req, res);
+
+    expect(res.redirect).toHaveBeenCalled();
+    const url = new URL(res._redirectUrl!);
+    expect(url.origin + url.pathname).toBe("https://oauth.battle.net/authorize");
+    expect(url.searchParams.get("client_id")).toBe("test-client-id");
+    expect(url.searchParams.get("response_type")).toBe("code");
+    expect(url.searchParams.get("scope")).toBe("openid wow.profile");
+    expect(url.searchParams.get("redirect_uri")).toBe(
+      "https://example.com/api/auth/callback"
+    );
+  });
+
+  it("uses BNET_REDIRECT_URI env var when set", () => {
+    process.env.BNET_REDIRECT_URI = "https://custom.example.com/cb";
+    const req = buildReq();
+    const res = buildRes();
+
+    handler(req, res);
+
+    const url = new URL(res._redirectUrl!);
+    expect(url.searchParams.get("redirect_uri")).toBe(
+      "https://custom.example.com/cb"
+    );
+  });
+
+  it("returns 500 when BNET_CLIENT_ID is not configured", () => {
+    delete process.env.BNET_CLIENT_ID;
+    const req = buildReq();
+    const res = buildRes();
+
+    handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "BNET_CLIENT_ID not configured",
+    });
+  });
+});
+
+describe("GET /callback", () => {
+  const handler = findHandler("get", "/callback");
+
+  it("exchanges code, upserts user, sets session, and redirects to frontend", async () => {
+    mockExchangeCodeForToken.mockResolvedValueOnce({
+      access_token: "tok_abc",
+      token_type: "bearer",
+      expires_in: 86400,
+    });
+    mockFetchUserInfo.mockResolvedValueOnce({
+      sub: "999",
+      battletag: "Hero#1111",
+    });
+    mockQuery.mockResolvedValueOnce({ rows: [{ id: 7 }] });
+
+    const session: Record<string, unknown> = {};
+    const req = buildReq({ query: { code: "auth-code-123" }, session });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(mockExchangeCodeForToken).toHaveBeenCalledWith(
+      "auth-code-123",
+      "https://example.com/api/auth/callback"
+    );
+    expect(mockFetchUserInfo).toHaveBeenCalledWith("tok_abc");
+    expect(mockQuery).toHaveBeenCalledWith(
+      expect.stringContaining("INSERT INTO users"),
+      ["999", "Hero#1111"]
+    );
+    expect(session.userId).toBe(7);
+    expect(session.battleTag).toBe("Hero#1111");
+    expect(session.accessToken).toBe("tok_abc");
+    expect(res.redirect).toHaveBeenCalledWith("https://frontend.example.com");
+  });
+
+  it("returns 400 when code is missing", async () => {
+    const req = buildReq({ query: {} });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Missing authorization code",
+    });
+  });
+
+  it("returns 500 when token exchange fails", async () => {
+    mockExchangeCodeForToken.mockRejectedValueOnce(new Error("token error"));
+    const req = buildReq({ query: { code: "bad" } });
+    const res = buildRes();
+
+    const consoleSpy = jest.spyOn(console, "error").mockImplementation();
+    await handler(req, res);
+    consoleSpy.mockRestore();
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ error: "Authentication failed" });
+  });
+});
+
+describe("GET /me", () => {
+  const handler = findHandler("get", "/me");
+
+  it("returns user info when authenticated", () => {
+    const req = buildReq({
+      session: { userId: 42, battleTag: "Player#5678" },
+    });
+    const res = buildRes();
+
+    handler(req, res);
+
+    expect(res.json).toHaveBeenCalledWith({
+      id: 42,
+      battleTag: "Player#5678",
+    });
+  });
+
+  it("returns 401 when not authenticated", () => {
+    const req = buildReq({ session: {} });
+    const res = buildRes();
+
+    handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ error: "Not authenticated" });
+  });
+});
+
+describe("POST /logout", () => {
+  const handler = findHandler("post", "/logout");
+
+  it("destroys the session and clears the cookie", () => {
+    const destroy = jest.fn((cb: (err?: Error) => void) => cb());
+    const req = buildReq({ session: { destroy } });
+    const res = buildRes();
+
+    handler(req, res);
+
+    expect(destroy).toHaveBeenCalled();
+    expect(res.clearCookie).toHaveBeenCalledWith("connect.sid");
+    expect(res.json).toHaveBeenCalledWith({ success: true });
+  });
+
+  it("returns 500 when session destroy fails", () => {
+    const destroy = jest.fn((cb: (err?: Error) => void) =>
+      cb(new Error("destroy error"))
+    );
+    const req = buildReq({ session: { destroy } });
+    const res = buildRes();
+
+    const consoleSpy = jest.spyOn(console, "error").mockImplementation();
+    handler(req, res);
+    consoleSpy.mockRestore();
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ error: "Logout failed" });
+  });
+});
