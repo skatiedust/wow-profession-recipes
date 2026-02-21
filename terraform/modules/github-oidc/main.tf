@@ -46,6 +46,7 @@ locals {
     "roles/vpcaccess.admin",
     "roles/cloudbuild.builds.editor",
     "roles/artifactregistry.admin",
+    "roles/resourcemanager.projectIamAdmin",
   ]
 }
 
