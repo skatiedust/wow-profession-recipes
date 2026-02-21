@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Sunfire Robe",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Sunfire Handwraps",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Robe of Eternal Light",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Spellstrike Pants",
+    "source": "drop",
+    "zone": "The Arcatraz",
+    "reputation_requirement": null,
+    "dropped_by": ["Harbinger Skyriss"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Battlecast Pants",
+    "source": "drop",
+    "zone": "The Arcatraz",
+    "reputation_requirement": null,
+    "dropped_by": ["Zereketh the Unbound"],
+    "url": null,
+    "rarity": null
+  }
+]

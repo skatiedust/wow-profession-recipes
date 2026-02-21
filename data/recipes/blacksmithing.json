@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Blazefury",
+    "source": "drop",
+    "zone": "Black Temple",
+    "reputation_requirement": null,
+    "dropped_by": ["Black Temple Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Lionheart Executioner",
+    "source": "drop",
+    "zone": "Black Temple",
+    "reputation_requirement": null,
+    "dropped_by": ["Black Temple Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Dawnsteel Bracers",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Swiftsteel Bracers",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Khorium Belt",
+    "source": "drop",
+    "zone": "Nagrand",
+    "reputation_requirement": null,
+    "dropped_by": ["Various Outland mobs"],
+    "url": null,
+    "rarity": null
+  }
+]

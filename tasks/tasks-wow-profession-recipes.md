@@ -111,7 +111,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 3.1 Create `backend/src/db.ts` — a connection pool using `pg.Pool` configured from `DATABASE_URL` env var
   - [x] 3.2 Create `backend/src/migrate.ts` — a migration script that creates the `users`, `characters`, `professions`, `recipes`, and `character_recipes` tables with the schema from the PRD data model; include `created_at`/`updated_at` timestamps
   - [x] 3.3 Include an `INSERT` in the migration for the 8 TBC professions (Alchemy, Blacksmithing, Enchanting, Engineering, Jewelcrafting, Leatherworking, Tailoring, Cooking) with placeholder icon URLs
-  - [ ] 3.4 Create the `data/recipes/` directory and add JSON seed files for each profession (at minimum, a few example recipes per profession with `name`, `source`, `zone`, `reputation_requirement`, and `dropped_by` fields)
+  - [x] 3.4 Create the `data/recipes/` directory and add JSON seed files for each profession (at minimum, a few example recipes per profession with `name`, `source`, `zone`, `reputation_requirement`, and `dropped_by` fields)
   - [ ] 3.5 Create `backend/src/seed.ts` — reads each JSON file from `data/recipes/`, upserts recipes into the `recipes` table, and soft-deletes recipes no longer in the JSON (set a `deleted_at` column rather than removing rows)
   - [ ] 3.6 Add npm scripts: `migrate` and `seed` in `backend/package.json` that run the migration and seed scripts respectively
   - [ ] 3.7 Run the migration and seed scripts against the live Cloud SQL instance and verify the tables and data exist

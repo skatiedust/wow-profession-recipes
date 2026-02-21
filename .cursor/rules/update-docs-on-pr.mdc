@@ -1,0 +1,13 @@
+---
+description: Check if PRD and README need updating before opening a PR
+alwaysApply: true
+---
+
+# Update Documentation Before Opening PRs
+
+Before creating a pull request, check whether the changes affect anything documented in:
+
+1. **`tasks/prd-wow-profession-recipes.md`** — the data model, functional requirements, or technical considerations
+2. **`README.md`** — the project structure, recipe JSON schema, setup instructions, or deployment steps
+
+If the PR introduces new fields, changes the database schema, modifies the recipe JSON format, adds new scripts/commands, or alters the project structure, update the relevant docs in the same PR.

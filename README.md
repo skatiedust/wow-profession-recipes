@@ -265,12 +265,24 @@ Tracked recipes are maintained as JSON files in `data/recipes/`, one per profess
 
 ```json
 {
-  "name": "Recipe: Flask of Supreme Power",
+  "name": "Flask of Pure Death",
   "source": "drop",
-  "zone": "Molten Core",
+  "zone": "Serpentshrine Cavern",
   "reputation_requirement": null,
-  "dropped_by": ["Molten Giant", "Molten Destroyer"]
+  "dropped_by": ["Hydross the Unstable", "The Lurker Below", "Coilfang Trash"],
+  "url": "https://www.wowhead.com/tbc/item=22866/flask-of-pure-death",
+  "rarity": "rare"
 }
 ```
 
-To add or remove recipes, edit the JSON files and redeploy. A database seed script reads these files and upserts them into the database.
+| Field                    | Type             | Description                                                    |
+| ------------------------ | ---------------- | -------------------------------------------------------------- |
+| `name`                   | string           | Recipe name without profession prefix (e.g. "Flask of Pure Death", not "Recipe: Flask of Pure Death") |
+| `source`                 | string           | How to obtain: `drop`, `vendor`, `quest`, or `reputation`      |
+| `zone`                   | string           | Zone or instance where the recipe is found                     |
+| `reputation_requirement` | string \| null   | Faction and standing required, if any                          |
+| `dropped_by`             | string[] \| null | Enemies that drop the recipe, if source is `drop`              |
+| `url`                    | string \| null   | Wowhead TBC item link                                         |
+| `rarity`                 | string \| null   | Item rarity (e.g. `common`, `uncommon`, `rare`, `epic`)        |
+
+To add or remove recipes, edit the JSON files and redeploy. A database seed script reads these files and upserts them into the database. Recipes removed from the JSON are soft-deleted so historical character-recipe links are preserved.

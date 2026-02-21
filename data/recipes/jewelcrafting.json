@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Crimson Sun",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Don Julio's Heart",
+    "source": "drop",
+    "zone": "Sunwell Plateau",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunwell Plateau Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Falling Star",
+    "source": "drop",
+    "zone": "Hyjal Summit",
+    "reputation_requirement": null,
+    "dropped_by": ["Hyjal Summit Trash"],
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Relentless Earthstorm Diamond",
+    "source": "reputation",
+    "zone": "Shattrath City",
+    "reputation_requirement": "The Consortium - Exalted",
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  },
+  {
+    "name": "Thundering Skyfire Diamond",
+    "source": "vendor",
+    "zone": "Nagrand",
+    "reputation_requirement": "The Consortium - Honored",
+    "dropped_by": null,
+    "url": null,
+    "rarity": null
+  }
+]
