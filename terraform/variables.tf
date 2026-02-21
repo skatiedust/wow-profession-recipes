@@ -1,0 +1,34 @@
+variable "gcp_project_id" {
+  description = "The GCP project ID to deploy into"
+  type        = string
+}
+
+variable "gcp_region" {
+  description = "The GCP region for all resources"
+  type        = string
+  default     = "us-central1"
+}
+
+variable "bnet_client_id" {
+  description = "Battle.net OAuth client ID"
+  type        = string
+  sensitive   = true
+}
+
+variable "bnet_client_secret" {
+  description = "Battle.net OAuth client secret"
+  type        = string
+  sensitive   = true
+}
+
+variable "database_password" {
+  description = "Password for the Cloud SQL PostgreSQL user"
+  type        = string
+  sensitive   = true
+}
+
+variable "session_secret" {
+  description = "Secret used to sign session cookies"
+  type        = string
+  sensitive   = true
+}

@@ -81,7 +81,7 @@ Update the file after completing each sub-task, not just after completing an ent
 - [x] 0.0 Create feature branch
   - [x] 0.1 Create and checkout a new branch for this feature (e.g., `git checkout -b feature/wow-profession-recipes`)
 
-- [ ] 1.0 Project scaffolding and dev environment setup
+- [x] 1.0 Project scaffolding and dev environment setup
   - [x] 1.1 Initialize the root `package.json` with npm workspaces configured for `backend` and `frontend`
   - [x] 1.2 Scaffold the backend: create `backend/package.json`, install Express, TypeScript, `ts-node`, `pg`, `cors`, `dotenv`, `express-session` and dev dependencies (`@types/*`, `jest`, `ts-jest`)
   - [x] 1.3 Create `backend/tsconfig.json` with strict TypeScript settings and ES module output
@@ -91,10 +91,10 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 1.7 Configure Vite to proxy `/api` requests to the backend (e.g., `http://localhost:3000`) for local development
   - [x] 1.8 Add root-level npm scripts: `dev:backend`, `dev:frontend`, `build:backend`, `build:frontend`
   - [x] 1.9 Create a `.env.example` file documenting all required environment variables (PORT, DATABASE_URL, BNET_CLIENT_ID, BNET_CLIENT_SECRET, SESSION_SECRET, FRONTEND_URL)
-  - [ ] 1.10 Verify local dev: run backend and frontend simultaneously, confirm the health endpoint responds and the React app loads
+  - [x] 1.10 Verify local dev: run backend and frontend simultaneously, confirm the health endpoint responds and the React app loads
 
 - [ ] 2.0 Terraform infrastructure and GCP deployment pipeline
-  - [ ] 2.1 Create `terraform/variables.tf` with input variables: `gcp_project_id`, `gcp_region`, `bnet_client_id`, `bnet_client_secret`, `database_password`
+  - [x] 2.1 Create `terraform/variables.tf` with input variables: `gcp_project_id`, `gcp_region`, `bnet_client_id`, `bnet_client_secret`, `database_password`
   - [ ] 2.2 Create `terraform/main.tf` with the Google provider configuration and references to child modules
   - [ ] 2.3 Create `terraform/modules/networking/main.tf` — VPC, subnet, and Serverless VPC Access connector for Cloud Run to reach Cloud SQL via private IP
   - [ ] 2.4 Create `terraform/modules/cloud-sql/main.tf` — Cloud SQL PostgreSQL instance (db-f1-micro), database, and user; output connection name and private IP
