@@ -3,6 +3,7 @@ import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
 import authRouter from "./routes/auth";
+import characterRouter from "./routes/characters";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/characters", characterRouter);
 
 app.listen(port, () => {
   console.log(`Backend listening on port ${port}`);
