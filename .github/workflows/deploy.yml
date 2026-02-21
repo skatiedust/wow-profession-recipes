@@ -48,7 +48,7 @@ jobs:
       - name: Configure Terraform GCS Backend
         working-directory: terraform
         run: |
-          cat > backend.tf <<'EOF'
+          cat > backend.tf <<EOF
           terraform {
             backend "gcs" {
               bucket = "${{ secrets.TF_STATE_BUCKET }}"
