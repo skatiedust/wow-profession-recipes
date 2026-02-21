@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "start": "serve dist -s -l $PORT",
     "preview": "vite preview",
     "test": "jest"
   },
@@ -25,6 +26,7 @@
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^7.13.0"
+    "react-router-dom": "^7.13.0",
+    "serve": "^14.2.5"
   }
 }
