@@ -106,6 +106,18 @@ router.get("/callback", async (req: Request, res: Response) => {
   }
 });
 
+router.get("/me", (req: Request, res: Response) => {
+  if (!req.session.userId) {
+    res.status(401).json({ error: "Not authenticated" });
+    return;
+  }
+
+  res.json({
+    id: req.session.userId,
+    battleTag: req.session.battleTag,
+  });
+});
+
 router.post("/logout", (req: Request, res: Response) => {
   req.session.destroy((err) => {
     if (err) {
