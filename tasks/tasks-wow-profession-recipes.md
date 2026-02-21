@@ -126,7 +126,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 4.6 Create `backend/src/routes/characters.ts` — implement `GET /api/characters` (returns the logged-in user's saved characters), `POST /api/characters` (creates a new character with name, realm, profession_id — used for manual entry or after selecting from Blizzard API list), and `DELETE /api/characters/:id` (removes a character belonging to the current user)
   - [x] 4.7 Add a `GET /api/characters/import` route that calls the Blizzard API to fetch the user's character list and returns it (not yet saved); if the API fails or returns empty, return an empty array so the frontend can show the manual entry fallback
   - [ ] 4.8 Deploy the backend to Cloud Run and test the full OAuth login flow end-to-end in a browser (login → callback → session → /api/auth/me)
-  - [ ] 4.9 Write tests for auth routes (mock OAuth flow), auth middleware (valid/invalid sessions), and the Blizzard API service (mock HTTP responses)
+  - [x] 4.9 Write tests for auth routes (mock OAuth flow), auth middleware (valid/invalid sessions), and the Blizzard API service (mock HTTP responses)
 
 - [ ] 5.0 Backend API — Recipe endpoints (checklist and public browse)
   - [ ] 5.1 Add to `backend/src/routes/recipes.ts` — `GET /api/recipes?profession_id=X` — returns all non-deleted recipes for a profession, each with an array of character names/realms who know it (public, no auth required)
