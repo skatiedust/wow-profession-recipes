@@ -78,12 +78,12 @@ Update the file after completing each sub-task, not just after completing an ent
 
 ## Tasks
 
-- [ ] 0.0 Create feature branch
-  - [ ] 0.1 Create and checkout a new branch for this feature (e.g., `git checkout -b feature/wow-profession-recipes`)
+- [x] 0.0 Create feature branch
+  - [x] 0.1 Create and checkout a new branch for this feature (e.g., `git checkout -b feature/wow-profession-recipes`)
 
 - [ ] 1.0 Project scaffolding and dev environment setup
-  - [ ] 1.1 Initialize the root `package.json` with npm workspaces configured for `backend` and `frontend`
-  - [ ] 1.2 Scaffold the backend: create `backend/package.json`, install Express, TypeScript, `ts-node`, `pg`, `cors`, `dotenv`, `express-session` and dev dependencies (`@types/*`, `jest`, `ts-jest`)
+  - [x] 1.1 Initialize the root `package.json` with npm workspaces configured for `backend` and `frontend`
+  - [x] 1.2 Scaffold the backend: create `backend/package.json`, install Express, TypeScript, `ts-node`, `pg`, `cors`, `dotenv`, `express-session` and dev dependencies (`@types/*`, `jest`, `ts-jest`)
   - [ ] 1.3 Create `backend/tsconfig.json` with strict TypeScript settings and ES module output
   - [ ] 1.4 Create `backend/src/index.ts` with a minimal Express server that listens on `PORT` env var and has a `GET /health` endpoint returning `{ status: "ok" }`
   - [ ] 1.5 Scaffold the frontend: create `frontend/package.json`, install React, React Router, TypeScript, Vite, and dev dependencies
