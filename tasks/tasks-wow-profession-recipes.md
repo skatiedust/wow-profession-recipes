@@ -99,7 +99,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 2.3 Create `terraform/modules/networking/main.tf` — VPC, subnet, and Serverless VPC Access connector for Cloud Run to reach Cloud SQL via private IP
   - [x] 2.4 Create `terraform/modules/cloud-sql/main.tf` — Cloud SQL PostgreSQL instance (db-f1-micro), database, and user; output connection name and private IP
   - [x] 2.5 Create `terraform/modules/secrets/main.tf` — Secret Manager secrets for `BNET_CLIENT_ID`, `BNET_CLIENT_SECRET`, `SESSION_SECRET`, and `DATABASE_URL`; output secret resource IDs
-  - [ ] 2.6 Create `terraform/modules/cloud-run/main.tf` — parameterized Cloud Run service module (used for both backend and frontend); accept image/source, env vars, secret references, VPC connector, and Cloud SQL connection
+  - [x] 2.6 Create `terraform/modules/cloud-run/main.tf` — parameterized Cloud Run service module (used for both backend and frontend); accept image/source, env vars, secret references, VPC connector, and Cloud SQL connection
   - [ ] 2.7 Wire up the backend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing Cloud SQL connection, secret references, and VPC connector
   - [ ] 2.8 Wire up the frontend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing the backend URL as an env var
   - [ ] 2.9 Create `terraform/outputs.tf` — output the frontend URL, backend URL, and Cloud SQL connection name
