@@ -49,6 +49,8 @@ locals {
     "roles/cloudbuild.builds.editor",
     "roles/artifactregistry.admin",
     "roles/resourcemanager.projectIamAdmin",
+    "roles/serviceusage.serviceUsageConsumer",
+    "roles/logging.logWriter",
   ]
 }
 
