@@ -1,6 +1,7 @@
-import { Router, Response } from "express";
+import { Router, Request, Response } from "express";
 import { query } from "../db";
 import { requireAuth, AuthenticatedRequest } from "../middleware/auth";
+import { fetchWowCharacters } from "../services/blizzard";
 
 const router = Router();
 
@@ -25,6 +26,21 @@ router.get("/", async (req, res: Response) => {
   );
 
   res.json(result.rows);
+});
+
+router.get("/import", async (req: Request, res: Response) => {
+  const accessToken = req.session.accessToken;
+  if (!accessToken) {
+    res.json([]);
+    return;
+  }
+
+  try {
+    const characters = await fetchWowCharacters(accessToken);
+    res.json(characters);
+  } catch {
+    res.json([]);
+  }
 });
 
 router.post("/", async (req, res: Response) => {
