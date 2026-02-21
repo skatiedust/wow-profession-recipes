@@ -89,7 +89,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 1.5 Scaffold the frontend: create `frontend/package.json`, install React, React Router, TypeScript, Vite, and dev dependencies
   - [x] 1.6 Initialize the Vite project: `frontend/vite.config.ts`, `frontend/index.html`, `frontend/src/main.tsx` with a placeholder `<App />` component
   - [x] 1.7 Configure Vite to proxy `/api` requests to the backend (e.g., `http://localhost:3000`) for local development
-  - [ ] 1.8 Add root-level npm scripts: `dev:backend`, `dev:frontend`, `build:backend`, `build:frontend`
+  - [x] 1.8 Add root-level npm scripts: `dev:backend`, `dev:frontend`, `build:backend`, `build:frontend`
   - [ ] 1.9 Create a `.env.example` file documenting all required environment variables (PORT, DATABASE_URL, BNET_CLIENT_ID, BNET_CLIENT_SECRET, SESSION_SECRET, FRONTEND_URL)
   - [ ] 1.10 Verify local dev: run backend and frontend simultaneously, confirm the health endpoint responds and the React app loads
 
