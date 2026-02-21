@@ -1,11 +1,10 @@
 import { Router, Request, Response } from "express";
 import { query } from "../db";
+import { exchangeCodeForToken, fetchUserInfo } from "../services/blizzard";
 
 const router = Router();
 
 const BNET_AUTH_URL = "https://oauth.battle.net/authorize";
-const BNET_TOKEN_URL = "https://oauth.battle.net/token";
-const BNET_USERINFO_URL = "https://oauth.battle.net/userinfo";
 
 function getRedirectUri(req: Request): string {
   if (process.env.BNET_REDIRECT_URI) {
@@ -38,50 +37,11 @@ router.get("/callback", async (req: Request, res: Response) => {
     return;
   }
 
-  const clientId = process.env.BNET_CLIENT_ID!;
-  const clientSecret = process.env.BNET_CLIENT_SECRET!;
   const redirectUri = getRedirectUri(req);
 
   try {
-    const tokenRes = await fetch(BNET_TOKEN_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
-      },
-      body: new URLSearchParams({
-        grant_type: "authorization_code",
-        code,
-        redirect_uri: redirectUri,
-      }),
-    });
-
-    if (!tokenRes.ok) {
-      const body = await tokenRes.text();
-      console.error("Token exchange failed:", tokenRes.status, body);
-      res.status(502).json({ error: "Token exchange failed" });
-      return;
-    }
-
-    const tokenData = (await tokenRes.json()) as {
-      access_token: string;
-      token_type: string;
-    };
-
-    const userInfoRes = await fetch(BNET_USERINFO_URL, {
-      headers: { Authorization: `Bearer ${tokenData.access_token}` },
-    });
-
-    if (!userInfoRes.ok) {
-      console.error("Userinfo fetch failed:", userInfoRes.status);
-      res.status(502).json({ error: "Failed to fetch user info" });
-      return;
-    }
-
-    const userInfo = (await userInfoRes.json()) as {
-      sub: string;
-      battletag: string;
-    };
+    const tokenData = await exchangeCodeForToken(code, redirectUri);
+    const userInfo = await fetchUserInfo(tokenData.access_token);
 
     const result = await query<{ id: number }>(
       `INSERT INTO users (battle_net_id, battletag)
