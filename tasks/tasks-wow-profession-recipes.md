@@ -108,7 +108,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 2.12 Run `terraform apply` to provision infrastructure, then deploy the skeleton backend and frontend using `gcloud run deploy --source .` and verify the health endpoint is reachable at the Cloud Run URL
 
 - [ ] 3.0 Database schema, migrations, and recipe seed data
-  - [ ] 3.1 Create `backend/src/db.ts` — a connection pool using `pg.Pool` configured from `DATABASE_URL` env var
+  - [x] 3.1 Create `backend/src/db.ts` — a connection pool using `pg.Pool` configured from `DATABASE_URL` env var
   - [ ] 3.2 Create `backend/src/migrate.ts` — a migration script that creates the `users`, `characters`, `professions`, `recipes`, and `character_recipes` tables with the schema from the PRD data model; include `created_at`/`updated_at` timestamps
   - [ ] 3.3 Include an `INSERT` in the migration for the 8 TBC professions (Alchemy, Blacksmithing, Enchanting, Engineering, Jewelcrafting, Leatherworking, Tailoring, Cooking) with placeholder icon URLs
   - [ ] 3.4 Create the `data/recipes/` directory and add JSON seed files for each profession (at minimum, a few example recipes per profession with `name`, `source`, `zone`, `reputation_requirement`, and `dropped_by` fields)
