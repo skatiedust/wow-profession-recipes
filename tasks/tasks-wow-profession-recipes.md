@@ -87,7 +87,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 1.3 Create `backend/tsconfig.json` with strict TypeScript settings and ES module output
   - [x] 1.4 Create `backend/src/index.ts` with a minimal Express server that listens on `PORT` env var and has a `GET /health` endpoint returning `{ status: "ok" }`
   - [x] 1.5 Scaffold the frontend: create `frontend/package.json`, install React, React Router, TypeScript, Vite, and dev dependencies
-  - [ ] 1.6 Initialize the Vite project: `frontend/vite.config.ts`, `frontend/index.html`, `frontend/src/main.tsx` with a placeholder `<App />` component
+  - [x] 1.6 Initialize the Vite project: `frontend/vite.config.ts`, `frontend/index.html`, `frontend/src/main.tsx` with a placeholder `<App />` component
   - [ ] 1.7 Configure Vite to proxy `/api` requests to the backend (e.g., `http://localhost:3000`) for local development
   - [ ] 1.8 Add root-level npm scripts: `dev:backend`, `dev:frontend`, `build:backend`, `build:frontend`
   - [ ] 1.9 Create a `.env.example` file documenting all required environment variables (PORT, DATABASE_URL, BNET_CLIENT_ID, BNET_CLIENT_SECRET, SESSION_SECRET, FRONTEND_URL)
