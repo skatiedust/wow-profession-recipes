@@ -17,6 +17,17 @@ CREATE TABLE IF NOT EXISTS professions (
   updated_at TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 
+INSERT INTO professions (name, icon_url) VALUES
+  ('Alchemy',        'https://wow.zamimg.com/images/wow/icons/large/trade_alchemy.jpg'),
+  ('Blacksmithing',  'https://wow.zamimg.com/images/wow/icons/large/trade_blacksmithing.jpg'),
+  ('Enchanting',     'https://wow.zamimg.com/images/wow/icons/large/trade_engraving.jpg'),
+  ('Engineering',    'https://wow.zamimg.com/images/wow/icons/large/trade_engineering.jpg'),
+  ('Jewelcrafting',  'https://wow.zamimg.com/images/wow/icons/large/inv_misc_gem_01.jpg'),
+  ('Leatherworking', 'https://wow.zamimg.com/images/wow/icons/large/trade_leatherworking.jpg'),
+  ('Tailoring',      'https://wow.zamimg.com/images/wow/icons/large/trade_tailoring.jpg'),
+  ('Cooking',        'https://wow.zamimg.com/images/wow/icons/large/inv_misc_food_15.jpg')
+ON CONFLICT (name) DO NOTHING;
+
 CREATE TABLE IF NOT EXISTS characters (
   id            SERIAL PRIMARY KEY,
   user_id       INTEGER      NOT NULL REFERENCES users(id) ON DELETE CASCADE,
