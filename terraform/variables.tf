@@ -32,3 +32,9 @@ variable "session_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "frontend_url" {
+  description = "URL of the frontend Cloud Run service (set after first deploy, used for CORS and OAuth redirects)"
+  type        = string
+  default     = ""
+}

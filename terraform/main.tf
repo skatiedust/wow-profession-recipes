@@ -45,17 +45,17 @@ module "secrets" {
 }
 
 module "backend" {
-  source                = "./modules/cloud-run"
-  project_id            = var.gcp_project_id
-  region                = var.gcp_region
-  service_name          = "wow-professions-api"
-  vpc_connector_id      = module.networking.vpc_connector_id
-  cloud_sql_connection  = module.cloud_sql.connection_name
+  source               = "./modules/cloud-run"
+  project_id           = var.gcp_project_id
+  region               = var.gcp_region
+  service_name         = "wow-professions-api"
+  vpc_connector_id     = module.networking.vpc_connector_id
+  cloud_sql_connection = module.cloud_sql.connection_name
 
   env_vars = {
     PORT         = "8080"
     NODE_ENV     = "production"
-    FRONTEND_URL = module.frontend.service_url
+    FRONTEND_URL = var.frontend_url
   }
 
   secret_env_vars = {
@@ -67,15 +67,16 @@ module "backend" {
 }
 
 module "frontend" {
-  source           = "./modules/cloud-run"
-  project_id       = var.gcp_project_id
-  region           = var.gcp_region
-  service_name     = "wow-professions-web"
-  vpc_connector_id = null
+  source               = "./modules/cloud-run"
+  project_id           = var.gcp_project_id
+  region               = var.gcp_region
+  service_name         = "wow-professions-web"
+  vpc_connector_id     = null
   cloud_sql_connection = null
 
   env_vars = {
-    PORT = "8080"
+    PORT        = "8080"
+    BACKEND_URL = module.backend.service_url
   }
 
   secret_env_vars = {}
