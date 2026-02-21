@@ -43,6 +43,12 @@ variable "secret_env_vars" {
   default     = {}
 }
 
+variable "service_account_email" {
+  description = "Service account email for the Cloud Run service. If null, uses the default Compute Engine SA."
+  type        = string
+  default     = null
+}
+
 variable "max_instances" {
   description = "Maximum number of container instances"
   type        = number

@@ -103,7 +103,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 2.7 Wire up the backend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing Cloud SQL connection, secret references, and VPC connector
   - [x] 2.8 Wire up the frontend Cloud Run service in `terraform/main.tf` using the cloud-run module, passing the backend URL as an env var
   - [x] 2.9 Create `terraform/outputs.tf` — output the frontend URL, backend URL, and Cloud SQL connection name
-  - [ ] 2.10 Add IAM bindings: Cloud Run invoker (allUsers for public access), Cloud SQL client role for backend service account, Secret Manager accessor for backend service account
+  - [x] 2.10 Add IAM bindings: Cloud Run invoker (allUsers for public access), Cloud SQL client role for backend service account, Secret Manager accessor for backend service account
   - [ ] 2.11 Run `terraform init` and `terraform plan` to validate the configuration
   - [ ] 2.12 Run `terraform apply` to provision infrastructure, then deploy the skeleton backend and frontend using `gcloud run deploy --source .` and verify the health endpoint is reachable at the Cloud Run URL
 
