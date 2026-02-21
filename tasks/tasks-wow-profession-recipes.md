@@ -118,8 +118,8 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 3.8 Write tests for `seed.ts` — verify JSON parsing, upsert logic, and soft-delete behavior using a test database or mocked pool
 
 - [ ] 4.0 Backend API — Authentication and character management
-  - [ ] 4.1 Register a Battle.net OAuth application at the Blizzard developer portal; note the client ID, client secret, and configure the redirect URI to point at the backend's callback route
-  - [ ] 4.2 Create `backend/src/routes/auth.ts` — implement `GET /api/auth/login` (redirects to Battle.net OAuth authorize URL), `GET /api/auth/callback` (exchanges code for token, creates/updates user record, sets session), and `POST /api/auth/logout` (destroys session)
+  - [x] 4.1 Register a Battle.net OAuth application at the Blizzard developer portal; note the client ID, client secret, and configure the redirect URI to point at the backend's callback route
+  - [x] 4.2 Create `backend/src/routes/auth.ts` — implement `GET /api/auth/login` (redirects to Battle.net OAuth authorize URL), `GET /api/auth/callback` (exchanges code for token, creates/updates user record, sets session), and `POST /api/auth/logout` (destroys session)
   - [ ] 4.3 Create `backend/src/middleware/auth.ts` — middleware that checks for a valid session and attaches the user to `req.user`; returns 401 if not authenticated
   - [ ] 4.4 Add a `GET /api/auth/me` route that returns the currently logged-in user's info (BattleTag, user ID) or 401 if not logged in
   - [ ] 4.5 Create `backend/src/services/blizzard.ts` — functions to exchange an OAuth code for an access token, and to fetch the user's WoW Classic character list from the Blizzard API using the access token
