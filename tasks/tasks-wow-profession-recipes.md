@@ -113,9 +113,9 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 3.3 Include an `INSERT` in the migration for the 8 TBC professions (Alchemy, Blacksmithing, Enchanting, Engineering, Jewelcrafting, Leatherworking, Tailoring, Cooking) with placeholder icon URLs
   - [x] 3.4 Create the `data/recipes/` directory and add JSON seed files for each profession (at minimum, a few example recipes per profession with `name`, `source`, `zone`, `reputation_requirement`, and `dropped_by` fields)
   - [x] 3.5 Create `backend/src/seed.ts` — reads each JSON file from `data/recipes/`, upserts recipes into the `recipes` table, and soft-deletes recipes no longer in the JSON (set a `deleted_at` column rather than removing rows)
-  - [ ] 3.6 Add npm scripts: `migrate` and `seed` in `backend/package.json` that run the migration and seed scripts respectively
-  - [ ] 3.7 Run the migration and seed scripts against the live Cloud SQL instance and verify the tables and data exist
-  - [ ] 3.8 Write tests for `seed.ts` — verify JSON parsing, upsert logic, and soft-delete behavior using a test database or mocked pool
+  - [x] 3.6 Add npm scripts: `migrate` and `seed` in `backend/package.json` that run the migration and seed scripts respectively
+  - [x] 3.7 Run the migration and seed scripts against the live Cloud SQL instance and verify the tables and data exist
+  - [x] 3.8 Write tests for `seed.ts` — verify JSON parsing, upsert logic, and soft-delete behavior using a test database or mocked pool
 
 - [ ] 4.0 Backend API — Authentication and character management
   - [ ] 4.1 Register a Battle.net OAuth application at the Blizzard developer portal; note the client ID, client secret, and configure the redirect URI to point at the backend's callback route
