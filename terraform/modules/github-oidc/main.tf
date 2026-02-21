@@ -39,6 +39,8 @@ locals {
   deploy_roles = [
     "roles/run.admin",
     "roles/iam.serviceAccountUser",
+    "roles/iam.serviceAccountAdmin",
+    "roles/iam.workloadIdentityPoolAdmin",
     "roles/cloudsql.admin",
     "roles/secretmanager.admin",
     "roles/storage.admin",
