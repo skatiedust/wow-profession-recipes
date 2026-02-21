@@ -85,7 +85,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 1.1 Initialize the root `package.json` with npm workspaces configured for `backend` and `frontend`
   - [x] 1.2 Scaffold the backend: create `backend/package.json`, install Express, TypeScript, `ts-node`, `pg`, `cors`, `dotenv`, `express-session` and dev dependencies (`@types/*`, `jest`, `ts-jest`)
   - [x] 1.3 Create `backend/tsconfig.json` with strict TypeScript settings and ES module output
-  - [ ] 1.4 Create `backend/src/index.ts` with a minimal Express server that listens on `PORT` env var and has a `GET /health` endpoint returning `{ status: "ok" }`
+  - [x] 1.4 Create `backend/src/index.ts` with a minimal Express server that listens on `PORT` env var and has a `GET /health` endpoint returning `{ status: "ok" }`
   - [ ] 1.5 Scaffold the frontend: create `frontend/package.json`, install React, React Router, TypeScript, Vite, and dev dependencies
   - [ ] 1.6 Initialize the Vite project: `frontend/vite.config.ts`, `frontend/index.html`, `frontend/src/main.tsx` with a placeholder `<App />` component
   - [ ] 1.7 Configure Vite to proxy `/api` requests to the backend (e.g., `http://localhost:3000`) for local development
