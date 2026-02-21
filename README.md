@@ -111,6 +111,8 @@ Generate random values for `database_password` and `session_secret`:
 openssl rand -base64 24
 ```
 
+> **Note:** The `github_repo` variable in `terraform.tfvars.example` is commented out. Leave it that way for manual deploys. Only set it if you plan to use CI/CD (see [CI/CD section](#cicd-with-github-actions-optional) below).
+
 ### Step 6: Deploy infrastructure
 
 ```bash
@@ -165,28 +167,96 @@ cd ../frontend
 gcloud run deploy wow-professions-web --source . --region us-central1
 ```
 
+## CI/CD with GitHub Actions (Optional)
+
+If you just want to deploy once and manage updates manually with `terraform apply` and `gcloud run deploy`, you can skip this section entirely. Everything above is sufficient for a working deployment.
+
+If you want automated deploys on every merge to `main`, read on.
+
+### What the Workflow Does
+
+Every push to `main` (including merged pull requests) triggers `.github/workflows/deploy.yml`, which:
+
+1. Authenticates to Google Cloud via **Workload Identity Federation** (no service account keys)
+2. Runs `terraform apply` to sync infrastructure
+3. Deploys the backend and frontend to Cloud Run via `gcloud run deploy --source`
+
+### Setup Steps
+
+#### 1. Enable Workload Identity Federation
+
+Add `github_repo` to your `terraform.tfvars`:
+
+```hcl
+github_repo = "your-github-username/your-repo-name"
+```
+
+Then apply to provision the WIF pool, provider, and a dedicated service account:
+
+```bash
+terraform apply
+```
+
+#### 2. Set up remote Terraform state
+
+CI runners don't have local state, so state must live in a GCS bucket. Copy the example and run the bootstrap script:
+
+```bash
+cd terraform
+cp backend.tf.example backend.tf
+# Edit backend.tf to set your bucket name
+bash bootstrap.sh
+```
+
+This creates the GCS bucket and migrates your existing local state.
+
+#### 3. Add GitHub repository secrets
+
+Go to your repo's Settings > Secrets and variables > Actions, or use the CLI:
+
+| Secret                           | Value                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| `GCP_PROJECT_ID`                 | Your GCP project ID                                          |
+| `GCP_REGION`                     | e.g. `us-central1`                                           |
+| `TF_STATE_BUCKET`                | Name of your GCS state bucket (e.g. `my-project-tf-state`)   |
+| `GCP_WORKLOAD_IDENTITY_PROVIDER` | From `terraform output workload_identity_provider`           |
+| `GCP_SERVICE_ACCOUNT`            | From `terraform output github_actions_service_account`       |
+| `BNET_CLIENT_ID`                 | Your Battle.net OAuth client ID                              |
+| `BNET_CLIENT_SECRET`             | Your Battle.net OAuth client secret                          |
+| `DATABASE_PASSWORD`              | The Cloud SQL password from your `terraform.tfvars`          |
+| `SESSION_SECRET`                 | The session signing secret from your `terraform.tfvars`      |
+| `FRONTEND_URL`                   | The frontend Cloud Run URL (from `terraform output frontend_url`) |
+
+You can also set secrets via the CLI: `gh secret set SECRET_NAME --body "value"`
+
 ## Project Structure
 
 ```
 wow-professions/
-├── backend/           # Express + TypeScript API
+├── .github/
+│   └── workflows/
+│       └── deploy.yml        # CI/CD: Terraform apply + Cloud Run deploy (optional)
+├── backend/                  # Express + TypeScript API
 │   └── src/
-├── frontend/          # React + TypeScript + Vite
+├── frontend/                 # React + TypeScript + Vite
 │   └── src/
 ├── data/
-│   └── recipes/       # Curated recipe JSON files (per profession)
-├── terraform/         # Infrastructure as code
+│   └── recipes/              # Curated recipe JSON files (per profession)
+├── terraform/                # Infrastructure as code
 │   ├── modules/
 │   │   ├── cloud-run/
 │   │   ├── cloud-sql/
+│   │   ├── github-oidc/      # WIF for GitHub Actions (created when github_repo is set)
 │   │   ├── networking/
 │   │   └── secrets/
+│   ├── backend.tf.example    # GCS remote state template (optional, for CI/CD)
+│   ├── bootstrap.sh          # One-time GCS state bucket + migration (optional)
 │   ├── main.tf
 │   ├── variables.tf
 │   └── outputs.tf
-├── tasks/             # PRD and task tracking
-├── .env.example       # Local dev environment variables
-└── package.json       # npm workspaces root
+├── tasks/                    # PRD and task tracking
+├── .env.example              # Local dev environment variables
+└── package.json              # npm workspaces root
 ```
 
 ## Managing Recipes

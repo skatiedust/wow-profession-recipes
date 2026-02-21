@@ -38,3 +38,9 @@ variable "frontend_url" {
   type        = string
   default     = ""
 }
+
+variable "github_repo" {
+  description = "GitHub repository in owner/repo format for Workload Identity Federation (leave empty to skip CI/CD resources)"
+  type        = string
+  default     = ""
+}

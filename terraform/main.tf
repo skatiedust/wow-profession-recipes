@@ -7,6 +7,10 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  # By default, state is stored locally. For CI/CD with GitHub Actions,
+  # copy backend.tf.example to backend.tf and run bootstrap.sh to migrate
+  # state to a GCS bucket. See the "CI/CD" section in README.md.
 }
 
 provider "google" {
@@ -121,4 +125,14 @@ resource "google_service_account" "backend" {
   project      = var.gcp_project_id
   account_id   = "wow-professions-api"
   display_name = "WoW Professions API Service Account"
+}
+
+# --- GitHub Actions CI/CD (Workload Identity Federation) ---
+# Set github_repo in terraform.tfvars to enable; leave empty to skip.
+
+module "github_oidc" {
+  count       = var.github_repo != "" ? 1 : 0
+  source      = "./modules/github-oidc"
+  project_id  = var.gcp_project_id
+  github_repo = var.github_repo
 }
