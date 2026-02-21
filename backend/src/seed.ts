@@ -118,7 +118,11 @@ async function seed() {
   }
 }
 
-seed().catch((err) => {
-  console.error("Seed failed:", err);
-  process.exit(1);
-});
+export { seed, RecipeEntry };
+
+if (require.main === module) {
+  seed().catch((err) => {
+    console.error("Seed failed:", err);
+    process.exit(1);
+  });
+}
