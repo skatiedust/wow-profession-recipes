@@ -4,6 +4,7 @@ import { useRecipes } from "./hooks/useRecipes";
 import AppShell from "./components/AppShell";
 import TopBar from "./components/TopBar";
 import Sidebar from "./components/Sidebar";
+import RecipeTable from "./components/RecipeTable";
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -34,9 +35,7 @@ export default function App() {
               {searchQuery ? "No recipes match your search." : "No recipes found for this profession."}
             </p>
           ) : (
-            <p style={{ color: "var(--color-text-secondary)" }}>
-              {recipes.length} recipe{recipes.length !== 1 ? "s" : ""} loaded. RecipeTable coming in 7.6.
-            </p>
+            <RecipeTable recipes={recipes} />
           )
         ) : (
           <div className="app-main__empty">

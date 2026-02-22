@@ -1,0 +1,119 @@
+/* ── Recipe Table ── */
+.recipe-table-wrap {
+  overflow-x: auto;
+}
+
+.recipe-table {
+  min-width: 600px;
+}
+
+.recipe-table__name {
+  font-weight: 400;
+}
+
+.recipe-table__name a {
+  color: inherit;
+  text-decoration: none;
+}
+.recipe-table__name a:hover {
+  text-decoration: underline;
+}
+
+.recipe-table__crafters {
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.recipe-table__crafter-more {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-gold);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.recipe-table__crafter-more:hover {
+  text-decoration: underline;
+  background: none;
+  border: none;
+}
+
+.recipe-table__none {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.recipe-table__you {
+  text-align: center;
+  width: 60px;
+}
+
+.recipe-table__you input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-gold);
+  cursor: pointer;
+}
+
+/* ── Mobile: stacked cards ── */
+@media (max-width: 768px) {
+  .recipe-table-wrap {
+    overflow-x: visible;
+  }
+
+  .recipe-table,
+  .recipe-table thead,
+  .recipe-table tbody,
+  .recipe-table tr,
+  .recipe-table th,
+  .recipe-table td {
+    display: block;
+  }
+
+  .recipe-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .recipe-table {
+    min-width: 0;
+  }
+
+  .recipe-table tbody tr {
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
+    height: auto;
+  }
+
+  .recipe-table tbody tr:nth-child(even) {
+    background-color: var(--color-panel);
+  }
+
+  .recipe-table td {
+    border-bottom: none;
+    padding: 0.25rem 0;
+  }
+
+  .recipe-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.125rem;
+  }
+
+  .recipe-table__you {
+    text-align: left;
+    width: auto;
+  }
+}
