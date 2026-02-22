@@ -16,6 +16,11 @@ export interface UniqueCharacter {
   key: string;
 }
 
+export interface ImportableCharacter {
+  name: string;
+  realm: string;
+}
+
 function charKey(name: string, realm: string): string {
   return `${name.toLowerCase()}|${realm.toLowerCase()}`;
 }
@@ -132,6 +137,28 @@ export function useCharacters() {
     return Array.from(seen.values());
   }, [characters]);
 
+  const importFromBlizzard = useCallback(async (): Promise<
+    ImportableCharacter[]
+  > => {
+    const res = await fetch(`${API_BASE}/api/characters/import`, {
+      headers: authHeaders(),
+    });
+    if (!res.ok) throw new Error("Failed to import characters");
+    return res.json();
+  }, [authHeaders]);
+
+  const deleteCharacter = useCallback(
+    async (id: number) => {
+      const res = await fetch(`${API_BASE}/api/characters/${id}`, {
+        method: "DELETE",
+        headers: authHeaders(),
+      });
+      if (!res.ok) throw new Error("Failed to delete character");
+      setCharacters((prev) => prev.filter((c) => c.id !== id));
+    },
+    [authHeaders]
+  );
+
   const ensureWithProfession = useCallback(
     async (
       name: string,
@@ -156,6 +183,8 @@ export function useCharacters() {
     loading,
     refresh: fetchCharacters,
     createCharacter,
+    importFromBlizzard,
+    deleteCharacter,
     ensureWithProfession,
   };
 }
