@@ -76,7 +76,18 @@
   padding: 0.3rem 0.625rem;
 }
 
+.topbar__login,
+.topbar__logout {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
+  .topbar {
+    gap: 0.5rem;
+  }
+
   .topbar__title {
     font-size: 1.05rem;
   }
@@ -87,5 +98,9 @@
 
   .topbar__battletag {
     display: none;
+  }
+
+  .topbar__char-select {
+    max-width: 140px;
   }
 }

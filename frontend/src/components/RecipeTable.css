@@ -29,6 +29,7 @@
   height: 18px;
   accent-color: var(--color-gold);
   cursor: pointer;
+  padding: 12px;
 }
 
 /* ── Mobile: stacked cards ── */
