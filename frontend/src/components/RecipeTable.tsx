@@ -22,26 +22,6 @@ function rarityClass(rarity: string | null): string {
   }
 }
 
-function rarityBadgeClass(rarity: string | null): string {
-  switch (rarity?.toLowerCase()) {
-    case "uncommon":
-      return "rarity-badge uncommon";
-    case "rare":
-      return "rarity-badge rare";
-    case "epic":
-      return "rarity-badge epic";
-    case "legendary":
-      return "rarity-badge legendary";
-    default:
-      return "rarity-badge";
-  }
-}
-
-function rarityLabel(rarity: string | null): string {
-  if (!rarity) return "Common";
-  return rarity.charAt(0).toUpperCase() + rarity.slice(1).toLowerCase();
-}
-
 export default function RecipeTable({ recipes }: RecipeTableProps) {
   const { isLoggedIn } = useAuth();
 
@@ -51,7 +31,6 @@ export default function RecipeTable({ recipes }: RecipeTableProps) {
         <thead>
           <tr>
             <th>Recipe</th>
-            <th>Quality</th>
             <th>Crafters</th>
             {isLoggedIn && <th className="recipe-table__you">You</th>}
           </tr>
@@ -68,11 +47,6 @@ export default function RecipeTable({ recipes }: RecipeTableProps) {
                   ) : (
                     recipe.name
                   )}
-                </span>
-              </td>
-              <td data-label="Quality">
-                <span className={rarityBadgeClass(recipe.rarity)}>
-                  {rarityLabel(recipe.rarity)}
                 </span>
               </td>
               <td data-label="Crafters">
