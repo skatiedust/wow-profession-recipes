@@ -130,7 +130,7 @@ Update the file after completing each sub-task, not just after completing an ent
 
 - [ ] 5.0 Frontend — Minimal UI for testing auth and character endpoints (no styling)
   - [x] 5.1 Create `frontend/src/hooks/useAuth.ts` — a React context + hook that calls `GET /api/auth/me` on mount to determine if the user is logged in; exposes `user`, `isLoggedIn`, `login()` (redirects to `/api/auth/login`), and `logout()` (calls `POST /api/auth/logout`)
-  - [ ] 5.2 Create `frontend/src/components/LoginButton.tsx` — shows "Login with Battle.net" when logged out, and the user's BattleTag + "Logout" when logged in
+  - [x] 5.2 Create `frontend/src/components/LoginButton.tsx` — shows "Login with Battle.net" when logged out, and the user's BattleTag + "Logout" when logged in
   - [ ] 5.3 Create `frontend/src/hooks/useCharacters.ts` — hook that fetches the user's saved characters (`GET /api/characters`), exposes import from Blizzard (`GET /api/characters/import`), and create (`POST /api/characters`) / delete (`DELETE /api/characters/:id`) functions
   - [ ] 5.4 Create `frontend/src/components/CharacterManager.tsx` — list saved characters with a delete button each, an "Import from Battle.net" button that fetches and displays importable characters, and a manual add form (name, realm fields)
   - [ ] 5.5 Wire up `frontend/src/App.tsx` with React Router and `AuthProvider` — `/` shows `LoginButton` and, when logged in, the `CharacterManager`; when logged out, prompt to log in
