@@ -1,15 +1,25 @@
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../hooks/useAuth";
+import type { UniqueCharacter } from "../hooks/useCharacters";
 import "./TopBar.css";
 
 interface TopBarProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  characters?: UniqueCharacter[];
+  selectedCharacterKey?: string | null;
+  onSelectCharacter?: (key: string | null) => void;
 }
 
 const DEBOUNCE_MS = 250;
 
-export default function TopBar({ searchQuery, onSearchChange }: TopBarProps) {
+export default function TopBar({
+  searchQuery,
+  onSearchChange,
+  characters,
+  selectedCharacterKey,
+  onSelectCharacter,
+}: TopBarProps) {
   const { user, isLoggedIn, loading, login, logout } = useAuth();
   const [localValue, setLocalValue] = useState(searchQuery);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -56,6 +66,23 @@ export default function TopBar({ searchQuery, onSearchChange }: TopBarProps) {
         )}
         {!loading && isLoggedIn && (
           <div className="topbar__user">
+            {characters && characters.length > 0 && onSelectCharacter && (
+              <select
+                className="topbar__char-select"
+                value={selectedCharacterKey ?? ""}
+                onChange={(e) =>
+                  onSelectCharacter(e.target.value || null)
+                }
+                aria-label="Select character"
+              >
+                <option value="">No character</option>
+                {characters.map((c) => (
+                  <option key={c.key} value={c.key}>
+                    {c.name} - {c.realm}
+                  </option>
+                ))}
+              </select>
+            )}
             <span className="topbar__battletag">{user!.battleTag}</span>
             <button className="topbar__logout" onClick={logout}>
               Logout

@@ -5,6 +5,8 @@ import "./RecipeTable.css";
 
 interface RecipeTableProps {
   recipes: Recipe[];
+  knownMap?: Map<number, boolean>;
+  onToggle?: (recipeId: number, known: boolean) => void;
 }
 
 function rarityClass(rarity: string | null): string {
@@ -22,8 +24,9 @@ function rarityClass(rarity: string | null): string {
   }
 }
 
-export default function RecipeTable({ recipes }: RecipeTableProps) {
+export default function RecipeTable({ recipes, knownMap, onToggle }: RecipeTableProps) {
   const { isLoggedIn } = useAuth();
+  const canToggle = isLoggedIn && knownMap && onToggle;
 
   return (
     <div className="recipe-table-wrap">
@@ -36,33 +39,38 @@ export default function RecipeTable({ recipes }: RecipeTableProps) {
           </tr>
         </thead>
         <tbody>
-          {recipes.map((recipe) => (
-            <tr key={recipe.id}>
-              <td data-label="Recipe" className="recipe-table__name">
-                <span className={rarityClass(recipe.rarity)}>
-                  {recipe.url ? (
-                    <a href={recipe.url} target="_blank" rel="noopener noreferrer">
-                      {recipe.name}
-                    </a>
-                  ) : (
-                    recipe.name
-                  )}
-                </span>
-              </td>
-              <td data-label="Crafters">
-                <CrafterList crafters={recipe.crafters} />
-              </td>
-              {isLoggedIn && (
-                <td data-label="You" className="recipe-table__you">
-                  <input
-                    type="checkbox"
-                    disabled
-                    title="Select a character first (coming soon)"
-                  />
+          {recipes.map((recipe) => {
+            const known = knownMap?.get(recipe.id) ?? false;
+            return (
+              <tr key={recipe.id}>
+                <td data-label="Recipe" className="recipe-table__name">
+                  <span className={rarityClass(recipe.rarity)}>
+                    {recipe.url ? (
+                      <a href={recipe.url} target="_blank" rel="noopener noreferrer">
+                        {recipe.name}
+                      </a>
+                    ) : (
+                      recipe.name
+                    )}
+                  </span>
                 </td>
-              )}
-            </tr>
-          ))}
+                <td data-label="Crafters">
+                  <CrafterList crafters={recipe.crafters} />
+                </td>
+                {isLoggedIn && (
+                  <td data-label="You" className="recipe-table__you">
+                    <input
+                      type="checkbox"
+                      checked={known}
+                      disabled={!canToggle}
+                      onChange={() => onToggle?.(recipe.id, !known)}
+                      title={canToggle ? undefined : "Select a character first"}
+                    />
+                  </td>
+                )}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

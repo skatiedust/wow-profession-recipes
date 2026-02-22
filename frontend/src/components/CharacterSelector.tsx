@@ -6,12 +6,14 @@ interface CharacterSelectorProps {
   selectedProfessionId: number | null;
   selectedCharacterId: number | null;
   onSelect: (id: number | null) => void;
+  onManageCharacters?: () => void;
 }
 
 export default function CharacterSelector({
   selectedProfessionId,
   selectedCharacterId,
   onSelect,
+  onManageCharacters,
 }: CharacterSelectorProps) {
   const { characters, loading } = useCharacters();
 
@@ -39,7 +41,12 @@ export default function CharacterSelector({
     return (
       <div className="character-selector">
         <span className="character-selector__mismatch">
-          No characters saved. Add characters to mark recipes you know.
+          No characters saved.{" "}
+          {onManageCharacters && (
+            <button className="character-selector__link" onClick={onManageCharacters}>
+              Add a character
+            </button>
+          )}
         </span>
       </div>
     );
@@ -49,7 +56,12 @@ export default function CharacterSelector({
     return (
       <div className="character-selector">
         <span className="character-selector__mismatch">
-          None of your characters have this profession assigned.
+          None of your characters have this profession.{" "}
+          {onManageCharacters && (
+            <button className="character-selector__link" onClick={onManageCharacters}>
+              Manage characters
+            </button>
+          )}
         </span>
       </div>
     );
