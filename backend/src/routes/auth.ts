@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import { Router, Request, Response } from "express";
 import { query } from "../db";
 import { exchangeCodeForToken, fetchUserInfo } from "../services/blizzard";
@@ -20,22 +21,40 @@ router.get("/login", (req: Request, res: Response) => {
     return;
   }
 
+  const state = crypto.randomBytes(16).toString("hex");
+  req.session.oauthState = state;
+
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: getRedirectUri(req),
     response_type: "code",
     scope: "openid wow.profile",
+    state,
   });
 
-  res.redirect(`${BNET_AUTH_URL}?${params.toString()}`);
+  const url = `${BNET_AUTH_URL}?${params.toString()}`;
+  req.session.save((err) => {
+    if (err) {
+      console.error("Session save error:", err);
+      res.status(500).json({ error: "Failed to initialize login" });
+      return;
+    }
+    res.redirect(url);
+  });
 });
 
 router.get("/callback", async (req: Request, res: Response) => {
-  const { code } = req.query;
+  const { code, state } = req.query;
   if (!code || typeof code !== "string") {
     res.status(400).json({ error: "Missing authorization code" });
     return;
   }
+
+  if (!state || state !== req.session.oauthState) {
+    res.status(400).json({ error: "Invalid OAuth state" });
+    return;
+  }
+  delete req.session.oauthState;
 
   const redirectUri = getRedirectUri(req);
 

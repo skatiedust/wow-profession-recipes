@@ -26,7 +26,9 @@ function findHandler(method: string, path: string): HandlerFn {
 }
 
 function buildReq(overrides: Record<string, unknown> = {}): Request {
-  const session: Record<string, unknown> = {};
+  const session: Record<string, unknown> = {
+    save: jest.fn((cb: (err?: Error) => void) => cb()),
+  };
   return {
     protocol: "https",
     get: jest.fn().mockReturnValue("example.com"),
@@ -57,8 +59,11 @@ beforeEach(() => {
 describe("GET /login", () => {
   const handler = findHandler("get", "/login");
 
-  it("redirects to Battle.net with correct query parameters", () => {
-    const req = buildReq();
+  it("redirects to Battle.net with correct query parameters including state", () => {
+    const session: Record<string, unknown> = {
+      save: jest.fn((cb: (err?: Error) => void) => cb()),
+    };
+    const req = buildReq({ session });
     const res = buildRes();
 
     handler(req, res);
@@ -72,11 +77,16 @@ describe("GET /login", () => {
     expect(url.searchParams.get("redirect_uri")).toBe(
       "https://example.com/api/auth/callback"
     );
+    expect(url.searchParams.get("state")).toBeTruthy();
+    expect(session.oauthState).toBe(url.searchParams.get("state"));
   });
 
   it("uses BNET_REDIRECT_URI env var when set", () => {
     process.env.BNET_REDIRECT_URI = "https://custom.example.com/cb";
-    const req = buildReq();
+    const session: Record<string, unknown> = {
+      save: jest.fn((cb: (err?: Error) => void) => cb()),
+    };
+    const req = buildReq({ session });
     const res = buildRes();
 
     handler(req, res);
@@ -116,8 +126,11 @@ describe("GET /callback", () => {
     });
     mockQuery.mockResolvedValueOnce({ rows: [{ id: 7 }] });
 
-    const session: Record<string, unknown> = {};
-    const req = buildReq({ query: { code: "auth-code-123" }, session });
+    const session: Record<string, unknown> = { oauthState: "abc123" };
+    const req = buildReq({
+      query: { code: "auth-code-123", state: "abc123" },
+      session,
+    });
     const res = buildRes();
 
     await handler(req, res);
@@ -134,6 +147,7 @@ describe("GET /callback", () => {
     expect(session.userId).toBe(7);
     expect(session.battleTag).toBe("Hero#1111");
     expect(session.accessToken).toBe("tok_abc");
+    expect(session.oauthState).toBeUndefined();
     expect(res.redirect).toHaveBeenCalledWith("https://frontend.example.com");
   });
 
@@ -149,9 +163,25 @@ describe("GET /callback", () => {
     });
   });
 
+  it("returns 400 when state is missing or mismatched", async () => {
+    const req = buildReq({
+      query: { code: "auth-code-123", state: "wrong" },
+      session: { oauthState: "correct" },
+    });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ error: "Invalid OAuth state" });
+  });
+
   it("returns 500 when token exchange fails", async () => {
     mockExchangeCodeForToken.mockRejectedValueOnce(new Error("token error"));
-    const req = buildReq({ query: { code: "bad" } });
+    const req = buildReq({
+      query: { code: "bad", state: "s1" },
+      session: { oauthState: "s1" },
+    });
     const res = buildRes();
 
     const consoleSpy = jest.spyOn(console, "error").mockImplementation();
