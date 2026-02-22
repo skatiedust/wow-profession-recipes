@@ -5,9 +5,11 @@ jest.mock("../db", () => ({ query: (...args: unknown[]) => mockQuery(...args) })
 
 const mockExchangeCodeForToken = jest.fn();
 const mockFetchUserInfo = jest.fn();
+const mockRevokeToken = jest.fn();
 jest.mock("../services/blizzard", () => ({
   exchangeCodeForToken: (...args: unknown[]) => mockExchangeCodeForToken(...args),
   fetchUserInfo: (...args: unknown[]) => mockFetchUserInfo(...args),
+  revokeToken: (...args: unknown[]) => mockRevokeToken(...args),
 }));
 
 import authRouter from "./auth";
@@ -253,12 +255,41 @@ describe("GET /me", () => {
 describe("POST /logout", () => {
   const handler = findHandler("post", "/logout");
 
-  it("returns success", () => {
-    const req = buildReq();
+  it("revokes the token and returns success when Bearer token is provided", async () => {
+    mockRevokeToken.mockResolvedValueOnce(undefined);
+    const req = buildReq({
+      headers: { authorization: "Bearer tok_to_revoke" },
+    });
     const res = buildRes();
 
-    handler(req, res);
+    await handler(req, res);
 
+    expect(mockRevokeToken).toHaveBeenCalledWith("tok_to_revoke");
+    expect(res.json).toHaveBeenCalledWith({ success: true });
+  });
+
+  it("returns success even when no token is provided", async () => {
+    const req = buildReq({ headers: {} });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(mockRevokeToken).not.toHaveBeenCalled();
+    expect(res.json).toHaveBeenCalledWith({ success: true });
+  });
+
+  it("returns success even when revocation fails", async () => {
+    mockRevokeToken.mockRejectedValueOnce(new Error("revoke failed"));
+    const req = buildReq({
+      headers: { authorization: "Bearer tok_bad" },
+    });
+    const res = buildRes();
+
+    const consoleSpy = jest.spyOn(console, "error").mockImplementation();
+    await handler(req, res);
+    consoleSpy.mockRestore();
+
+    expect(mockRevokeToken).toHaveBeenCalledWith("tok_bad");
     expect(res.json).toHaveBeenCalledWith({ success: true });
   });
 });

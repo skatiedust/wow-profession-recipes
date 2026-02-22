@@ -76,9 +76,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const logout = useCallback(async () => {
+    const token = tokenRef.current;
     sessionStorage.removeItem("access_token");
     tokenRef.current = null;
     setUser(null);
+    if (token) {
+      fetch(`${API_BASE}/api/auth/logout`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      }).catch(() => {});
+    }
   }, []);
 
   const authHeaders = useCallback((): Record<string, string> => {
