@@ -19,31 +19,6 @@
   text-decoration: underline;
 }
 
-.recipe-table__crafters {
-  color: var(--color-text-secondary);
-  font-size: 0.8125rem;
-}
-
-.recipe-table__crafter-more {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--color-gold);
-  font-size: 0.8125rem;
-  cursor: pointer;
-  font-family: var(--font-body);
-}
-.recipe-table__crafter-more:hover {
-  text-decoration: underline;
-  background: none;
-  border: none;
-}
-
-.recipe-table__none {
-  color: var(--color-text-muted);
-  font-style: italic;
-}
-
 .recipe-table__you {
   text-align: center;
   width: 60px;

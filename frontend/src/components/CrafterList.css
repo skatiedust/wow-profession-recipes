@@ -1,0 +1,13 @@
+.crafter-list {
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.crafter-list__name {
+  color: var(--color-text);
+}
+
+.crafter-list__none {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
