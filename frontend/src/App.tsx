@@ -49,6 +49,11 @@ function MainContent() {
     }
   }, [uniqueCharacters, selectedCharacterKey]);
 
+  // Reset known-only filter when character changes
+  useEffect(() => {
+    setKnownOnly(false);
+  }, [selectedCharacterKey]);
+
   // Clear character selection on logout
   useEffect(() => {
     if (!isLoggedIn) {
