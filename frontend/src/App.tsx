@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AuthProvider, useAuth } from "./hooks/useAuth";
 import { useRecipes } from "./hooks/useRecipes";
+import { useChecklist } from "./hooks/useChecklist";
 import AppShell from "./components/AppShell";
 import TopBar from "./components/TopBar";
 import Sidebar from "./components/Sidebar";
@@ -13,6 +14,9 @@ function MainContent() {
   const [selectedProfessionId, setSelectedProfessionId] = useState<number | null>(null);
   const [selectedCharacterId, setSelectedCharacterId] = useState<number | null>(null);
   const { recipes, loading } = useRecipes(selectedProfessionId, searchQuery);
+  const { knownMap, toggleRecipe } = useChecklist(
+    isLoggedIn ? selectedCharacterId : null
+  );
 
   return (
     <AppShell
@@ -45,7 +49,11 @@ function MainContent() {
               {searchQuery ? "No recipes match your search." : "No recipes found for this profession."}
             </p>
           ) : (
-            <RecipeTable recipes={recipes} />
+            <RecipeTable
+              recipes={recipes}
+              knownMap={selectedCharacterId ? knownMap : undefined}
+              onToggle={selectedCharacterId ? toggleRecipe : undefined}
+            />
           )}
         </>
       ) : (
