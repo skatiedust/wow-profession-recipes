@@ -2,17 +2,13 @@ import { useState, useCallback, type ReactNode } from "react";
 import "./AppShell.css";
 
 interface AppShellProps {
-  topBarLeft?: ReactNode;
-  topBarSearch?: ReactNode;
-  topBarRight?: ReactNode;
+  topBar?: ReactNode;
   sidebar?: ReactNode;
   children: ReactNode;
 }
 
 export default function AppShell({
-  topBarLeft,
-  topBarSearch,
-  topBarRight,
+  topBar,
   sidebar,
   children,
 }: AppShellProps) {
@@ -37,15 +33,7 @@ export default function AppShell({
           {sidebarOpen ? "\u2715" : "\u2630"}
         </button>
 
-        {topBarLeft ?? <h1 className="app-topbar__title">Guild Recipes</h1>}
-
-        <div className="app-topbar__search">
-          {topBarSearch}
-        </div>
-
-        <div className="app-topbar__actions">
-          {topBarRight}
-        </div>
+        {topBar}
       </header>
 
       <aside className={`app-sidebar${sidebarOpen ? " open" : ""}`}>

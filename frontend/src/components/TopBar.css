@@ -1,0 +1,85 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.topbar__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.topbar__search {
+  flex: 1;
+  max-width: 480px;
+  position: relative;
+}
+
+.topbar__search-input {
+  width: 100%;
+  padding: 0.4rem 0.75rem 0.4rem 2rem;
+  font-size: 0.875rem;
+}
+
+.topbar__search-icon {
+  position: absolute;
+  left: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.topbar__battletag {
+  color: var(--color-text);
+  font-weight: 400;
+}
+
+.topbar__logout {
+  font-size: 0.8125rem;
+  padding: 0.3rem 0.625rem;
+}
+
+.topbar__login {
+  font-size: 0.8125rem;
+  padding: 0.3rem 0.625rem;
+}
+
+@media (max-width: 768px) {
+  .topbar__title {
+    font-size: 1.05rem;
+  }
+
+  .topbar__search {
+    max-width: none;
+  }
+
+  .topbar__battletag {
+    display: none;
+  }
+}
