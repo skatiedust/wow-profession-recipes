@@ -145,7 +145,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 6.6 Write tests for all recipe routes — mock the database layer and verify correct SQL queries, auth enforcement, and response shapes
 
 - [ ] 7.0 Frontend — Styling, public recipe browse, and recipe checklist
-  - [ ] 7.1 Set up global styles in `frontend/src/styles/global.css` — dark background, light text, gold accent color (`#FFD100` or similar), responsive typography, and CSS variables for the theme
+  - [x] 7.1 Set up global styles in `frontend/src/styles/global.css` — dark background, light text, gold accent color (`#FFD100` or similar), responsive typography, and CSS variables for the theme
   - [ ] 7.2 Update `frontend/src/App.tsx` with routes for `/` (home), `/profession/:id` (recipe list), and `/my-recipes` (authenticated checklist); add a navigation header with the app name, home link, and `LoginButton`
   - [ ] 7.3 Create `frontend/src/pages/HomePage.tsx` — displays a grid of profession icons/names using the `ProfessionPicker` component; fetches from `GET /api/professions`
   - [ ] 7.4 Create `frontend/src/components/ProfessionPicker.tsx` — renders profession cards/buttons with icons and names; clicking navigates to `/profession/:id`
