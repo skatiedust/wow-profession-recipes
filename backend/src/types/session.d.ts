@@ -5,5 +5,6 @@ declare module "express-session" {
     userId: number;
     battleTag: string;
     accessToken: string;
+    oauthState: string;
   }
 }
