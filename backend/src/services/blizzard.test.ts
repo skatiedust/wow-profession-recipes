@@ -2,6 +2,7 @@ import {
   exchangeCodeForToken,
   fetchUserInfo,
   fetchWowCharacters,
+  revokeToken,
 } from "./blizzard";
 
 const mockFetch = jest.fn();
@@ -156,5 +157,42 @@ describe("fetchWowCharacters", () => {
 
     const result = await fetchWowCharacters("token");
     expect(result).toEqual([{ name: "Thrall", realm: "Faerlina" }]);
+  });
+});
+
+describe("revokeToken", () => {
+  it("sends a POST to the revoke endpoint with the token", async () => {
+    mockFetch.mockResolvedValueOnce({ ok: true });
+
+    await revokeToken("tok_to_revoke");
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      "https://oauth.battle.net/revoke",
+      expect.objectContaining({ method: "POST" })
+    );
+    const body = mockFetch.mock.calls[0][1].body as URLSearchParams;
+    expect(body.get("token")).toBe("tok_to_revoke");
+  });
+
+  it("sends Basic auth with base64-encoded client credentials", async () => {
+    mockFetch.mockResolvedValueOnce({ ok: true });
+
+    await revokeToken("tok");
+
+    const headers = mockFetch.mock.calls[0][1].headers;
+    const expected = Buffer.from("test-client-id:test-client-secret").toString("base64");
+    expect(headers.Authorization).toBe(`Basic ${expected}`);
+  });
+
+  it("throws when the revoke endpoint returns an error", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: false,
+      status: 400,
+      text: () => Promise.resolve("invalid_token"),
+    });
+
+    await expect(revokeToken("bad-tok")).rejects.toThrow(
+      "Token revocation failed (400): invalid_token"
+    );
   });
 });

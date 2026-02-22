@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { Router, Request, Response } from "express";
 import { query } from "../db";
-import { exchangeCodeForToken, fetchUserInfo } from "../services/blizzard";
+import { exchangeCodeForToken, fetchUserInfo, revokeToken } from "../services/blizzard";
 
 const router = Router();
 
@@ -103,7 +103,15 @@ router.get("/me", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/logout", (_req: Request, res: Response) => {
+router.post("/logout", async (req: Request, res: Response) => {
+  const token = extractBearerToken(req);
+  if (token) {
+    try {
+      await revokeToken(token);
+    } catch (err) {
+      console.error("Token revocation failed:", err);
+    }
+  }
   res.json({ success: true });
 });
 

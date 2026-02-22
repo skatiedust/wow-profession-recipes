@@ -1,4 +1,5 @@
 const BNET_TOKEN_URL = "https://oauth.battle.net/token";
+const BNET_REVOKE_URL = "https://oauth.battle.net/revoke";
 const BNET_USERINFO_URL = "https://oauth.battle.net/userinfo";
 const BNET_API_BASE = "https://us.api.blizzard.com";
 
@@ -95,4 +96,23 @@ export async function fetchWowCharacters(
   }
 
   return characters;
+}
+
+export async function revokeToken(token: string): Promise<void> {
+  const clientId = process.env.BNET_CLIENT_ID!;
+  const clientSecret = process.env.BNET_CLIENT_SECRET!;
+
+  const res = await fetch(BNET_REVOKE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
+    },
+    body: new URLSearchParams({ token }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Token revocation failed (${res.status}): ${body}`);
+  }
 }
