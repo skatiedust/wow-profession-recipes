@@ -81,7 +81,7 @@ jobs:
           CONNECTION_NAME=$(terraform output -raw cloud_sql_connection_name)
           echo "connection_name=$CONNECTION_NAME" >> "$GITHUB_OUTPUT"
 
-      - name: Run database migration
+      - name: Run database migration and seed
         run: |
           curl -fsSL -o cloud-sql-proxy \
             https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.14.3/cloud-sql-proxy.linux.amd64
@@ -90,6 +90,7 @@ jobs:
           PROXY_PID=$!
           sleep 3
           npm run migrate --workspace=backend
+          npm run seed --workspace=backend
           kill $PROXY_PID || true
         env:
           DATABASE_URL: postgresql://wow_app:${{ secrets.DATABASE_PASSWORD }}@127.0.0.1:5432/wow_professions
