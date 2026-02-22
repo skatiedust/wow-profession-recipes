@@ -1,47 +1,389 @@
 [
   {
-    "name": "Enchant Weapon - Mongoose",
+    "name": "Enchant Bracer - Fortitude",
+    "source": "drop",
+    "zone": "The Steamvault",
+    "reputation_requirement": null,
+    "dropped_by": ["Coilfang Oracle"],
+    "url": "https://www.wowhead.com/tbc/item=22881/enchant-bracer-fortitude",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Bracer - Major Defense",
+    "source": "drop",
+    "zone": "Netherstorm",
+    "reputation_requirement": null,
+    "dropped_by": ["Ethereum Nullifier", "Ethereum Jailor"],
+    "url": "https://www.wowhead.com/tbc/item=22882/enchant-bracer-major-defense",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Bracer - Restore Mana Prime",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22883/enchant-bracer-restore-mana-prime",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Bracer - Spellpower",
+    "source": "drop",
+    "zone": "Blade's Edge Mountains",
+    "reputation_requirement": null,
+    "dropped_by": ["Bloodmaul Geomancer"],
+    "url": "https://www.wowhead.com/tbc/item=22884/enchant-bracer-spellpower",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Bracer - Superior Healing",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "Thrallmar - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22885/enchant-bracer-superior-healing",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Boots - Boar's Speed",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22886/enchant-boots-boars-speed",
+    "rarity": "rare"
+  },
+  {
+    "name": "Enchant Boots - Cat's Swiftness",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22887/enchant-boots-cats-swiftness",
+    "rarity": "rare"
+  },
+  {
+    "name": "Enchant Boots - Fortitude",
+    "source": "drop",
+    "zone": "Mana-Tombs",
+    "reputation_requirement": null,
+    "dropped_by": ["Ethereal Priest"],
+    "url": "https://www.wowhead.com/tbc/item=22888/enchant-boots-fortitude",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Boots - Dexterity",
+    "source": "drop",
+    "zone": "Auchenai Crypts",
+    "reputation_requirement": null,
+    "dropped_by": ["Raging Skeleton"],
+    "url": "https://www.wowhead.com/tbc/item=22889/enchant-boots-dexterity",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Boots - Surefooted",
     "source": "drop",
     "zone": "Karazhan",
     "reputation_requirement": null,
-    "dropped_by": ["Moroes", "Karazhan Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Phantom Stagehand"],
+    "url": "https://www.wowhead.com/tbc/item=22890/enchant-boots-surefooted",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Boots - Vitality",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22891/enchant-boots-vitality",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Chest - Exceptional Stats",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "Thrallmar - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22892/enchant-chest-exceptional-stats",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Chest - Major Resilience",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22893/enchant-chest-major-resilience",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Cloak - Dodge",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "Lower City - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22894/enchant-cloak-dodge",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Cloak - Greater Arcane Resistance",
+    "source": "drop",
+    "zone": "Shadowmoon Valley",
+    "reputation_requirement": null,
+    "dropped_by": ["Eclipsion Archmage"],
+    "url": "https://www.wowhead.com/tbc/item=22895/enchant-cloak-greater-arcane-resistance",
+    "rarity": "rare"
+  },
+  {
+    "name": "Enchant Cloak - Greater Shadow Resistance",
+    "source": "drop",
+    "zone": "Netherstorm",
+    "reputation_requirement": null,
+    "dropped_by": ["Voidshrieker"],
+    "url": "https://www.wowhead.com/tbc/item=22896/enchant-cloak-greater-shadow-resistance",
+    "rarity": "rare"
+  },
+  {
+    "name": "Enchant Cloak - Major Resistance",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22897/enchant-cloak-major-resistance",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Cloak - Spell Penetration",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "The Consortium - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22898/enchant-cloak-spell-penetration",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Cloak - Stealth",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "Cenarion Expedition - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22899/enchant-cloak-stealth",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Cloak - Steelweave",
+    "source": "drop",
+    "zone": "Magister's Terrace",
+    "reputation_requirement": null,
+    "dropped_by": ["Priestess Delrissa"],
+    "url": "https://www.wowhead.com/tbc/item=22900/enchant-cloak-steelweave",
+    "rarity": "rare"
+  },
+  {
+    "name": "Enchant Cloak - Subtlety",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "Thrallmar - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22901/enchant-cloak-subtlety",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Gloves - Major Healing",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "The Sha'tar - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22902/enchant-gloves-major-healing",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Gloves - Major Spellpower",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "Keepers of Time - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22903/enchant-gloves-major-spellpower",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Gloves - Spell Strike",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "Cenarion Expedition - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22904/enchant-gloves-spell-strike",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Gloves - Superior Agility",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "Keepers of Time - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22905/enchant-gloves-superior-agility",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Gloves - Threat",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "The Sha'tar - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22906/enchant-gloves-threat",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Shield - Shield Block",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22907/enchant-shield-shield-block",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Shield - Resistance",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22908/enchant-shield-resistance",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Battlemaster",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22909/enchant-weapon-battlemaster",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Deathfrost",
+    "source": "drop",
+    "zone": "Slave Pens",
+    "reputation_requirement": null,
+    "dropped_by": ["Ahune"],
+    "url": "https://www.wowhead.com/tbc/item=22910/enchant-weapon-deathfrost",
+    "rarity": "rare"
   },
   {
     "name": "Enchant Weapon - Executioner",
     "source": "drop",
+    "zone": "Zul'Aman",
+    "reputation_requirement": null,
+    "dropped_by": ["All Bosses"],
+    "url": "https://www.wowhead.com/tbc/item=22911/enchant-weapon-executioner",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Greater Agility",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "The Violet Eye - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22912/enchant-weapon-greater-agility",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Major Healing",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "The Sha'tar - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22913/enchant-weapon-major-healing",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Major Intellect",
+    "source": "drop",
+    "zone": "Netherstorm",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunfury Researcher"],
+    "url": "https://www.wowhead.com/tbc/item=22914/enchant-weapon-major-intellect",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Major Spellpower",
+    "source": "drop",
+    "zone": "Blade's Edge Mountains",
+    "reputation_requirement": null,
+    "dropped_by": ["Bash'ir Spell-Thief"],
+    "url": "https://www.wowhead.com/tbc/item=22915/enchant-weapon-major-spellpower",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Major Striking",
+    "source": "reputation",
+    "zone": "",
+    "reputation_requirement": "The Consortium - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22916/enchant-weapon-major-striking",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Mongoose",
+    "source": "drop",
     "zone": "Karazhan",
     "reputation_requirement": null,
-    "dropped_by": ["Karazhan Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Moroes"],
+    "url": "https://www.wowhead.com/tbc/item=22917/enchant-weapon-mongoose",
+    "rarity": "rare"
+  },
+  {
+    "name": "Enchant Weapon - Potency",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22918/enchant-weapon-potency",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant Weapon - Spellsurge",
+    "source": "drop",
+    "zone": "Random instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=22919/enchant-weapon-spellsurge",
+    "rarity": "uncommon"
   },
   {
     "name": "Enchant Weapon - Soulfrost",
     "source": "drop",
-    "zone": "Black Temple",
+    "zone": "Karazhan",
     "reputation_requirement": null,
-    "dropped_by": ["Black Temple Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Terestian Illhoof"],
+    "url": "https://www.wowhead.com/tbc/item=22920/enchant-weapon-soulfrost",
+    "rarity": "rare"
   },
   {
     "name": "Enchant Weapon - Sunfire",
     "source": "drop",
-    "zone": "Black Temple",
+    "zone": "Karazhan",
     "reputation_requirement": null,
-    "dropped_by": ["Black Temple Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Shade of Aran"],
+    "url": "https://www.wowhead.com/tbc/item=22921/enchant-weapon-sunfire",
+    "rarity": "rare"
   },
   {
-    "name": "Enchant Ring - Spellpower",
-    "source": "reputation",
-    "zone": "Shattrath City",
-    "reputation_requirement": "The Sha'tar - Revered",
-    "dropped_by": null,
-    "url": null,
-    "rarity": null
+    "name": "Enchant 2H Weapon - Major Agility",
+    "source": "drop",
+    "zone": "The Arcatraz",
+    "reputation_requirement": null,
+    "dropped_by": ["Eredar Deathbringer"],
+    "url": "https://www.wowhead.com/tbc/item=22922/enchant-2h-weapon-major-agility",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Enchant 2H Weapon - Savagery",
+    "source": "drop",
+    "zone": "The Shattered Halls",
+    "reputation_requirement": null,
+    "dropped_by": ["Shattered Hand Centurion"],
+    "url": "https://www.wowhead.com/tbc/item=22923/enchant-2h-weapon-savagery",
+    "rarity": "uncommon"
   }
 ]
