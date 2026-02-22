@@ -6,6 +6,7 @@ import {
   useCallback,
   type ReactNode,
 } from "react";
+import { API_BASE } from "../config";
 
 interface User {
   id: number;
@@ -27,7 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/auth/me", { credentials: "include" })
+    fetch(`${API_BASE}/api/auth/me`, { credentials: "include" })
       .then((res) => {
         if (res.ok) return res.json();
         return null;
@@ -40,11 +41,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = useCallback(() => {
-    window.location.href = "/api/auth/login";
+    window.location.href = `${API_BASE}/api/auth/login`;
   }, []);
 
   const logout = useCallback(async () => {
-    await fetch("/api/auth/logout", {
+    await fetch(`${API_BASE}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
     });

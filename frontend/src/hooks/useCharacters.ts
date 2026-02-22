@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { API_BASE } from "../config";
 
 export interface Character {
   id: number;
@@ -20,7 +21,7 @@ export function useCharacters() {
   const fetchCharacters = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/characters", { credentials: "include" });
+      const res = await fetch(`${API_BASE}/api/characters`, { credentials: "include" });
       if (res.ok) {
         setCharacters(await res.json());
       }
@@ -37,7 +38,7 @@ export function useCharacters() {
 
   const importFromBlizzard = useCallback(async (): Promise<ImportableCharacter[]> => {
     try {
-      const res = await fetch("/api/characters/import", { credentials: "include" });
+      const res = await fetch(`${API_BASE}/api/characters/import`, { credentials: "include" });
       if (res.ok) return await res.json();
     } catch {
       // fall through
@@ -47,7 +48,7 @@ export function useCharacters() {
 
   const createCharacter = useCallback(
     async (name: string, realm: string, professionId?: number | null) => {
-      const res = await fetch("/api/characters", {
+      const res = await fetch(`${API_BASE}/api/characters`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -69,7 +70,7 @@ export function useCharacters() {
   );
 
   const deleteCharacter = useCallback(async (id: number) => {
-    const res = await fetch(`/api/characters/${id}`, {
+    const res = await fetch(`${API_BASE}/api/characters/${id}`, {
       method: "DELETE",
       credentials: "include",
     });
