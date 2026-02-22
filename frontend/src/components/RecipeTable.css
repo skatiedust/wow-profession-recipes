@@ -19,6 +19,11 @@
   text-decoration: underline;
 }
 
+.recipe-table__source {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
 .recipe-table__you {
   text-align: center;
   width: 60px;

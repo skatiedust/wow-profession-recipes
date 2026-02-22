@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { AuthProvider, useAuth } from "./hooks/useAuth";
 import { useRecipes } from "./hooks/useRecipes";
 import { useChecklist } from "./hooks/useChecklist";
@@ -9,10 +9,12 @@ import TopBar from "./components/TopBar";
 import Sidebar from "./components/Sidebar";
 import RecipeTable from "./components/RecipeTable";
 import Toast from "./components/Toast";
+import RecipeSearch from "./components/RecipeSearch";
 
 function MainContent() {
   const { isLoggedIn } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
+  const [knownOnly, setKnownOnly] = useState(false);
   const [selectedProfessionId, setSelectedProfessionId] = useState<number | null>(null);
   const [selectedCharacterKey, setSelectedCharacterKey] = useState<string | null>(null);
   const [resolvedCharacterId, setResolvedCharacterId] = useState<number | null>(null);
@@ -31,6 +33,13 @@ function MainContent() {
     [toggleRecipe, toast]
   );
 
+  const hasChecklist = isLoggedIn && !!resolvedCharacterId && !!knownMap;
+
+  const filteredRecipes = useMemo(() => {
+    if (!knownOnly || !knownMap) return recipes;
+    return recipes.filter((r) => knownMap.get(r.id));
+  }, [recipes, knownOnly, knownMap]);
+
   // Auto-select first character when they load
   const autoSelectedRef = useRef(false);
   useEffect(() => {
@@ -39,6 +48,11 @@ function MainContent() {
       autoSelectedRef.current = true;
     }
   }, [uniqueCharacters, selectedCharacterKey]);
+
+  // Reset known-only filter when character changes
+  useEffect(() => {
+    setKnownOnly(false);
+  }, [selectedCharacterKey]);
 
   // Clear character selection on logout
   useEffect(() => {
@@ -94,8 +108,6 @@ function MainContent() {
     <AppShell
       topBar={
         <TopBar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
           characters={isLoggedIn ? uniqueCharacters : undefined}
           selectedCharacterKey={selectedCharacterKey}
           onSelectCharacter={setSelectedCharacterKey}
@@ -104,24 +116,41 @@ function MainContent() {
       sidebar={
         <Sidebar
           selectedId={selectedProfessionId}
-          onSelect={setSelectedProfessionId}
+          onSelect={(id) => {
+            setSelectedProfessionId(id);
+            setSearchQuery("");
+            setKnownOnly(false);
+          }}
         />
       }
     >
       {selectedProfessionId ? (
-        loading ? (
-          <p style={{ color: "var(--color-text-secondary)" }}>Loading recipes…</p>
-        ) : recipes.length === 0 ? (
-          <p style={{ color: "var(--color-text-secondary)" }}>
-            {searchQuery ? "No recipes match your search." : "No recipes found for this profession."}
-          </p>
-        ) : (
-          <RecipeTable
-              recipes={recipes}
+        <>
+          <RecipeSearch
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            knownOnly={knownOnly}
+            onKnownOnlyChange={setKnownOnly}
+            showKnownFilter={hasChecklist}
+          />
+          {loading ? (
+            <p style={{ color: "var(--color-text-secondary)" }}>Loading recipes…</p>
+          ) : filteredRecipes.length === 0 ? (
+            <p style={{ color: "var(--color-text-secondary)" }}>
+              {knownOnly
+                ? "No known recipes match."
+                : searchQuery
+                  ? "No recipes match your search."
+                  : "No recipes found for this profession."}
+            </p>
+          ) : (
+            <RecipeTable
+              recipes={filteredRecipes}
               knownMap={resolvedCharacterId ? knownMap : undefined}
               onToggle={resolvedCharacterId ? handleToggle : undefined}
             />
-        )
+          )}
+        </>
       ) : (
         <div className="app-main__empty">
           <p>Select a profession from the sidebar to browse recipes.</p>

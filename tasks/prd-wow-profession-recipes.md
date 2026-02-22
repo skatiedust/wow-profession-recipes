@@ -70,13 +70,14 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 16. After selecting a profession, the app must display all tracked recipes for that profession.
 17. Each recipe row must show: recipe name, source, zone, reputation requirement, dropped-by enemies (if any), and a list of character names who know it.
 18. The app must provide a search/filter input that filters the recipe list by recipe name in real time (client-side filtering).
-19. If no characters know a recipe, the row must still appear but indicate that no crafters are available.
+19. When a user is logged in and has a character selected, the app must show a "Known only" toggle next to the search input that filters the recipe list to only recipes that character knows. The toggle must not be visible to logged-out users or when no character is selected. Switching characters must reset the toggle and refresh the checklist data.
+20. If no characters know a recipe, the row must still appear but indicate that no crafters are available.
 
 ### Recipe Seed Data
 
-20. Recipe data must be stored in static JSON files in the repository, organized by profession (e.g., `data/recipes/alchemy.json`).
-21. Each recipe entry in the JSON must include: `name` (string, without profession prefix like "Recipe:" or "Plans:"), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), `dropped_by` (array of strings, nullable — enemy types that drop the recipe), `url` (string, nullable — Wowhead link), and `rarity` (string, nullable — item rarity).
-22. A database seed/migration script must load these JSON files into the database on deployment or when recipe data changes.
+21. Recipe data must be stored in static JSON files in the repository, organized by profession (e.g., `data/recipes/alchemy.json`).
+22. Each recipe entry in the JSON must include: `name` (string, without profession prefix like "Recipe:" or "Plans:"), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), `dropped_by` (array of strings, nullable — enemy types that drop the recipe), `url` (string, nullable — Wowhead link), and `rarity` (string, nullable — item rarity).
+23. A database seed/migration script must load these JSON files into the database on deployment or when recipe data changes.
 
 ## 5. Non-Goals (Out of Scope)
 
@@ -92,7 +93,7 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 - **Dark theme with gold accents** to evoke the WoW aesthetic. Keep it simple and readable.
 - **Mobile-friendly responsive layout.** Guild members will often check this on their phones while playing.
 - **Profession icons** displayed on the profession picker for quick visual identification.
-- **Search bar prominently placed** at the top of the public recipe browse page.
+- **Search bar placed above the recipe table** on each profession page, with a "Known only" filter toggle visible when a character checklist is active.
 - **Checklist UI** for the authenticated recipe management view -- checkboxes with recipe names and metadata, easy to scan and toggle quickly.
 
 ## 7. Technical Considerations

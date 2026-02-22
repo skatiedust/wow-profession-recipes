@@ -9,6 +9,15 @@ interface RecipeTableProps {
   onToggle?: (recipeId: number, known: boolean) => void;
 }
 
+function formatSource(recipe: Recipe): string {
+  if (recipe.reputation_requirement) return recipe.reputation_requirement;
+  const zone = recipe.zone ?? "";
+  if (recipe.dropped_by && recipe.dropped_by.length > 0) {
+    return `${zone} (${recipe.dropped_by.join(", ")})`;
+  }
+  return zone;
+}
+
 function rarityClass(rarity: string | null): string {
   switch (rarity?.toLowerCase()) {
     case "uncommon":
@@ -34,6 +43,7 @@ export default function RecipeTable({ recipes, knownMap, onToggle }: RecipeTable
         <thead>
           <tr>
             <th>Recipe</th>
+            <th>Source</th>
             <th>Crafters</th>
             {isLoggedIn && <th className="recipe-table__you">You</th>}
           </tr>
@@ -53,6 +63,9 @@ export default function RecipeTable({ recipes, knownMap, onToggle }: RecipeTable
                       recipe.name
                     )}
                   </span>
+                </td>
+                <td data-label="Source" className="recipe-table__source">
+                  {formatSource(recipe)}
                 </td>
                 <td data-label="Crafters">
                   <CrafterList crafters={recipe.crafters} />
