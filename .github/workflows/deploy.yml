@@ -73,10 +73,20 @@ jobs:
             --project ${{ secrets.GCP_PROJECT_ID }} \
             --quiet
 
+      - name: Get Backend URL
+        id: backend-url
+        run: |
+          URL=$(gcloud run services describe wow-professions-api \
+            --region ${{ secrets.GCP_REGION }} \
+            --project ${{ secrets.GCP_PROJECT_ID }} \
+            --format 'value(status.url)')
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
       - name: Deploy Frontend to Cloud Run
         run: |
           gcloud run deploy wow-professions-web \
             --source ./frontend \
             --region ${{ secrets.GCP_REGION }} \
             --project ${{ secrets.GCP_PROJECT_ID }} \
+            --set-build-env-vars "VITE_API_URL=${{ steps.backend-url.outputs.url }}" \
             --quiet
