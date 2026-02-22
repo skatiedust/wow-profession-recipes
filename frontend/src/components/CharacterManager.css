@@ -1,0 +1,117 @@
+.char-manager {
+  max-width: 600px;
+  padding: 1.25rem;
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.char-manager__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.char-manager__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.char-manager__close {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+.char-manager__close:hover {
+  color: var(--color-text);
+}
+
+.char-manager__error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.char-manager__empty {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.char-manager__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.char-manager__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.875rem;
+}
+
+.char-manager__item:last-child {
+  border-bottom: none;
+}
+
+.char-manager__prof {
+  color: var(--color-text-secondary);
+}
+
+.char-manager__delete {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+.char-manager__delete:hover {
+  color: #e74c3c;
+}
+
+.char-manager__subtitle {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin: 1rem 0 0.5rem;
+}
+
+.char-manager__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.char-manager__form input,
+.char-manager__form select {
+  flex: 1;
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .char-manager__form {
+    flex-direction: column;
+  }
+
+  .char-manager__form input,
+  .char-manager__form select,
+  .char-manager__form button {
+    width: 100%;
+  }
+}

@@ -60,6 +60,12 @@
   font-weight: 400;
 }
 
+.topbar__char-select {
+  font-size: 0.8125rem;
+  padding: 0.25rem 0.5rem;
+  max-width: 200px;
+}
+
 .topbar__logout {
   font-size: 0.8125rem;
   padding: 0.3rem 0.625rem;

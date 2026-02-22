@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { API_BASE } from "../config";
 import { useAuth } from "./useAuth";
 
@@ -10,15 +10,21 @@ export interface Character {
   profession_name: string | null;
 }
 
-export interface ImportableCharacter {
+export interface UniqueCharacter {
   name: string;
   realm: string;
+  key: string;
+}
+
+function charKey(name: string, realm: string): string {
+  return `${name.toLowerCase()}|${realm.toLowerCase()}`;
 }
 
 export function useCharacters() {
-  const { authHeaders } = useAuth();
+  const { authHeaders, isLoggedIn } = useAuth();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
+  const autoImportedRef = useRef(false);
 
   const fetchCharacters = useCallback(async () => {
     setLoading(true);
@@ -30,26 +36,10 @@ export function useCharacters() {
         setCharacters(await res.json());
       }
     } catch {
-      // network error — leave list empty
+      // network error
     } finally {
       setLoading(false);
     }
-  }, [authHeaders]);
-
-  useEffect(() => {
-    fetchCharacters();
-  }, [fetchCharacters]);
-
-  const importFromBlizzard = useCallback(async (): Promise<ImportableCharacter[]> => {
-    try {
-      const res = await fetch(`${API_BASE}/api/characters/import`, {
-        headers: authHeaders(),
-      });
-      if (res.ok) return await res.json();
-    } catch {
-      // fall through
-    }
-    return [];
   }, [authHeaders]);
 
   const createCharacter = useCallback(
@@ -74,27 +64,98 @@ export function useCharacters() {
     [authHeaders]
   );
 
-  const deleteCharacter = useCallback(
-    async (id: number) => {
-      const res = await fetch(`${API_BASE}/api/characters/${id}`, {
-        method: "DELETE",
-        headers: authHeaders(),
-      });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || "Failed to delete character");
+  // Auto-import from Blizzard on first load after login
+  useEffect(() => {
+    if (!isLoggedIn || autoImportedRef.current) return;
+
+    let cancelled = false;
+
+    (async () => {
+      try {
+        await fetchCharacters();
+
+        const importRes = await fetch(`${API_BASE}/api/characters/import`, {
+          headers: authHeaders(),
+        });
+        if (!importRes.ok) return;
+        const blizzChars: { name: string; realm: string }[] =
+          await importRes.json();
+        if (cancelled || blizzChars.length === 0) return;
+
+        // Refetch to get current state before dedup
+        const currentRes = await fetch(`${API_BASE}/api/characters`, {
+          headers: authHeaders(),
+        });
+        const current: Character[] = currentRes.ok
+          ? await currentRes.json()
+          : [];
+
+        const existingKeys = new Set(
+          current.map((c) => charKey(c.name, c.realm))
+        );
+
+        const toImport = blizzChars.filter(
+          (c) => !existingKeys.has(charKey(c.name, c.realm))
+        );
+
+        for (const c of toImport) {
+          if (cancelled) return;
+          try {
+            await createCharacter(c.name, c.realm, null);
+          } catch {
+            // skip duplicates or errors
+          }
+        }
+
+        if (!cancelled) {
+          autoImportedRef.current = true;
+          await fetchCharacters();
+        }
+      } catch {
+        // ignore
       }
-      setCharacters((prev) => prev.filter((c) => c.id !== id));
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoggedIn]);
+
+  const uniqueCharacters = useMemo<UniqueCharacter[]>(() => {
+    const seen = new Map<string, UniqueCharacter>();
+    for (const c of characters) {
+      const k = charKey(c.name, c.realm);
+      if (!seen.has(k)) {
+        seen.set(k, { name: c.name, realm: c.realm, key: k });
+      }
+    }
+    return Array.from(seen.values());
+  }, [characters]);
+
+  const ensureWithProfession = useCallback(
+    async (
+      name: string,
+      realm: string,
+      professionId: number
+    ): Promise<Character> => {
+      const existing = characters.find(
+        (c) =>
+          charKey(c.name, c.realm) === charKey(name, realm) &&
+          c.profession_id === professionId
+      );
+      if (existing) return existing;
+
+      return createCharacter(name, realm, professionId);
     },
-    [authHeaders]
+    [characters, createCharacter]
   );
 
   return {
     characters,
+    uniqueCharacters,
     loading,
     refresh: fetchCharacters,
-    importFromBlizzard,
     createCharacter,
-    deleteCharacter,
+    ensureWithProfession,
   };
 }

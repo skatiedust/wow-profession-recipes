@@ -27,6 +27,21 @@
   font-style: italic;
 }
 
+.character-selector__link {
+  background: none;
+  border: none;
+  color: var(--color-gold);
+  font-size: 0.8125rem;
+  font-style: italic;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.character-selector__link:hover {
+  color: var(--color-text);
+}
+
 @media (max-width: 768px) {
   .character-selector {
     flex-wrap: wrap;
