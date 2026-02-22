@@ -29,11 +29,7 @@ router.get("/", async (req, res: Response) => {
 });
 
 router.get("/import", async (req: Request, res: Response) => {
-  const accessToken = req.session.accessToken;
-  if (!accessToken) {
-    res.json([]);
-    return;
-  }
+  const { accessToken } = req as AuthenticatedRequest;
 
   try {
     const characters = await fetchWowCharacters(accessToken);

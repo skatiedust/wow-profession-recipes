@@ -33,6 +33,7 @@ function buildReq(overrides: Record<string, unknown> = {}): Request {
     protocol: "https",
     get: jest.fn().mockReturnValue("example.com"),
     query: {},
+    headers: {},
     session,
     ...overrides,
   } as unknown as Request;
@@ -45,7 +46,6 @@ function buildRes(): Response & { _redirectUrl?: string } {
   res.redirect = jest.fn().mockImplementation((url: string) => {
     res._redirectUrl = url;
   });
-  res.clearCookie = jest.fn().mockReturnValue(res);
   return res;
 }
 
@@ -114,7 +114,7 @@ describe("GET /login", () => {
 describe("GET /callback", () => {
   const handler = findHandler("get", "/callback");
 
-  it("exchanges code, upserts user, sets session, and redirects to frontend", async () => {
+  it("exchanges code, upserts user, and redirects to frontend with access_token in hash", async () => {
     mockExchangeCodeForToken.mockResolvedValueOnce({
       access_token: "tok_abc",
       token_type: "bearer",
@@ -144,11 +144,10 @@ describe("GET /callback", () => {
       expect.stringContaining("INSERT INTO users"),
       ["999", "Hero#1111"]
     );
-    expect(session.userId).toBe(7);
-    expect(session.battleTag).toBe("Hero#1111");
-    expect(session.accessToken).toBe("tok_abc");
     expect(session.oauthState).toBeUndefined();
-    expect(res.redirect).toHaveBeenCalledWith("https://frontend.example.com");
+    expect(res.redirect).toHaveBeenCalledWith(
+      "https://frontend.example.com/#access_token=tok_abc"
+    );
   });
 
   it("returns 400 when code is missing", async () => {
@@ -196,58 +195,70 @@ describe("GET /callback", () => {
 describe("GET /me", () => {
   const handler = findHandler("get", "/me");
 
-  it("returns user info when authenticated", () => {
+  it("returns user info when given a valid Bearer token", async () => {
+    mockFetchUserInfo.mockResolvedValueOnce({ sub: "999", battletag: "Hero#1111" });
+    mockQuery.mockResolvedValueOnce({ rows: [{ id: 7, battletag: "Hero#1111" }] });
+
     const req = buildReq({
-      session: { userId: 42, battleTag: "Player#5678" },
+      headers: { authorization: "Bearer tok_valid" },
     });
     const res = buildRes();
 
-    handler(req, res);
+    await handler(req, res);
 
-    expect(res.json).toHaveBeenCalledWith({
-      id: 42,
-      battleTag: "Player#5678",
-    });
+    expect(mockFetchUserInfo).toHaveBeenCalledWith("tok_valid");
+    expect(res.json).toHaveBeenCalledWith({ id: 7, battleTag: "Hero#1111" });
   });
 
-  it("returns 401 when not authenticated", () => {
-    const req = buildReq({ session: {} });
+  it("returns 401 when no Authorization header is present", async () => {
+    const req = buildReq({ headers: {} });
     const res = buildRes();
 
-    handler(req, res);
+    await handler(req, res);
 
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ error: "Not authenticated" });
+  });
+
+  it("returns 401 when token is invalid", async () => {
+    mockFetchUserInfo.mockRejectedValueOnce(new Error("invalid token"));
+
+    const req = buildReq({
+      headers: { authorization: "Bearer bad_token" },
+    });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ error: "Invalid token" });
+  });
+
+  it("returns 401 when user not found in database", async () => {
+    mockFetchUserInfo.mockResolvedValueOnce({ sub: "unknown", battletag: "Ghost#0000" });
+    mockQuery.mockResolvedValueOnce({ rows: [] });
+
+    const req = buildReq({
+      headers: { authorization: "Bearer tok_orphan" },
+    });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ error: "User not found" });
   });
 });
 
 describe("POST /logout", () => {
   const handler = findHandler("post", "/logout");
 
-  it("destroys the session and clears the cookie", () => {
-    const destroy = jest.fn((cb: (err?: Error) => void) => cb());
-    const req = buildReq({ session: { destroy } });
+  it("returns success", () => {
+    const req = buildReq();
     const res = buildRes();
 
     handler(req, res);
 
-    expect(destroy).toHaveBeenCalled();
-    expect(res.clearCookie).toHaveBeenCalledWith("connect.sid");
     expect(res.json).toHaveBeenCalledWith({ success: true });
-  });
-
-  it("returns 500 when session destroy fails", () => {
-    const destroy = jest.fn((cb: (err?: Error) => void) =>
-      cb(new Error("destroy error"))
-    );
-    const req = buildReq({ session: { destroy } });
-    const res = buildRes();
-
-    const consoleSpy = jest.spyOn(console, "error").mockImplementation();
-    handler(req, res);
-    consoleSpy.mockRestore();
-
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ error: "Logout failed" });
   });
 });

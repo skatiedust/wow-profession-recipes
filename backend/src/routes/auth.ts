@@ -62,51 +62,55 @@ router.get("/callback", async (req: Request, res: Response) => {
     const tokenData = await exchangeCodeForToken(code, redirectUri);
     const userInfo = await fetchUserInfo(tokenData.access_token);
 
-    const result = await query<{ id: number }>(
+    await query(
       `INSERT INTO users (battle_net_id, battletag)
        VALUES ($1, $2)
        ON CONFLICT (battle_net_id)
-       DO UPDATE SET battletag = EXCLUDED.battletag, updated_at = NOW()
-       RETURNING id`,
+       DO UPDATE SET battletag = EXCLUDED.battletag, updated_at = NOW()`,
       [userInfo.sub, userInfo.battletag]
     );
 
-    const userId = result.rows[0].id;
-
-    req.session.userId = userId;
-    req.session.battleTag = userInfo.battletag;
-    req.session.accessToken = tokenData.access_token;
-
-    const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
-    res.redirect(frontendUrl);
+    const frontendUrl = (
+      process.env.FRONTEND_URL || "http://localhost:5173"
+    ).replace(/\/+$/, "");
+    res.redirect(`${frontendUrl}/#access_token=${tokenData.access_token}`);
   } catch (err) {
     console.error("OAuth callback error:", err);
     res.status(500).json({ error: "Authentication failed" });
   }
 });
 
-router.get("/me", (req: Request, res: Response) => {
-  if (!req.session.userId) {
+router.get("/me", async (req: Request, res: Response) => {
+  const token = extractBearerToken(req);
+  if (!token) {
     res.status(401).json({ error: "Not authenticated" });
     return;
   }
 
-  res.json({
-    id: req.session.userId,
-    battleTag: req.session.battleTag,
-  });
-});
-
-router.post("/logout", (req: Request, res: Response) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.error("Session destroy error:", err);
-      res.status(500).json({ error: "Logout failed" });
+  try {
+    const userInfo = await fetchUserInfo(token);
+    const result = await query<{ id: number; battletag: string }>(
+      "SELECT id, battletag FROM users WHERE battle_net_id = $1",
+      [userInfo.sub]
+    );
+    if (result.rows.length === 0) {
+      res.status(401).json({ error: "User not found" });
       return;
     }
-    res.clearCookie("connect.sid");
-    res.json({ success: true });
-  });
+    res.json({ id: result.rows[0].id, battleTag: result.rows[0].battletag });
+  } catch {
+    res.status(401).json({ error: "Invalid token" });
+  }
 });
+
+router.post("/logout", (_req: Request, res: Response) => {
+  res.json({ success: true });
+});
+
+function extractBearerToken(req: Request): string | null {
+  const header = req.headers.authorization;
+  if (!header?.startsWith("Bearer ")) return null;
+  return header.slice(7);
+}
 
 export default router;

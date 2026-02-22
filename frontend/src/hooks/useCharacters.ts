@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { API_BASE } from "../config";
+import { useAuth } from "./useAuth";
 
 export interface Character {
   id: number;
@@ -15,13 +16,16 @@ export interface ImportableCharacter {
 }
 
 export function useCharacters() {
+  const { authHeaders } = useAuth();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchCharacters = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/characters`, { credentials: "include" });
+      const res = await fetch(`${API_BASE}/api/characters`, {
+        headers: authHeaders(),
+      });
       if (res.ok) {
         setCharacters(await res.json());
       }
@@ -30,7 +34,7 @@ export function useCharacters() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [authHeaders]);
 
   useEffect(() => {
     fetchCharacters();
@@ -38,20 +42,21 @@ export function useCharacters() {
 
   const importFromBlizzard = useCallback(async (): Promise<ImportableCharacter[]> => {
     try {
-      const res = await fetch(`${API_BASE}/api/characters/import`, { credentials: "include" });
+      const res = await fetch(`${API_BASE}/api/characters/import`, {
+        headers: authHeaders(),
+      });
       if (res.ok) return await res.json();
     } catch {
       // fall through
     }
     return [];
-  }, []);
+  }, [authHeaders]);
 
   const createCharacter = useCallback(
     async (name: string, realm: string, professionId?: number | null) => {
       const res = await fetch(`${API_BASE}/api/characters`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
+        headers: { "Content-Type": "application/json", ...authHeaders() },
         body: JSON.stringify({
           name,
           realm,
@@ -66,20 +71,23 @@ export function useCharacters() {
       setCharacters((prev) => [...prev, created]);
       return created;
     },
-    []
+    [authHeaders]
   );
 
-  const deleteCharacter = useCallback(async (id: number) => {
-    const res = await fetch(`${API_BASE}/api/characters/${id}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
-    if (!res.ok) {
-      const body = await res.json().catch(() => ({}));
-      throw new Error(body.error || "Failed to delete character");
-    }
-    setCharacters((prev) => prev.filter((c) => c.id !== id));
-  }, []);
+  const deleteCharacter = useCallback(
+    async (id: number) => {
+      const res = await fetch(`${API_BASE}/api/characters/${id}`, {
+        method: "DELETE",
+        headers: authHeaders(),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || "Failed to delete character");
+      }
+      setCharacters((prev) => prev.filter((c) => c.id !== id));
+    },
+    [authHeaders]
+  );
 
   return {
     characters,
