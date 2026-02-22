@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS recipes (
   reputation_requirement VARCHAR(255),
   dropped_by             TEXT[],
   url                    TEXT,
-  spell_url              TEXT,
   rarity                 VARCHAR(50),
   created_at             TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
   updated_at             TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
@@ -56,8 +55,6 @@ CREATE TABLE IF NOT EXISTS recipes (
 
 CREATE UNIQUE INDEX IF NOT EXISTS recipes_profession_name_idx
   ON recipes(profession_id, name) WHERE deleted_at IS NULL;
-
-ALTER TABLE recipes ADD COLUMN IF NOT EXISTS spell_url TEXT;
 
 CREATE TABLE IF NOT EXISTS character_recipes (
   character_id INTEGER NOT NULL REFERENCES characters(id) ON DELETE CASCADE,
