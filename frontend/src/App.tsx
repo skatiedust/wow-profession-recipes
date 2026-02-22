@@ -1,15 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
-import HomePage from "./pages/HomePage";
+import AppShell from "./components/AppShell";
+import LoginButton from "./components/LoginButton";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </AuthProvider>
-    </BrowserRouter>
+    <AuthProvider>
+      <AppShell
+        topBarRight={<LoginButton />}
+      >
+        <div className="app-main__empty">
+          <p>Select a profession from the sidebar to browse recipes.</p>
+        </div>
+      </AppShell>
+    </AuthProvider>
   );
 }
