@@ -65,6 +65,35 @@ jobs:
         working-directory: terraform
         run: terraform apply -auto-approve
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install backend dependencies
+        run: npm ci --workspace=backend
+
+      - name: Get Cloud SQL connection name
+        id: cloud-sql
+        working-directory: terraform
+        run: |
+          CONNECTION_NAME=$(terraform output -raw cloud_sql_connection_name)
+          echo "connection_name=$CONNECTION_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Run database migration
+        run: |
+          curl -fsSL -o cloud-sql-proxy \
+            https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.14.3/cloud-sql-proxy.linux.amd64
+          chmod +x cloud-sql-proxy
+          ./cloud-sql-proxy "${{ steps.cloud-sql.outputs.connection_name }}" --port 5432 &
+          PROXY_PID=$!
+          sleep 3
+          npm run migrate --workspace=backend
+          kill $PROXY_PID || true
+        env:
+          DATABASE_URL: postgresql://wow_app:${{ secrets.DATABASE_PASSWORD }}@127.0.0.1:5432/wow_professions
+
       - name: Deploy Backend to Cloud Run
         run: |
           gcloud run deploy wow-professions-api \
