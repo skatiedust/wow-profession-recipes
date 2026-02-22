@@ -16,28 +16,6 @@
   flex-shrink: 0;
 }
 
-.topbar__search {
-  flex: 1;
-  max-width: 480px;
-  position: relative;
-}
-
-.topbar__search-input {
-  width: 100%;
-  padding: 0.4rem 0.75rem 0.4rem 2rem;
-  font-size: 0.875rem;
-}
-
-.topbar__search-icon {
-  position: absolute;
-  left: 0.6rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--color-text-muted);
-  font-size: 0.8rem;
-  pointer-events: none;
-}
-
 .topbar__actions {
   display: flex;
   align-items: center;
@@ -90,10 +68,6 @@
 
   .topbar__title {
     font-size: 1.05rem;
-  }
-
-  .topbar__search {
-    max-width: none;
   }
 
   .topbar__battletag {

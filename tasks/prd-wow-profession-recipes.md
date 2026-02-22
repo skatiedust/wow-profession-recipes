@@ -92,7 +92,7 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 - **Dark theme with gold accents** to evoke the WoW aesthetic. Keep it simple and readable.
 - **Mobile-friendly responsive layout.** Guild members will often check this on their phones while playing.
 - **Profession icons** displayed on the profession picker for quick visual identification.
-- **Search bar prominently placed** at the top of the public recipe browse page.
+- **Search bar placed above the recipe table** on each profession page, with a "Known only" filter toggle visible when a character checklist is active.
 - **Checklist UI** for the authenticated recipe management view -- checkboxes with recipe names and metadata, easy to scan and toggle quickly.
 
 ## 7. Technical Considerations
