@@ -59,6 +59,11 @@
 - `terraform/modules/cloud-sql/main.tf` - Cloud SQL PostgreSQL instance module
 - `terraform/modules/secrets/main.tf` - Secret Manager module
 - `terraform/modules/networking/main.tf` - VPC connector and networking module
+- `addon/ProfessionExporter/ProfessionExporter.toc` - WoW addon table of contents file
+- `addon/ProfessionExporter/ProfessionExporter.lua` - WoW addon Lua source (slash command, trade skill scan, JSON export frame)
+- `addon/ProfessionExporter/README.md` - Addon installation and usage instructions
+- `frontend/src/components/ImportRecipes.tsx` - Modal for pasting and importing addon JSON
+- `frontend/src/components/ImportRecipes.test.tsx` - Tests for ImportRecipes component
 
 ### Notes
 
@@ -154,7 +159,18 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 7.7 Create `frontend/src/components/CrafterList.tsx` — renders the inline list of crafter names for a recipe row; shows first 2, then a "+N more" button that expands inline to reveal the rest
   - [x] 7.8 Create `frontend/src/components/CharacterSelector.tsx` — compact dropdown (in TopBar or above the recipe table) for logged-in users to pick which character they're toggling recipes for; fetches from existing `useCharacters` hook; if the selected character has no profession matching the sidebar selection, shows a prompt
   - [x] 7.9 Create `frontend/src/hooks/useChecklist.ts` — when a character is selected, fetches `GET /api/recipes/checklist?character_id=X` and merges `known` flags into the recipe list; exposes a `toggleRecipe(recipeId, known)` function with optimistic UI update, calls `POST /api/recipes/checklist`, and reverts on failure
-  - [ ] 7.10 Create `frontend/src/components/Toast.tsx` and `frontend/src/hooks/useToast.ts` — notification at bottom-right on recipe toggle ("Recipe added to your profile." / "Recipe removed from your profile."); uses `.toast` / `.toast.visible` CSS classes from `global.css`; fades in/out with 200ms transitions
-  - [ ] 7.11 Mobile responsive polish — sidebar collapses into a slide-out drawer with hamburger toggle, recipe table becomes a stacked card list, search stays sticky at top, verify touch targets >= 44px
-  - [ ] 7.12 Deploy and test the full flow end-to-end: public browse with search, login → select character → toggle recipes → verify changes appear on the public browse page
-  - [ ] 7.13 Write tests for `AppShell`, `TopBar`, `Sidebar`, `RecipeTable`, `CrafterList`, `CharacterSelector`, `Toast`, `useRecipes`, `useChecklist`, `useProfessions` — mock API responses and auth state, verify rendering, filter behavior, and optimistic toggle
+  - [x] 7.10 Create `frontend/src/components/Toast.tsx` and `frontend/src/hooks/useToast.ts` — notification at bottom-right on recipe toggle ("Recipe added to your profile." / "Recipe removed from your profile."); uses `.toast` / `.toast.visible` CSS classes from `global.css`; fades in/out with 200ms transitions
+  - [x] 7.11 Mobile responsive polish — sidebar collapses into a slide-out drawer with hamburger toggle, recipe table becomes a stacked card list, search stays sticky at top, verify touch targets >= 44px
+  - [x] 7.12 Deploy and test the full flow end-to-end: public browse with search, login → select character → toggle recipes → verify changes appear on the public browse page
+  - [x] 7.13 Write tests for `AppShell`, `TopBar`, `Sidebar`, `RecipeTable`, `CrafterList`, `CharacterSelector`, `Toast`, `useRecipes`, `useChecklist`, `useProfessions` — mock API responses and auth state, verify rendering, filter behavior, and optimistic toggle
+
+- [ ] 8.0 In-game addon recipe export and app import
+  - [ ] 8.1 Create `addon/ProfessionExporter/ProfessionExporter.toc` — addon metadata targeting the TBC Classic interface version, listing `ProfessionExporter.lua` as the sole file
+  - [ ] 8.2 Create `addon/ProfessionExporter/ProfessionExporter.lua` — register a `/exportrecipes` slash command that: checks if a trade skill window is open, reads the profession name via `GetTradeSkillLine()`, iterates `GetNumTradeSkills()` entries skipping headers, collects recipe names, builds a JSON string with `character`, `realm`, `profession`, and `recipes` fields, and displays it in a copyable multiline EditBox frame
+  - [ ] 8.3 Create `addon/ProfessionExporter/README.md` — installation instructions (copy folder to WoW `Interface/AddOns/`), usage guide (open profession window, type `/exportrecipes`, Ctrl+A → Ctrl+C), and a description of the JSON output format
+  - [ ] 8.4 Add `POST /api/recipes/import` route in `backend/src/routes/recipes.ts` — auth required; accepts `{ character, realm, profession, recipes }` JSON body; validates the structure; looks up `profession_id` by name (case-insensitive); finds or creates a `characters` row for the `(user_id, name, realm, profession_id)` tuple; matches incoming recipe names against DB recipes using case-insensitive comparison with prefix stripping (`Recipe: `, `Plans: `, `Formula: `, `Schematic: `, `Design: `, `Pattern: `); bulk-inserts into `character_recipes` with `ON CONFLICT DO NOTHING`; returns `{ character_id, matched, skipped, unmatched }` where `unmatched` lists addon recipe names that didn't match any tracked recipe
+  - [ ] 8.5 Write tests for the import endpoint in `backend/src/routes/recipes.test.ts` — cover successful import, prefix stripping, unmatched recipes in response, 401 without auth, and 400 for invalid JSON structure
+  - [ ] 8.6 Create `frontend/src/components/ImportRecipes.tsx` — a modal with: brief instructions referencing the addon, a `<textarea>` for pasting JSON, client-side JSON validation with error message, an "Import" button that calls `POST /api/recipes/import`, and a results view showing matched/skipped/unmatched counts with the list of unmatched recipe names
+  - [ ] 8.7 Add an "Import from Addon" button to the TopBar (visible only when logged in) that opens the `ImportRecipes` modal; after a successful import, refresh the checklist and recipe data so the UI reflects newly known recipes
+  - [ ] 8.8 Write tests for `ImportRecipes` component in `frontend/src/components/ImportRecipes.test.tsx` — mock the fetch call, verify JSON validation feedback, successful import result display, and error handling
+  - [ ] 8.9 Update `tasks/prd-wow-profession-recipes.md` and `README.md` to document the addon-based import flow — mention the addon in the project overview, add it to the tech stack, and include setup/usage instructions in the README

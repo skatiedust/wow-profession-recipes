@@ -1,12 +1,14 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { AuthProvider, useAuth } from "./hooks/useAuth";
 import { useRecipes } from "./hooks/useRecipes";
 import { useChecklist } from "./hooks/useChecklist";
 import { useCharacters } from "./hooks/useCharacters";
+import { useToast } from "./hooks/useToast";
 import AppShell from "./components/AppShell";
 import TopBar from "./components/TopBar";
 import Sidebar from "./components/Sidebar";
 import RecipeTable from "./components/RecipeTable";
+import Toast from "./components/Toast";
 
 function MainContent() {
   const { isLoggedIn } = useAuth();
@@ -18,6 +20,15 @@ function MainContent() {
   const { uniqueCharacters, characters, ensureWithProfession } = useCharacters();
   const { knownMap, toggleRecipe } = useChecklist(
     isLoggedIn ? resolvedCharacterId : null
+  );
+  const toast = useToast();
+
+  const handleToggle = useCallback(
+    (recipeId: number, known: boolean) => {
+      toggleRecipe(recipeId, known);
+      toast.show(known ? "Recipe added to your profile." : "Recipe removed from your profile.");
+    },
+    [toggleRecipe, toast]
   );
 
   // Auto-select first character when they load
@@ -106,16 +117,17 @@ function MainContent() {
           </p>
         ) : (
           <RecipeTable
-            recipes={recipes}
-            knownMap={resolvedCharacterId ? knownMap : undefined}
-            onToggle={resolvedCharacterId ? toggleRecipe : undefined}
-          />
+              recipes={recipes}
+              knownMap={resolvedCharacterId ? knownMap : undefined}
+              onToggle={resolvedCharacterId ? handleToggle : undefined}
+            />
         )
       ) : (
         <div className="app-main__empty">
           <p>Select a profession from the sidebar to browse recipes.</p>
         </div>
       )}
+      <Toast message={toast.message} visible={toast.visible} />
     </AppShell>
   );
 }
