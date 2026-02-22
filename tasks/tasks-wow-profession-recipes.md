@@ -176,7 +176,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [ ] 8.9 Update `tasks/prd-wow-profession-recipes.md` and `README.md` to document the addon-based import flow — mention the addon in the project overview, add it to the tech stack, and include setup/usage instructions in the README
 
 - [ ] 9.0 Wowhead recipe tooltips — hover over a recipe name to see what it does
-  - [ ] 9.1 Add a `spell_url TEXT` column to the `recipes` table in `backend/src/migrate.ts`; include an `ALTER TABLE recipes ADD COLUMN IF NOT EXISTS spell_url TEXT` statement so existing deployments pick up the new column without a full re-migration
+  - [x] 9.1 Add a `spell_url TEXT` column to the `recipes` table in `backend/src/migrate.ts`; include an `ALTER TABLE recipes ADD COLUMN IF NOT EXISTS spell_url TEXT` statement so existing deployments pick up the new column without a full re-migration
   - [ ] 9.2 Add `spell_url` (string, nullable — Wowhead TBC spell URL, e.g. `https://www.wowhead.com/tbc/spell=27984`) to all 40 recipe entries across the 8 JSON files in `data/recipes/`; look up each recipe's spell ID on Wowhead
   - [ ] 9.3 Update `backend/src/seed.ts` — add `spell_url: string | null` to the `RecipeEntry` interface and include `spell_url` in both the UPDATE and INSERT queries
   - [ ] 9.4 Update `backend/src/routes/recipes.ts` — add `r.spell_url` to the SELECT columns in the `GET /api/recipes` and `GET /api/recipes/checklist` queries, and add `spell_url` to both TypeScript result type annotations
