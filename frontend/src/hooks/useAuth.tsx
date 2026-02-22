@@ -4,6 +4,7 @@ import {
   useEffect,
   useState,
   useCallback,
+  useRef,
   type ReactNode,
 } from "react";
 import { API_BASE } from "../config";
@@ -19,22 +20,52 @@ interface AuthContextValue {
   loading: boolean;
   login: () => void;
   logout: () => Promise<void>;
+  authHeaders: () => Record<string, string>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
+function extractTokenFromHash(): string | null {
+  const hash = window.location.hash;
+  if (!hash) return null;
+  const params = new URLSearchParams(hash.slice(1));
+  const token = params.get("access_token");
+  if (token) {
+    window.history.replaceState(null, "", window.location.pathname);
+  }
+  return token;
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const tokenRef = useRef<string | null>(null);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/auth/me`, { credentials: "include" })
+    const hashToken = extractTokenFromHash();
+    const stored = hashToken || sessionStorage.getItem("access_token");
+
+    if (!stored) {
+      setLoading(false);
+      return;
+    }
+
+    tokenRef.current = stored;
+    if (hashToken) {
+      sessionStorage.setItem("access_token", hashToken);
+    }
+
+    fetch(`${API_BASE}/api/auth/me`, {
+      headers: { Authorization: `Bearer ${stored}` },
+    })
       .then((res) => {
         if (res.ok) return res.json();
+        sessionStorage.removeItem("access_token");
+        tokenRef.current = null;
         return null;
       })
       .then((data) => {
-        if (data && data.id) setUser(data);
+        if (data?.id) setUser(data);
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -45,16 +76,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const logout = useCallback(async () => {
-    await fetch(`${API_BASE}/api/auth/logout`, {
-      method: "POST",
-      credentials: "include",
-    });
+    sessionStorage.removeItem("access_token");
+    tokenRef.current = null;
     setUser(null);
+  }, []);
+
+  const authHeaders = useCallback((): Record<string, string> => {
+    const token = tokenRef.current;
+    if (!token) return {};
+    return { Authorization: `Bearer ${token}` };
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ user, isLoggedIn: user !== null, loading, login, logout }}
+      value={{ user, isLoggedIn: user !== null, loading, login, logout, authHeaders }}
     >
       {children}
     </AuthContext.Provider>
