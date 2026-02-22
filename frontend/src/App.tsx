@@ -1,10 +1,15 @@
-function App() {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
+import HomePage from "./pages/HomePage";
+
+export default function App() {
   return (
-    <div>
-      <h1>WoW Guild Recipes</h1>
-      <p>Coming soon.</p>
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;
