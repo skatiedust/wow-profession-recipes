@@ -176,11 +176,11 @@ Update the file after completing each sub-task, not just after completing an ent
   - [ ] 8.9 Update `tasks/prd-wow-profession-recipes.md` and `README.md` to document the addon-based import flow — mention the addon in the project overview, add it to the tech stack, and include setup/usage instructions in the README
 
 - [ ] 9.0 Wowhead recipe tooltips — hover over a recipe name to see what it does
-  - [x] 9.1 Add a `spell_url TEXT` column to the `recipes` table in `backend/src/migrate.ts`; include an `ALTER TABLE recipes ADD COLUMN IF NOT EXISTS spell_url TEXT` statement so existing deployments pick up the new column without a full re-migration
-  - [ ] 9.2 Add `spell_url` (string, nullable — Wowhead TBC spell URL, e.g. `https://www.wowhead.com/tbc/spell=27984`) to all 40 recipe entries across the 8 JSON files in `data/recipes/`; look up each recipe's spell ID on Wowhead
-  - [ ] 9.3 Update `backend/src/seed.ts` — add `spell_url: string | null` to the `RecipeEntry` interface and include `spell_url` in both the UPDATE and INSERT queries
-  - [ ] 9.4 Update `backend/src/routes/recipes.ts` — add `r.spell_url` to the SELECT columns in the `GET /api/recipes` and `GET /api/recipes/checklist` queries, and add `spell_url` to both TypeScript result type annotations
-  - [ ] 9.5 Update `frontend/src/hooks/useRecipes.ts` — add `spell_url: string | null` to the `Recipe` interface
+  - [x] 9.1 ~Removed~ — `spell_url` column not needed; the existing `url` column is used for Wowhead links instead
+  - [x] 9.2 Ensure recipe entries in `data/recipes/` have a `url` field pointing to the Wowhead TBC page; only add where there isn't a `url` already
+  - [x] 9.3 Verified `backend/src/seed.ts` already includes `url` in the `RecipeEntry` interface and both UPDATE and INSERT queries — no `spell_url` needed
+  - [x] 9.4 Verified `backend/src/routes/recipes.ts` already includes `r.url` in the SELECT columns and TypeScript result types for both `GET /api/recipes` and `GET /api/recipes/checklist` — no `spell_url` needed
+  - [x] 9.5 Verified `frontend/src/hooks/useRecipes.ts` already has `url: string | null` in the `Recipe` interface — no `spell_url` needed
   - [ ] 9.6 Add the Wowhead tooltip script to `frontend/index.html` — include `<script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: false };</script>` and `<script src="https://wow.zamimg.com/js/tooltips.js"></script>` in `<head>`
   - [ ] 9.7 Update `frontend/src/components/RecipeTable.tsx` — use `spell_url` (falling back to `url`) as the `<a>` href for recipe names so the Wowhead tooltip shows the spell effect on hover; add a `useEffect` that calls `window.$WowheadPower.refreshLinks()` whenever the recipe list changes, so newly rendered links get tooltips
   - [ ] 9.8 Run the migration (`npm run migrate` in `backend/`) and seed (`npm run seed` in `backend/`) to add the column and populate `spell_url` values in the database
