@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import type { Recipe } from "../hooks/useRecipes";
+import CrafterList from "./CrafterList";
 import "./RecipeTable.css";
 
 interface RecipeTableProps {
@@ -42,43 +42,6 @@ function rarityLabel(rarity: string | null): string {
   return rarity.charAt(0).toUpperCase() + rarity.slice(1).toLowerCase();
 }
 
-function CrafterCell({ crafters }: { crafters: Recipe["crafters"] }) {
-  const [expanded, setExpanded] = useState(false);
-  const VISIBLE_COUNT = 2;
-
-  if (crafters.length === 0) {
-    return <span className="recipe-table__none">—</span>;
-  }
-
-  const visible = expanded ? crafters : crafters.slice(0, VISIBLE_COUNT);
-  const remaining = crafters.length - VISIBLE_COUNT;
-
-  return (
-    <span className="recipe-table__crafters">
-      {visible.map((c, i) => (
-        <span key={`${c.name}-${c.realm}`}>
-          {i > 0 && ", "}
-          {c.name}
-        </span>
-      ))}
-      {!expanded && remaining > 0 && (
-        <>
-          {" "}
-          <button
-            className="recipe-table__crafter-more"
-            onClick={(e) => {
-              e.stopPropagation();
-              setExpanded(true);
-            }}
-          >
-            +{remaining} more
-          </button>
-        </>
-      )}
-    </span>
-  );
-}
-
 export default function RecipeTable({ recipes }: RecipeTableProps) {
   const { isLoggedIn } = useAuth();
 
@@ -113,7 +76,7 @@ export default function RecipeTable({ recipes }: RecipeTableProps) {
                 </span>
               </td>
               <td data-label="Crafters">
-                <CrafterCell crafters={recipe.crafters} />
+                <CrafterList crafters={recipe.crafters} />
               </td>
               {isLoggedIn && (
                 <td data-label="You" className="recipe-table__you">
