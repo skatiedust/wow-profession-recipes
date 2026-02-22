@@ -134,15 +134,15 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 5.3 Create `frontend/src/hooks/useCharacters.ts` — hook that fetches the user's saved characters (`GET /api/characters`), exposes import from Blizzard (`GET /api/characters/import`), and create (`POST /api/characters`) / delete (`DELETE /api/characters/:id`) functions
   - [x] 5.4 Create `frontend/src/components/CharacterManager.tsx` — list saved characters with a delete button each, an "Import from Battle.net" button that fetches and displays importable characters, and a manual add form (name, realm fields)
   - [x] 5.5 Wire up `frontend/src/App.tsx` with React Router and `AuthProvider` — `/` shows `LoginButton` and, when logged in, the `CharacterManager`; when logged out, prompt to log in
-  - [ ] 5.6 Deploy frontend to Cloud Run and test the full flow in a browser (login → view characters → import from Blizzard → add/delete character → logout)
+  - [x] 5.6 Deploy frontend to Cloud Run and test the full flow in a browser (login → view characters → import from Blizzard → add/delete character → logout)
 
-- [ ] 6.0 Backend API — Recipe endpoints (checklist and public browse)
-  - [ ] 6.1 Add to `backend/src/routes/recipes.ts` — `GET /api/recipes?profession_id=X` — returns all non-deleted recipes for a profession, each with an array of character names/realms who know it (public, no auth required)
-  - [ ] 6.2 Add `GET /api/recipes/checklist?character_id=X` — returns all recipes for the character's profession, each with a boolean `known` flag indicating if the character has it (auth required, character must belong to current user)
-  - [ ] 6.3 Add `POST /api/recipes/checklist` — accepts `{ character_id, recipe_id, known: boolean }` and inserts or deletes the `character_recipes` row accordingly (auth required)
-  - [ ] 6.4 Add `GET /api/professions` — returns the list of all professions with id, name, and icon_url (public, no auth)
-  - [ ] 6.5 Deploy and test: verify the public recipe list returns recipes with crafter names, and the checklist toggle persists correctly
-  - [ ] 6.6 Write tests for all recipe routes — mock the database layer and verify correct SQL queries, auth enforcement, and response shapes
+- [x] 6.0 Backend API — Recipe endpoints (checklist and public browse)
+  - [x] 6.1 Add to `backend/src/routes/recipes.ts` — `GET /api/recipes?profession_id=X` — returns all non-deleted recipes for a profession, each with an array of character names/realms who know it (public, no auth required)
+  - [x] 6.2 Add `GET /api/recipes/checklist?character_id=X` — returns all recipes for the character's profession, each with a boolean `known` flag indicating if the character has it (auth required, character must belong to current user)
+  - [x] 6.3 Add `POST /api/recipes/checklist` — accepts `{ character_id, recipe_id, known: boolean }` and inserts or deletes the `character_recipes` row accordingly (auth required)
+  - [x] 6.4 Add `GET /api/professions` — returns the list of all professions with id, name, and icon_url (public, no auth)
+  - [x] 6.5 Deploy and test: verify the public recipe list returns recipes with crafter names, and the checklist toggle persists correctly
+  - [x] 6.6 Write tests for all recipe routes — mock the database layer and verify correct SQL queries, auth enforcement, and response shapes
 
 - [ ] 7.0 Frontend — Styling, public recipe browse, and recipe checklist
   - [ ] 7.1 Set up global styles in `frontend/src/styles/global.css` — dark background, light text, gold accent color (`#FFD100` or similar), responsive typography, and CSS variables for the theme

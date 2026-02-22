@@ -4,6 +4,8 @@ import cors from "cors";
 import session from "express-session";
 import authRouter from "./routes/auth";
 import characterRouter from "./routes/characters";
+import recipeRouter from "./routes/recipes";
+import professionRouter from "./routes/professions";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -41,6 +43,8 @@ app.get("/health", (_req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/characters", characterRouter);
+app.use("/api/recipes", recipeRouter);
+app.use("/api/professions", professionRouter);
 
 app.listen(port, () => {
   console.log(`Backend listening on port ${port}`);
