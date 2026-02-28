@@ -142,5 +142,5 @@ jobs:
             --source ./frontend \
             --region ${{ secrets.GCP_REGION }} \
             --project ${{ secrets.GCP_PROJECT_ID }} \
-            --set-build-env-vars "VITE_API_URL=${{ steps.backend-url.outputs.url }}" \
+            --set-build-env-vars "VITE_API_URL=${{ steps.backend-url.outputs.url }},VITE_ADDON_DOWNLOAD_URL=https://storage.googleapis.com/${{ steps.addon-bucket.outputs.bucket_name }}/latest/ProfessionExporter.zip" \
             --quiet

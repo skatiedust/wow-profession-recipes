@@ -2,6 +2,11 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import ImportRecipes from "./ImportRecipes";
 
+vi.mock("../config", () => ({
+  API_BASE: "",
+  ADDON_DOWNLOAD_URL: "https://storage.googleapis.com/example-bucket/latest/ProfessionExporter.zip",
+}));
+
 const mockFetch = vi.fn();
 const mockOnClose = vi.fn();
 const mockOnSuccess = vi.fn();
@@ -36,6 +41,10 @@ describe("ImportRecipes", () => {
     expect(screen.getByText("Import from Addon")).toBeInTheDocument();
     expect(screen.getByText(/ProfessionExporter addon/)).toBeInTheDocument();
     expect(screen.getByText("/exportrecipes")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Download Addon/ })).toHaveAttribute(
+      "href",
+      "https://storage.googleapis.com/example-bucket/latest/ProfessionExporter.zip"
+    );
     expect(screen.getByRole("button", { name: /Import/ })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Cancel/ })).toBeInTheDocument();
   });
