@@ -298,3 +298,125 @@ describe("POST /checklist", () => {
     expect(res.json).toHaveBeenCalledWith({ error: "Character not found" });
   });
 });
+
+describe("POST /import", () => {
+  const handler = findHandler("post", "/import");
+
+  it("imports recipes successfully and returns matched/skipped/unmatched", async () => {
+    mockQuery
+      .mockResolvedValueOnce({ rows: [{ id: 2 }] })
+      .mockResolvedValueOnce({ rows: [] })
+      .mockResolvedValueOnce({ rows: [{ id: 99 }] })
+      .mockResolvedValueOnce({
+        rows: [
+          { id: 10, name: "Haste Potion" },
+          { id: 11, name: "Destruction Potion" },
+        ],
+      })
+      .mockResolvedValueOnce({ rows: [] })
+      .mockResolvedValueOnce({ rowCount: 1 })
+      .mockResolvedValueOnce({ rowCount: 1 });
+
+    const req = buildReq({
+      body: {
+        character: "MyChar",
+        realm: "Whitemane",
+        profession: "Alchemy",
+        recipes: ["Haste Potion", "Destruction Potion", "Unknown Recipe"],
+      },
+      user: { id: 42, battleTag: "Player#1234" },
+    });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(mockQuery).toHaveBeenCalledWith(
+      expect.stringContaining("SELECT id FROM professions"),
+      ["Alchemy"]
+    );
+    expect(mockQuery).toHaveBeenCalledWith(
+      expect.stringContaining("INSERT INTO characters"),
+      expect.arrayContaining([42, "MyChar", "Whitemane", 2])
+    );
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        character_id: expect.any(Number),
+        matched: 2,
+        skipped: 0,
+        unmatched: ["Unknown Recipe"],
+      })
+    );
+  });
+
+  it("strips Recipe: prefix when matching", async () => {
+    mockQuery
+      .mockResolvedValueOnce({ rows: [{ id: 1 }] })
+      .mockResolvedValueOnce({ rows: [] })
+      .mockResolvedValueOnce({ rows: [{ id: 50 }] })
+      .mockResolvedValueOnce({
+        rows: [{ id: 5, name: "Haste Potion" }],
+      })
+      .mockResolvedValueOnce({ rows: [] })
+      .mockResolvedValueOnce({ rowCount: 1 });
+
+    const req = buildReq({
+      body: {
+        character: "X",
+        realm: "Y",
+        profession: "Alchemy",
+        recipes: ["Recipe: Haste Potion"],
+      },
+      user: { id: 1, battleTag: "Test#1" },
+    });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        matched: 1,
+        unmatched: [],
+      })
+    );
+  });
+
+  it("returns 400 for invalid JSON structure", async () => {
+    const req = buildReq({
+      body: { character: "X", realm: "Y" },
+      user: { id: 1, battleTag: "Test#1" },
+    });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        error: expect.stringContaining("Invalid body"),
+      })
+    );
+    expect(mockQuery).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 for unknown profession", async () => {
+    mockQuery.mockResolvedValueOnce({ rows: [] });
+
+    const req = buildReq({
+      body: {
+        character: "X",
+        realm: "Y",
+        profession: "UnknownProf",
+        recipes: [],
+      },
+      user: { id: 1, battleTag: "Test#1" },
+    });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Unknown profession: UnknownProf",
+    });
+  });
+});

@@ -16,6 +16,15 @@
   flex-shrink: 0;
 }
 
+.topbar__title--clickable {
+  cursor: pointer;
+  color: var(--color-gold);
+}
+
+.topbar__title--clickable:hover {
+  text-decoration: underline;
+}
+
 .topbar__actions {
   display: flex;
   align-items: center;

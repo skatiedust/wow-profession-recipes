@@ -4,7 +4,7 @@
 
 Many rare profession recipes in World of Warcraft: Burning Crusade Anniversary are difficult to obtain -- they drop from specific bosses, require high reputation, or come from obscure vendors. When a guild member needs something crafted, there is no easy way to know who in the guild has learned a particular recipe.
 
-This app is a lightweight web tool for a single WoW BC Anniversary guild to track which members have rare profession recipes. Guild members log in with their Battle.net account, select a character, and check off the recipes they know. Anyone -- guild member or not -- can browse the list of recipes and see who can craft what, without needing to log in.
+This app is a lightweight web tool for a single WoW BC Anniversary guild to track which members have rare profession recipes. Guild members log in with their Battle.net account, select a character, and check off the recipes they know — either manually or by importing from the in-game ProfessionExporter addon. Anyone — guild member or not — can browse the list of recipes and see who can craft what, without needing to log in.
 
 The project is designed to be self-hostable on Google Cloud via Terraform, so other guilds can fork the repo and deploy their own instance.
 
@@ -30,6 +30,7 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 - **As a guild member**, I want to select which profession my character has so the app shows the correct recipe checklist.
 - **As a guild member**, I want to check/uncheck recipes on the list to indicate which ones my character knows, and have those selections saved immediately.
 - **As a guild member**, I want to manage recipes for multiple characters (e.g., an alchemist alt and an enchanter main).
+- **As a guild member**, I want to import my known recipes from the ProfessionExporter addon so I can quickly sync my in-game recipe list without toggling each one manually.
 
 ### 3.3 Repo Maintainer
 
@@ -112,6 +113,7 @@ flowchart LR
 
 - **Frontend:** React + TypeScript + Vite. Served as a static build from Cloud Run (or a Cloud Storage bucket behind a load balancer).
 - **Backend:** Node.js + TypeScript + Express. REST API. Deployed to Cloud Run.
+- **Addon:** ProfessionExporter — a WoW TBC Anniversary addon that exports known recipes to JSON via `/exportrecipes` for import into the web app.
 - **Database:** Cloud SQL PostgreSQL (smallest tier). Stores users, characters, professions, recipes, and the character-recipe join data.
 - **Auth:** Battle.net OAuth 2.0. The backend handles the OAuth flow and issues a session cookie or JWT to the frontend.
 - **Infrastructure:** Terraform, provisioning Cloud Run services, Cloud SQL instance, IAM roles, and Secret Manager entries for Battle.net client credentials.
