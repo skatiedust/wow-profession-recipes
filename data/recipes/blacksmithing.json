@@ -1,30 +1,57 @@
 [
   {
-    "name": "Blazefury",
+    "name": "Adamantite Weapon Chain",
     "source": "drop",
-    "zone": "Black Temple",
+    "zone": "Instance drop (rarely in zones)",
     "reputation_requirement": null,
-    "dropped_by": ["Black Temple Trash"],
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=33186/plans-adamantite-weapon-chain",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Felsteel Gloves",
+    "source": "drop",
+    "zone": "Auchenai Crypts",
+    "reputation_requirement": null,
+    "dropped_by": ["Auchenai Monk"],
+    "url": "https://www.wowhead.com/tbc/item=23605/plans-felsteel-gloves",
+    "rarity": "rare"
+  },
+  {
+    "name": "Dawnsteel Leggings",
+    "source": "drop",
+    "zone": "The Arcatraz",
+    "reputation_requirement": null,
+    "dropped_by": ["Unchained Doombringer"],
+    "url": "https://www.wowhead.com/tbc/item=23606/plans-felsteel-leggings",
+    "rarity": "rare"
+  },
+  {
+    "name": "Khorium Belt",
+    "source": "drop",
+    "zone": "Nagrand",
+    "reputation_requirement": null,
+    "dropped_by": ["Murkblood Raider"],
+    "url": "https://www.wowhead.com/tbc/item=23608/plans-khorium-belt",
+    "rarity": "rare"
+  },
+  {
+    "name": "Khorium Belt",
+    "source": "drop",
+    "zone": "Nagrand",
+    "reputation_requirement": null,
+    "dropped_by": ["Various Outland mobs"],
     "url": null,
     "rarity": null
   },
   {
-    "name": "Lionheart Executioner",
+    "name": "Khorium Pants",
     "source": "drop",
-    "zone": "Black Temple",
+    "zone": "Shadowmoon Valley",
     "reputation_requirement": null,
-    "dropped_by": ["Black Temple Trash"],
-    "url": null,
-    "rarity": null
-  },
-  {
-    "name": "Dawnsteel Bracers",
-    "source": "drop",
-    "zone": "Sunwell Plateau",
-    "reputation_requirement": null,
-    "dropped_by": ["Sunwell Plateau Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Deathforge Guardian"],
+    "url": "https://www.wowhead.com/tbc/item=23609/plans-khorium-pants",
+    "rarity": "rare"
   },
   {
     "name": "Swiftsteel Bracers",
@@ -36,12 +63,409 @@
     "rarity": null
   },
   {
-    "name": "Khorium Belt",
+    "name": "Felsteel Helm",
+    "source": "drop",
+    "zone": "Shadow Labyrinth",
+    "reputation_requirement": null,
+    "dropped_by": ["Cabal Fanatic"],
+    "url": "https://www.wowhead.com/tbc/item=23607/plans-felsteel-helm",
+    "rarity": "rare"
+  },
+  {
+    "name": "Khorium Boots",
+    "source": "drop",
+    "zone": "Netherstorm",
+    "reputation_requirement": null,
+    "dropped_by": ["Disembodied Protector"],
+    "url": "https://www.wowhead.com/tbc/item=23610/plans-khorium-boots",
+    "rarity": "rare"
+  },
+  {
+    "name": "Ragesteel Shoulders",
+    "source": "drop",
+    "zone": "Shadowmoon Valley",
+    "reputation_requirement": null,
+    "dropped_by": ["Enraged Spirits"],
+    "url": "https://www.wowhead.com/tbc/item=33174/plans-ragesteel-shoulders",
+    "rarity": "rare"
+  },
+  {
+    "name": "Ragesteel Gloves",
     "source": "drop",
     "zone": "Nagrand",
     "reputation_requirement": null,
-    "dropped_by": ["Various Outland mobs"],
-    "url": null,
-    "rarity": null
-  }
+    "dropped_by": ["Boulderfist Warrior"],
+    "url": "https://www.wowhead.com/tbc/item=23611/plans-ragesteel-gloves",
+    "rarity": "rare"
+  },
+  {
+    "name": "Ragesteel Helm",
+    "source": "drop",
+    "zone": "Blade's Edge Mountains",
+    "reputation_requirement": null,
+    "dropped_by": ["Anger Guard"],
+    "url": "https://www.wowhead.com/tbc/item=23612/plans-ragesteel-helm",
+    "rarity": "rare"
+  },
+  {
+    "name": "Felfury Gauntlets",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23620/plans-felfury-gauntlets",
+    "rarity": "epic"
+  },
+  {
+    "name": "Gauntlets of the Iron Tower",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23621/plans-gauntlets-of-the-iron-tower",
+    "rarity": "rare"
+  },
+  {
+    "name": "Steelgrip Gauntlets",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23622/plans-steelgrip-gauntlets",
+    "rarity": "epic"
+  },
+  {
+    "name": "Storm Helm",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23623/plans-storm-helm",
+    "rarity": "epic"
+  },
+  {
+    "name": "Helm of the Stalwart Defender",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23624/plans-helm-of-the-stalwart-defender",
+    "rarity": "epic"
+  },
+  {
+    "name": "Oathkeeper's Helm",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23625/plans-oathkeepers-helm",
+    "rarity": "epic"
+  },
+  {
+    "name": "Black Felsteel Bracers",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23626/plans-black-felsteel-bracers",
+    "rarity": "epic"
+  },
+  {
+    "name": "Bracers of the Green Fortress",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23627/plans-bracers-of-the-green-fortress",
+    "rarity": "epic"
+  },
+  {
+    "name": "Blessed Bracers",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23628/plans-blessed-bracers",
+    "rarity": "epic"
+  },
+  {
+    "name": "Felsteel Longblade",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23629/plans-felsteel-longblade",
+    "rarity": "epic"
+  },
+  {
+    "name": "Khorium Champion",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23630/plans-khorium-champion",
+    "rarity": "epic"
+  },
+  {
+    "name": "Fel Edged Battleaxe",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23631/plans-fel-edged-battleaxe",
+    "rarity": "epic"
+  },
+  {
+    "name": "Felsteel Reaper",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23632/plans-felsteel-reaper",
+    "rarity": "epic"
+  },
+  {
+    "name": "Runic Hammer",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23633/plans-runic-hammer",
+    "rarity": "epic"
+  },
+  {
+    "name": "Fel Hardened Maul",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23634/plans-fel-hardened-maul",
+    "rarity": "epic"
+  },
+  {
+    "name": "Eternium Runed Blade",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23635/plans-eternium-runed-blade",
+    "rarity": "epic"
+  },
+  {
+    "name": "Dirge",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23636/plans-dirge",
+    "rarity": "epic"
+  },
+  {
+    "name": "Hand of Eternity",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23637/plans-hand-of-eternity",
+    "rarity": "epic"
+  },
+  {
+    "name": "Ragesteel Breastplate",
+    "source": "drop",
+    "zone": "Shadowmoon Valley",
+    "reputation_requirement": null,
+    "dropped_by": ["Ashtongue Warrior"],
+    "url": "https://www.wowhead.com/tbc/item=23613/plans-ragesteel-breastplate",
+    "rarity": "rare"
+  },
+  {
+    "name": "Swiftsteel Gloves",
+    "source": "drop",
+    "zone": "Mana-Tombs",
+    "reputation_requirement": null,
+    "dropped_by": ["Nexus Stalker"],
+    "url": "https://www.wowhead.com/tbc/item=23615/plans-swiftsteel-gloves",
+    "rarity": "rare"
+  },
+  {
+    "name": "Earthpeace Breastplate",
+    "source": "drop",
+    "zone": "The Botanica",
+    "reputation_requirement": null,
+    "dropped_by": ["High Botanist Freywinn"],
+    "url": "https://www.wowhead.com/tbc/item=23617/plans-earthpeace-breastplate",
+    "rarity": "rare"
+  },
+  {
+    "name": "Greater Ward of Shielding",
+    "source": "drop",
+    "zone": "Netherstorm",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunfury Bloodwarder"],
+    "url": "https://www.wowhead.com/tbc/item=23639/plans-greater-ward-of-shielding",
+    "rarity": "rare"
+  },
+  {
+    "name": "Flamebane Bracers",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23601/plans-flamebane-bracers",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Flamebane Gloves",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23603/plans-flamebane-gloves",
+    "rarity": "common"
+  },   
+  {
+    "name": "Flamebane Breastplate",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23604/plans-flamebane-breastplate",
+    "rarity": "common"
+  },  
+  {
+    "name": "Flamebane Helm",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23602/plans-flamebane-helm",
+    "rarity": "common"
+  },   
+  {
+    "name": "Enchanted Adamantite Belt",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23597/plans-enchanted-adamantite-belt",
+    "rarity": "common"
+  },  
+  {
+    "name": "Enchanted Adamantite Boots",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23598/plans-enchanted-adamantite-boots",
+    "rarity": "common"
+  },  
+  {
+    "name": "Enchanted Adamantite Breastplate",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23599/plans-enchanted-adamantite-breastplate",
+    "rarity": "common"
+  },  
+  {
+    "name": "Enchanted Adamantite Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23600/plans-enchanted-adamantite-leggings",
+    "rarity": "common"
+  },
+  {
+    "name": "Felsteel Shield Spike",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Thrallmar - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23619/plans-felsteel-shield-spike",
+    "rarity": "common"
+  },    
+  {
+    "name": "Adamantite Sharpening Stone",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23618/plans-adamantite-sharpening-stone",
+    "rarity": "common"
+  },  
+  {
+    "name": "Adamantite Weightstone",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=28632/plans-adamantite-weightstone",
+    "rarity": "common"
+  },
+  {
+    "name": "Greater Rune of Warding",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25526/plans-greater-rune-of-warding",
+    "rarity": "honored"
+  },   
+  {
+    "name": "Wildguard Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31391/plans-wildguard-leggings",
+    "rarity": "epic"
+  },
+  {
+    "name": "Wildguard Helm",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31392/plans-wildguard-helm",
+    "rarity": "epic"
+  },
+  {
+    "name": "W#ildguard Breastplate",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31390/plans-wildguard-breastplate",
+    "rarity": "epic"
+  },    
+  {
+    "name": "Iceguard Breastplate",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Violet Eye - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31393/plans-iceguard-breastplate",
+    "rarity": "epic"
+  }, 
+  {
+    "name": "Iceguard Helm",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Violet Eye - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31395/plans-iceguard-helm",
+    "rarity": "epic"
+  }, 
+  {
+    "name": "Iceguard Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Violet Eye - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31394/plans-iceguard-leggings",
+    "rarity": "epic"
+  }                                                                           
 ]
+

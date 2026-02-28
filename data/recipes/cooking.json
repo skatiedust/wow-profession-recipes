@@ -1,47 +1,83 @@
 [
   {
-    "name": "Stormchops",
+    "name": "Delicious Chocolate Cake",
     "source": "quest",
-    "zone": "Shattrath City",
+    "zone": "Cooking Daily Quest",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": null,
-    "rarity": null
+    "url": "https://www.wowhead.com/tbc/item=33925/recipe-delicious-chocolate-cake",
+    "rarity": "rare"
+  },
+  {
+    "name": "Captain Rumsey's Lager",
+    "source": "quest",
+    "zone": "Cooking Daily Quest",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=34834/recipe-captain-rumseys-lager",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Kibler's Bits",
+    "source": "quest",
+    "zone": "Cooking Daily Quest",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=33875/recipe-kiblers-bits",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Stormchops",
+    "source": "quest",
+    "zone": "Cooking Daily Quest",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=33871/recipe-stormchops",
+    "rarity": "rare"
   },
   {
     "name": "Broiled Bloodfin",
     "source": "quest",
-    "zone": "Shattrath City",
+    "zone": "Cooking Daily Quest",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": null,
-    "rarity": null
+    "url": "https://www.wowhead.com/tbc/item=33869/recipe-broiled-bloodfin",
+    "rarity": "uncommon"
   },
   {
     "name": "Skullfish Soup",
     "source": "quest",
-    "zone": "Shattrath City",
+    "zone": "Cooking Daily Quest",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": null,
-    "rarity": null
+    "url": "https://www.wowhead.com/tbc/item=33870/recipe-skullfish-soup",
+    "rarity": "uncommon"
   },
   {
-    "name": "Delicious Chocolate Cake",
+    "name": "Spicy Hot Talbuk",
     "source": "quest",
-    "zone": "Shattrath City",
+    "zone": "Cooking and Fishing Daily Quests",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": null,
-    "rarity": null
+    "url": "https://www.wowhead.com/tbc/item=33873/recipe-spicy-hot-talbuk",
+    "rarity": "uncommon"
   },
   {
-    "name": "Fisherman's Feast",
+    "name": "Clam Bar",
     "source": "reputation",
-    "zone": "Zangarmarsh",
-    "reputation_requirement": "Cenarion Expedition - Friendly",
+    "zone": null,
+    "reputation_requirement": "The Sporeggar - Neutral",
     "dropped_by": null,
-    "url": null,
-    "rarity": null
+    "url": "https://www.wowhead.com/tbc/item=30156/recipe-clam-bar",
+    "rarity": "common"
+  },
+  {
+    "name": "Sporeling Snack",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Sporeggar - Neutral",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=27689/recipe-sporeling-snack",
+    "rarity": "common"
   }
 ]

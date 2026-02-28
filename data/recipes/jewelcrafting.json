@@ -1,47 +1,551 @@
 [
   {
-    "name": "Crimson Sun",
+    "name": "Heavy Felsteel Ring",
     "source": "drop",
-    "zone": "Sunwell Plateau",
+    "zone": "World drop",
     "reputation_requirement": null,
-    "dropped_by": ["Sunwell Plateau Trash"],
-    "url": null,
-    "rarity": null
-  },
-  {
-    "name": "Don Julio's Heart",
-    "source": "drop",
-    "zone": "Sunwell Plateau",
-    "reputation_requirement": null,
-    "dropped_by": ["Sunwell Plateau Trash"],
-    "url": null,
-    "rarity": null
-  },
-  {
-    "name": "Falling Star",
-    "source": "drop",
-    "zone": "Hyjal Summit",
-    "reputation_requirement": null,
-    "dropped_by": ["Hyjal Summit Trash"],
-    "url": null,
-    "rarity": null
-  },
-  {
-    "name": "Relentless Earthstorm Diamond",
-    "source": "reputation",
-    "zone": "Shattrath City",
-    "reputation_requirement": "The Consortium - Exalted",
     "dropped_by": null,
-    "url": null,
-    "rarity": null
+    "url": "https://www.wowhead.com/tbc/item=24163/design-heavy-felsteel-ring",
+    "rarity": "rare"
+  },
+  {
+    "name": "Khorium Band of Shadows",
+    "source": "drop",
+    "zone": "Shadowmoon Valley",
+    "reputation_requirement": null,
+    "dropped_by": ["Dark Conclave Shadowmancer"],
+    "url": "https://www.wowhead.com/tbc/item=24158/design-khorium-band-of-shadows",
+    "rarity": "rare"
+  },
+  {
+    "name": "Veiled Noble Topaz",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31878/design-veiled-noble-topaz",
+    "rarity": "rare"
+  },
+  {
+    "name": "Bold Living Ruby",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24193/design-bold-living-ruby",
+    "rarity": "rare"
+  },
+  {
+    "name": "Bright Living Ruby",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24192/design-bright-living-ruby",
+    "rarity": "rare"
+  },
+  {
+    "name": "Delicate Living Ruby",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24194/design-delicate-living-ruby",
+    "rarity": "rare"
+  },
+  {
+    "name": "Flashing Living Ruby",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24198/design-flashing-living-ruby",
+    "rarity": "rare"
+  },
+  {
+    "name": "Runed Living Ruby",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=35305/design-runed-living-ruby",
+    "rarity": "rare"
+  },
+  {
+    "name": "Subtle Living Ruby",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24197/design-subtle-living-ruby",
+    "rarity": "rare"
+  },
+  {
+    "name": "Teardrop Living Ruby",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24195/design-teardrop-living-ruby",
+    "rarity": "rare"
+  },
+  {
+    "name": "Bright Living Ruby",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24192/design-bright-living-ruby",
+    "rarity": "rare"
+  },
+  {
+    "name": "Brilliant Dawnstone",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24203/design-brilliant-dawnstone",
+    "rarity": "rare"
+  },
+  {
+    "name": "Gleaming Dawnstone",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24206/design-gleaming-dawnstone",
+    "rarity": "rare"
+  },
+  {
+    "name": "Great Dawnstone",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31875/design-great-dawnstone",
+    "rarity": "rare"
+  },
+  {
+    "name": "Rigid Dawnstone",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24205/design-rigid-dawnstone",
+    "rarity": "rare"
+  },
+  {
+    "name": "Smooth Dawnstone",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24204/design-smooth-dawnstone",
+    "rarity": "rare"
+  },
+  {
+    "name": "Thick Dawnstone",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24207/design-thick-dawnstone",
+    "rarity": "rare"
+  },
+  {
+    "name": "Veiled Noble Topaz",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31878/design-veiled-noble-topaz",
+    "rarity": "rare"
+  },
+  {
+    "name": "Glowing Nightseye",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24211/design-glowing-nightseye",
+    "rarity": "rare"
+  },
+  {
+    "name": "Infused Nightseye",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31877/design-infused-nightseye",
+    "rarity": "rare"
+  },
+  {
+    "name": "Royal Nightseye",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24212/design-royal-nightseye",
+    "rarity": "rare"
+  },
+  {
+    "name": "Shifting Nightseye",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24210/design-shifting-nightseye",
+    "rarity": "rare"
+  },
+  {
+    "name": "Sovereign Nightseye",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24209/design-sovereign-nightseye",
+    "rarity": "rare"
+  },
+  {
+    "name": "Inscribed Noble Topaz",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24213/design-inscribed-noble-topaz",
+    "rarity": "rare"
+  },
+  {
+    "name": "Glinting Noble Topaz",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24216/design-glinting-noble-topaz",
+    "rarity": "rare"
+  },
+  {
+    "name": "Luminous Noble Topaz",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24215/design-luminous-noble-topaz",
+    "rarity": "rare"
+  },
+  {
+    "name": "Lustrous Star of Elune",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24201/design-lustrous-star-of-elune",
+    "rarity": "rare"
+  },
+  {
+    "name": "Solid Star of Elune",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24199/design-solid-star-of-elune",
+    "rarity": "rare"
+  },
+  {
+    "name": "Sparkling Star of Elune",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24200/design-sparkling-star-of-elune",
+    "rarity": "rare"
+  },
+  {
+    "name": "Stormy Star of Elune",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24202/design-stormy-star-of-elune",
+    "rarity": "rare"
+  },
+  {
+    "name": "Dazzling Talasite",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24219/design-dazzling-talasite",
+    "rarity": "rare"
+  },
+  {
+    "name": "Enduring Talasite",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24217/design-enduring-talasite",
+    "rarity": "rare"
+  },
+  {
+    "name": "Jagged Talasite",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24220/design-jagged-talasite",
+    "rarity": "rare"
+  },
+  {
+    "name": "Potent Noble Topaz",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24214/design-potent-noble-topaz",
+    "rarity": "rare"
+  },
+  {
+    "name": "Radiant Talasite",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24218/design-radiant-talasite",
+    "rarity": "rare"
+  },
+  {
+    "name": "Khorium Band of Frost",
+    "source": "drop",
+    "zone": "The Steamvault",
+    "reputation_requirement": null,
+    "dropped_by": ["Coilfang Sorceress"],
+    "url": "https://www.wowhead.com/tbc/item=24159/design-khorium-band-of-frost",
+    "rarity": "rare"
+  },
+  {
+    "name": "Khorium Inferno Band",
+    "source": "drop",
+    "zone": "Sethekk Halls",
+    "reputation_requirement": null,
+    "dropped_by": ["Darkweaver Syth"],
+    "url": "https://www.wowhead.com/tbc/item=24160/design-khorium-inferno-band",
+    "rarity": "rare"
+  },
+  {
+    "name": "Delicate Eternium Ring",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24164/design-delicate-eternium-ring",
+    "rarity": "rare"
+  },
+  {
+    "name": "Thick Felsteel Necklace",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24166/design-thick-felsteel-necklace",
+    "rarity": "rare"
+  },
+  {
+    "name": "Living Ruby Pendant",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24167/design-living-ruby-pendant",
+    "rarity": "rare"
+  },
+  {
+    "name": "Khorium Band of Leaves",
+    "source": "drop",
+    "zone": "Blade's Edge Mountains",
+    "reputation_requirement": null,
+    "dropped_by": ["Vekh'nir Dreadhawk"],
+    "url": "https://www.wowhead.com/tbc/item=24161/design-khorium-band-of-leaves",
+    "rarity": "rare"
+  },
+  {
+    "name": "Braided Eternium Chain",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24168/design-braided-eternium-chain",
+    "rarity": "rare"
+  },
+  {
+    "name": "Eye of the Night",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24169/design-eye-of-the-night",
+    "rarity": "rare"
+  },
+  {
+    "name": "Chaotic Skyfire Diamond",
+    "source": "drop",
+    "zone": "Shadowmoon Valley",
+    "reputation_requirement": null,
+    "dropped_by": ["Coilskar Siren"],
+    "url": "https://www.wowhead.com/tbc/item=34689/design-chaotic-skyfire-diamond",
+    "rarity": "rare"
+  },
+  {
+    "name": "Arcane Khorium Band",
+    "source": "drop",
+    "zone": "Netherstorm",
+    "reputation_requirement": null,
+    "dropped_by": ["Mageslayer"],
+    "url": "https://www.wowhead.com/tbc/item=24162/design-arcane-khorium-band",
+    "rarity": "rare"
+  },
+  {
+    "name": "Blazing Eternium Band",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24165/design-blazing-eternium-band",
+    "rarity": "rare"
+  },
+  {
+    "name": "Embrace of the Dawn",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24170/design-embrace-of-the-dawn",
+    "rarity": "rare"
+  },
+  {
+    "name": "Chain of the Twilight Owl",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24171/design-chain-of-the-twilight-owl",
+    "rarity": "rare"
   },
   {
     "name": "Thundering Skyfire Diamond",
-    "source": "vendor",
-    "zone": "Nagrand",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=32411/design-thundering-skyfire-diamond",
+    "rarity": "rare"
+  },
+  {
+    "name": "Brutal Earthstorm Diamond",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25906/design-brutal-earthstorm-diamond",
+    "rarity": "rare"
+  },
+  {
+    "name": "Tenacious Earthstorm Diamond",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25905/design-tenacious-earthstorm-diamond",
+    "rarity": "rare"
+  },
+  {
+    "name": "Destructive Skyfire Diamond",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25907/design-destructive-skyfire-diamond",
+    "rarity": "rare"
+  },
+  {
+    "name": "Mystical Skyfire Diamond",
+    "source": "drop",
+    "zone": "World drop",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25909/design-mystical-skyfire-diamond",
+    "rarity": "rare"
+  },
+  {
+    "name": "Coronet of Verdant Flame",
+    "source": "drop",
+    "zone": "The Botanica",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunseeker Botanist"],
+    "url": "https://www.wowhead.com/tbc/item=24172/design-coronet-of-verdant-flame",
+    "rarity": "epic"
+  },
+  {
+    "name": "Pendant of Shadow's End",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24177/design-pendant-of-shadows-end",
+    "rarity": "rare"
+  }, 
+  {
+    "name": "Pendant of Withering",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24176/design-pendant-of-withering",
+    "rarity": "rare"
+  },   
+  {
+    "name": "Enigmatic Skyfire Diamond",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Keepers of Time - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25910/design-enigmatic-skyfire-diamond",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Swift Skyfire Diamond",
+    "source": "reputation",
+    "zone": null,
     "reputation_requirement": "The Consortium - Honored",
     "dropped_by": null,
-    "url": null,
-    "rarity": null
-  }
+    "url": "https://www.wowhead.com/tbc/item=25908/design-swift-skyfire-diamond",
+    "rarity": "rare"
+  }, 
+  {
+    "name": "Relentless Earthstorm Diamond",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Consortium - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=33622/design-relentless-earthstorm-diamond",
+    "rarity": "common"
+  },
+  {
+    "name": "Insightful Earthstorm Diamond",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Sha'tar - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25904/design-insightful-earthstorm-diamond",
+    "rarity": "common"
+  },
+  {
+    "name": "The Frozen Eye",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Violet Eye - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=31401/design-the-frozen-eye",
+    "rarity": "epic"
+  }                                                                         
 ]

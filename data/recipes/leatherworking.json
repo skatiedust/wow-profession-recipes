@@ -1,47 +1,587 @@
 [
   {
-    "name": "Leather Chestguard of the Sun",
+    "name": "Shadow Armor Kit",
     "source": "drop",
-    "zone": "Sunwell Plateau",
+    "zone": "Sethekk Halls",
     "reputation_requirement": null,
-    "dropped_by": ["Sunwell Plateau Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Time-Lost Shadowmage"],
+    "url": "https://www.wowhead.com/tbc/item=29669/pattern-shadow-armor-kit",
+    "rarity": "uncommon"
   },
   {
-    "name": "Leather Gauntlets of the Sun",
+    "name": "Flame Armor Kit",
     "source": "drop",
-    "zone": "Sunwell Plateau",
+    "zone": "The Arcatraz",
     "reputation_requirement": null,
-    "dropped_by": ["Sunwell Plateau Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Gargantuan Abyssal"],
+    "url": "https://www.wowhead.com/tbc/item=29672/pattern-flame-armor-kit",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Frost Armor Kit",
+    "source": "drop",
+    "zone": "The Steamvault",
+    "reputation_requirement": null,
+    "dropped_by": "Hydromancer Thespia",
+    "url": "https://www.wowhead.com/tbc/item=29673/pattern-frost-armor-kit",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Nature Armor Kit",
+    "source": "drop",
+    "zone": "The Slave Pens",
+    "reputation_requirement": null,
+    "dropped_by": ["Mennu the Betrayer"],
+    "url": "https://www.wowhead.com/tbc/item=29674/pattern-nature-armor-kit",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Arcane Armor Kit",
+    "source": "drop",
+    "zone": "The Black Morass",
+    "reputation_requirement": null,
+    "dropped_by": ["Chrono Lord Deja"],
+    "url": "https://www.wowhead.com/tbc/item=29675/pattern-arcane-armor-kit",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Stylin' Purple Hat",
+    "source": "drop",
+    "zone": "Shadow Labyrinth",
+    "reputation_requirement": null,
+    "dropped_by": ["Blackheart the Inciter"],
+    "url": "https://www.wowhead.com/tbc/item=25728/pattern-stylin-purple-hat",
+    "rarity": "rare"
+  },
+  {
+    "name": "Stylin' Adventure Hat",
+    "source": "drop",
+    "zone": "Old Hillsbrad Foothills",
+    "reputation_requirement": null,
+    "dropped_by": ["Durnholde Rifleman", "Don Carlos"],
+    "url": "https://www.wowhead.com/tbc/item=25729/pattern-stylin-adventure-hat",
+    "rarity": "rare"
+  },
+  {
+    "name": "Stylin' Jungle Hat",
+    "source": "drop",
+    "zone": "Black Morass",
+    "reputation_requirement": null,
+    "dropped_by": ["Rift Keeper", "Rift Lord"],
+    "url": "https://www.wowhead.com/tbc/item=25730/pattern-stylin-jungle-hat",
+    "rarity": "rare"
+  },
+  {
+    "name": "Stylin' Crimson Hat",
+    "source": "drop",
+    "zone": "Sethekk Halls",
+    "reputation_requirement": null,
+    "dropped_by": ["Sethekk Ravenguard"],
+    "url": "https://www.wowhead.com/tbc/item=25731/pattern-stylin-crimson-hat",
+    "rarity": "rare"
+  },
+  {
+    "name": "Bag of Many Hides",
+    "source": "drop",
+    "zone": "Terokkar Forest",
+    "reputation_requirement": null,
+    "dropped_by": ["Gordunni Elementalist", "Gordunni Back-Breaker", "Gordunni Head-Splitter", "Gordunni Soulreaper"],
+    "url": "https://www.wowhead.com/tbc/item=34491/pattern-bag-of-many-hides",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Cobrascale Gloves",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29724/pattern-cobrascale-gloves",
+    "rarity": "epic"
+  },
+  {
+    "name": "Cobrascale Hood",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29723/pattern-cobrascale-hood",
+    "rarity": "epic"
+  },
+  {
+    "name": "Earthen Netherscale Boots",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29730/pattern-earthen-netherscale-boots",
+    "rarity": "epic"
+  }, 
+  {
+    "name": "Gloves of Living Touch",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29727/pattern-gloves-of-the-living-touch",
+    "rarity": "epic"
+  },
+  {
+    "name": "Hood of Primal Life",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29726/pattern-hood-of-primal-life",
+    "rarity": "epic"
+  },
+  {
+    "name": "Living Dragonscale Helm",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29729/pattern-living-dragonscale-helm",
+    "rarity": "epic"
+  },
+  {
+    "name": "Netherdrake Gloves",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29733/pattern-netherdrake-gloves",
+    "rarity": "epic"
+  }, 
+  {
+    "name": "Netherdrake Helm",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29732/pattern-netherdrake-helm",
+    "rarity": "epic"
+  },  
+  {
+    "name": "Thick Netherscale Breastplate",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29734/pattern-thick-netherscale-breastplate",
+    "rarity": "epic"
+  },
+  {
+    "name": "Windslayer Wraps",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29728/pattern-windslayer-wraps",
+    "rarity": "epic"
+  },        
+  {
+    "name": "Windscale Hood",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29725/pattern-windscale-hood",
+    "rarity": "epic"
+  },  
+  {
+    "name": "Windstrike Gloves",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29731/pattern-windstrike-gloves",
+    "rarity": "epic"
+  },
+  {
+    "name": "Blastguard Belt",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29704/pattern-blastguard-belt",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Flamescale Belt",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29693/pattern-flamescale-belt",
+    "rarity": "common"
+  },   
+  {
+    "name": "Vindicator's Armor Kit",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25721/pattern-vindicators-armor-kit",
+    "rarity": "common"
+  },  
+  {
+    "name": "Blastguard Boots",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29703/pattern-blastguard-boots",
+    "rarity": "common"
+  },   
+  {
+    "name": "Flamescale Boots",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29691/pattern-flamescale-boots",
+    "rarity": "common"
+  },  
+  {
+    "name": "Blastguard Pants",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29702/pattern-blastguard-pants",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Flamescale Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29689/pattern-flamescale-leggings",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Enchanted Clefthoof Boots",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29701/pattern-enchanted-clefthoof-boots",
+    "rarity": "common"
+  },  
+  {
+    "name": "Enchanted Felscale Gloves",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29682/pattern-enchanted-felscale-gloves",
+    "rarity": "common"
+  },  
+  {
+    "name": "Magister's Armor Kit",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25722/pattern-magisters-armor-kit",
+    "rarity": "common"
+  },  
+  {
+    "name": "Enchanted Clefthoof Gloves",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29700/pattern-enchanted-clefthoof-gloves",
+    "rarity": "common"
+  },
+  {
+    "name": "Enchanted Felscale Boots",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29684/pattern-enchanted-felscale-boots",
+    "rarity": "common"
+  },
+  {
+    "name": "Enchanted Clefthoof Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29698/pattern-enchanted-clefthoof-leggings",
+    "rarity": "common"
+  },   
+  {
+    "name": "Enchanted Felscale Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29677/pattern-enchanted-felscale-leggings",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Felstalker Belt",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Thrallmar - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29213/pattern-felstalker-belt",
+    "rarity": "rare"
+  }, 
+  {
+    "name": "Felstalker Belt",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Thrallmar - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29719/pattern-cobrahide-leg-armor",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Felstalker Bracers",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Thrallmar - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29214/pattern-felstalker-bracers",
+    "rarity": "rare"
+  }, 
+  {
+    "name": "Felstalker Breastplate",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Thrallmar - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29215/pattern-felstalker-breastplate",
+    "rarity": "rare"
+  },  
+  {
+    "name": "Netherscale Ammo Pouch",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Thrallmar - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=34218/pattern-netherscale-ammo-pouch",
+    "rarity": "common"
+  },
+  {
+    "name": "Nethercobra Leg Armor",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Thrallmar - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29722/pattern-nethercobra-leg-armor",
+    "rarity": "common"
+  },   
+  {
+    "name": "Netherfury Belt",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Mag'har - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29217/pattern-netherfury-belt",
+    "rarity": "rare"
+  }, 
+  {
+    "name": "Reinforced Mining Bag",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Mag'har - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=30444/pattern-reinforced-mining-bag",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Netherfury Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Mag'har - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29219/pattern-netherfury-leggings",
+    "rarity": "rare"
+  }, 
+  {
+    "name": "Drums of Speed",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Mag'har - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=34173/pattern-drums-of-speed",
+    "rarity": "common"
+  },  
+  {
+    "name": "Greater Drums of Speed",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Mag'har - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=185923/pattern-greater-drums-of-speed",
+    "rarity": "rare"
+  },   
+  {
+    "name": "Drums of Restoration",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Mag'har - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=34175/pattern-drums-of-restoration",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Greater Drums of Restoration",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Mag'har - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=185924/pattern-greater-drums-of-restoration",
+    "rarity": "rare"
+  },  
+  {
+    "name": "Netherfury Boots",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Mag'har - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29218/pattern-netherfury-boots",
+    "rarity": "rare"
+  },  
+  {
+    "name": "Netherfury Boots",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25737/pattern-heavy-clefthoof-boots",
+    "rarity": "rare"
+  },  
+  {
+    "name": "Clefthide Leg Armor",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29720/pattern-clefthide-leg-armor",
+    "rarity": "common"
+  },
+  {
+    "name": "Heavy Clefthoof Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25736/pattern-heavy-clefthoof-leggings",
+    "rarity": "rare"
+  },   
+  {
+    "name": "Heavy Clefthoof Vest",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25735/pattern-heavy-clefthoof-vest",
+    "rarity": "rare"
+  },
+  {
+    "name": "Nethercleft Leg Armor",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29721/pattern-nethercleft-leg-armor",
+    "rarity": "common"
+  },
+  {
+    "name": "Fel Leather Gloves",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Consortium - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25732/pattern-fel-leather-gloves",
+    "rarity": "rare"
+  },
+  {
+    "name": "Fel Leather Boots",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Consortium - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25733/pattern-fel-leather-boots",
+    "rarity": "rare"
+  }, 
+  {
+    "name": "Fel Leather Leggings",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Consortium - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25734/pattern-fel-leather-leggings",
+    "rarity": "rare"
+  },  
+  {
+    "name": "Drums of Panic",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Keepers of Time - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=29713/pattern-drums-of-panic",
+    "rarity": "common"
+  }, 
+  {
+    "name": "Greater Drums of Panic",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Keepers of Time - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=185925/pattern-greater-drums-of-panic",
+    "rarity": "rare"
+  }, 
+  {
+    "name": "Quiver of a Thousand Feathers",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Lower City - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=34200/pattern-quiver-of-a-thousand-feathers",
+    "rarity": "common"
   },
   {
     "name": "Drums of Battle",
     "source": "reputation",
-    "zone": "Shattrath City",
-    "reputation_requirement": "The Sha'tar - Exalted",
+    "zone": null,
+    "reputation_requirement": "The Sha'tar - Honored",
     "dropped_by": null,
-    "url": null,
-    "rarity": null
+    "url": "https://www.wowhead.com/tbc/item=29717/pattern-drums-of-battle",
+    "rarity": "common"
   },
   {
-    "name": "Belt of Natural Power",
-    "source": "drop",
-    "zone": "Hyjal Summit",
-    "reputation_requirement": null,
-    "dropped_by": ["Hyjal Summit Trash"],
-    "url": null,
-    "rarity": null
-  },
+    "name": "Greater Drums of Battle",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Sha'tar - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=185926/pattern-greater-drums-of-battle",
+    "rarity": "rare"
+  },      
   {
-    "name": "Belt of the Black Eagle",
-    "source": "drop",
-    "zone": "Black Temple",
-    "reputation_requirement": null,
-    "dropped_by": ["Black Temple Trash"],
-    "url": null,
-    "rarity": null
-  }
+    "name": "Shadowprowler's Chestguard",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Violet Eye - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=33205/pattern-shadowprowlers-chestguarde",
+    "rarity": "epic"
+  }, 
+  {
+    "name": "Cloak of Darkness",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Violet Eye - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=33124/pattern-cloak-of-darkness",
+    "rarity": "rare"
+  }                                                                          
 ]

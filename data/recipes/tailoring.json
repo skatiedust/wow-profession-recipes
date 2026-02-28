@@ -1,47 +1,281 @@
 [
   {
-    "name": "Sunfire Robe",
+    "name": "Arcanoweave Bracers",
     "source": "drop",
-    "zone": "Sunwell Plateau",
+    "zone": "The Arcatraz",
     "reputation_requirement": null,
-    "dropped_by": ["Sunwell Plateau Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Arcatraz Sentinel"],
+    "url": "https://www.wowhead.com/tbc/item=21905/pattern-arcanoweave-bracers",
+    "rarity": "uncommon"
   },
   {
-    "name": "Sunfire Handwraps",
+    "name": "Arcanoweave Boots",
     "source": "drop",
-    "zone": "Sunwell Plateau",
+    "zone": "The Mechanar",
     "reputation_requirement": null,
-    "dropped_by": ["Sunwell Plateau Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Sunseeker Astromage"],
+    "url": "https://www.wowhead.com/tbc/item=21906/pattern-arcanoweave-boots",
+    "rarity": "uncommon"
   },
   {
-    "name": "Robe of Eternal Light",
+    "name": "Soulcloth Shoulders",
     "source": "drop",
-    "zone": "Sunwell Plateau",
+    "zone": "Karazhan",
     "reputation_requirement": null,
-    "dropped_by": ["Sunwell Plateau Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Phantom Attendant"],
+    "url": "https://www.wowhead.com/tbc/item=21903/pattern-soulcloth-shoulders",
+    "rarity": "epic"
+  },
+  {
+    "name": "ArcanoWeave Robe",
+    "source": "drop",
+    "zone": "The Mechanar",
+    "reputation_requirement": null,
+    "dropped_by": ["Pathaleon the Calculator"],
+    "url": "https://www.wowhead.com/tbc/item=21907/pattern-arcanoweave-robe",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Spellfire Bag",
+    "source": "drop",
+    "zone": "Netherstorm",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunfury Arcanist"],
+    "url": "https://www.wowhead.com/tbc/item=21911/pattern-spellfire-bag",
+    "rarity": "rare"
+  },
+  {
+    "name": "Soulcloth Vest",
+    "source": "drop",
+    "zone": "Karazhan",
+    "reputation_requirement": null,
+    "dropped_by": ["Phantom Valet"],
+    "url": "https://www.wowhead.com/tbc/item=21904/pattern-soulcloth-vest",
+    "rarity": "epic"
+  },
+  {
+    "name": "Whitemend Pants",
+    "source": "drop",
+    "zone": "The Arcatraz",
+    "reputation_requirement": null,
+    "dropped_by": ["Dalliah the Doomsayer"],
+    "url": "https://www.wowhead.com/tbc/item=24308/pattern-whitemend-pants",
+    "rarity": "epic"
   },
   {
     "name": "Spellstrike Pants",
     "source": "drop",
-    "zone": "The Arcatraz",
+    "zone": "Shadow Labyrinth",
     "reputation_requirement": null,
-    "dropped_by": ["Harbinger Skyriss"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Murmur"],
+    "url": "https://www.wowhead.com/tbc/item=24309/pattern-spellstrike-pants",
+    "rarity": "epic"
   },
   {
     "name": "Battlecast Pants",
     "source": "drop",
-    "zone": "The Arcatraz",
+    "zone": "The Botanica",
     "reputation_requirement": null,
-    "dropped_by": ["Zereketh the Unbound"],
-    "url": null,
-    "rarity": null
-  }
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24310/pattern-battlecast-pants",
+    "rarity": "epic"
+  },
+  {
+    "name": "Whitemend Hood",
+    "source": "drop",
+    "zone": "The Botanica",
+    "reputation_requirement": null,
+    "dropped_by": ["Warp Splinter"],
+    "url": "https://www.wowhead.com/tbc/item=24311/pattern-whitemend-hood",
+    "rarity": "epic"
+  },
+  {
+    "name": "Spellstrike Hood",
+    "source": "drop",
+    "zone": "The Shattered Halls",
+    "reputation_requirement": null,
+    "dropped_by": ["Grand Warlock Nethekurse"],
+    "url": "https://www.wowhead.com/tbc/item=24312/pattern-spellstrike-hood",
+    "rarity": "epic"
+  },
+  {
+    "name": "Battlecast Hood",
+    "source": "drop",
+    "zone": "The Steamvault",
+    "reputation_requirement": null,
+    "dropped_by": ["Warlord Kalithresh"],
+    "url": "https://www.wowhead.com/tbc/item=24313/pattern-battlecast-hood",
+    "rarity": "epic"
+  },
+  {
+    "name": "Unyielding Bracers",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24296/pattern-unyielding-bracers",
+    "rarity": "rare"
+  },
+  {
+    "name": "Bracers of Havok",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24297/pattern-bracers-of-havok",
+    "rarity": "rare"
+  },
+  {
+    "name": "Blackstrike Bracers",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24298/pattern-blackstrike-bracers",
+    "rarity": "rare"
+  },
+  {
+    "name": "Cloak of the Black Void",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24299/pattern-cloak-of-the-black-void",
+    "rarity": "rare"
+  },
+  {
+    "name": "Cloak of Eternity",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24300/pattern-cloak-of-eternity",
+    "rarity": "rare"
+  },
+  {
+    "name": "White Remedy Cape",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24301/pattern-white-remedy-cape",
+    "rarity": "rare"
+  },
+  {
+    "name": "Unyielding Girdle",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24302/pattern-unyielding-girdle",
+    "rarity": "epic"
+  },
+  {
+    "name": "Girdle of Ruination",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24303/pattern-girdle-of-ruination",
+    "rarity": "epic"
+  },
+  {
+    "name": "Black Belt of Knowledge",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24304/pattern-black-belt-of-knowledge",
+    "rarity": "epic"
+  },
+  {
+    "name": "Resolute Cape",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24305/pattern-resolute-cape",
+    "rarity": "epic"
+  },
+  {
+    "name": "Vengeance Wrap",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24306/pattern-vengeance-wrap",
+    "rarity": "epic"
+  },
+  {
+    "name": "Manaweave Cloak",
+    "source": "drop",
+    "zone": "Instance Drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24307/pattern-manaweave-cloakp",
+    "rarity": "epic"
+  },
+  {
+    "name": "Flameheart Bracers",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=30842/pattern-flameheart-bracers",
+    "rarity": "common"
+  },
+  {
+    "name": "Silver Spellthread",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24293/pattern-silver-spellthread",
+    "rarity": "common"
+  },
+  {
+    "name": "Flameheart Gloves",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=30843/pattern-flameheart-gloves",
+    "rarity": "common"
+  },
+  {
+    "name": "Flameheart Vest",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=30844/pattern-flameheart-vest",
+    "rarity": "common"
+  },
+  {
+    "name": "Golden Spellthread",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Aldor - Exalted",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24295/pattern-golden-spellthread",
+    "rarity": "common"
+  },
+  {
+    "name": "Mystic Spellthread",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24292/pattern-mystic-spellthread",
+    "rarity": "common"
+  },
+  {
+    "name": "Runic Spellthread",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Scryers - Honored",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=24294/pattern-runic-spellthread",
+    "rarity": "common"
+  }         
 ]
