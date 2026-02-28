@@ -1,11 +1,14 @@
 import "dotenv/config";
 import express from "express";
+import type { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import session from "express-session";
+import { randomUUID } from "node:crypto";
 import authRouter from "./routes/auth";
 import characterRouter from "./routes/characters";
 import recipeRouter from "./routes/recipes";
 import professionRouter from "./routes/professions";
+import { logError, logInfo } from "./logger";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,6 +25,33 @@ app.use(
   })
 );
 app.use(express.json());
+
+app.use((req, res, next) => {
+  const requestId = randomUUID();
+  const startedAt = Date.now();
+  res.locals.requestId = requestId;
+  res.setHeader("X-Request-Id", requestId);
+
+  logInfo("http.request.start", {
+    request_id: requestId,
+    method: req.method,
+    path: req.originalUrl,
+    ip: req.ip,
+    user_agent: req.get("user-agent") || "",
+  });
+
+  res.on("finish", () => {
+    logInfo("http.request.finish", {
+      request_id: requestId,
+      method: req.method,
+      path: req.originalUrl,
+      status_code: res.statusCode,
+      duration_ms: Date.now() - startedAt,
+    });
+  });
+
+  next();
+});
 
 app.use(
   session({
@@ -46,8 +76,18 @@ app.use("/api/characters", characterRouter);
 app.use("/api/recipes", recipeRouter);
 app.use("/api/professions", professionRouter);
 
+app.use((err: unknown, req: Request, res: Response, _next: NextFunction) => {
+  logError("http.request.error", err, {
+    request_id: res.locals.requestId,
+    method: req.method,
+    path: req.originalUrl,
+  });
+
+  res.status(500).json({ error: "Internal server error" });
+});
+
 app.listen(port, () => {
-  console.log(`Backend listening on port ${port}`);
+  logInfo("server.start", { port, is_production: isProduction });
 });
 
 export default app;

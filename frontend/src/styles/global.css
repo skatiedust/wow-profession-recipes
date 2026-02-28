@@ -29,6 +29,7 @@
   /* Typography */
   --font-heading: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Merriweather', Georgia, serif;
+  --font-size-body: 1rem;
 
   /* Sizing */
   --header-height: 56px;
@@ -57,7 +58,7 @@ html {
 body {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -101,7 +102,7 @@ input,
 select,
 textarea {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: var(--font-size-body);
   color: var(--color-text);
   background-color: var(--color-panel);
   border: 1px solid var(--color-border);
@@ -125,7 +126,7 @@ textarea::placeholder {
 /* ── Buttons ── */
 button {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: var(--font-size-body);
   font-weight: 400;
   cursor: pointer;
   border: 1px solid var(--color-border);
@@ -166,13 +167,13 @@ button.primary:hover {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.875rem;
+  font-size: var(--font-size-body);
 }
 
 th {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: var(--font-size-body);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-secondary);
@@ -262,7 +263,7 @@ tbody tr:nth-child(even):hover {
   border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 0.75rem 1.25rem;
-  font-size: 0.875rem;
+  font-size: var(--font-size-body);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   opacity: 0;
   transform: translateY(8px);

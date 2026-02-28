@@ -7,7 +7,7 @@
   background-color: var(--color-panel);
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .character-selector__label {
@@ -23,7 +23,7 @@
 
 .character-selector__mismatch {
   color: var(--color-text-muted);
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-style: italic;
 }
 
@@ -31,7 +31,7 @@
   background: none;
   border: none;
   color: var(--color-gold);
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-style: italic;
   cursor: pointer;
   padding: 0;

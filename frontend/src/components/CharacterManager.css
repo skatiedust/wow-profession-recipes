@@ -37,13 +37,13 @@
 
 .char-manager__error {
   color: #e74c3c;
-  font-size: 0.875rem;
+  font-size: 1rem;
   margin-bottom: 0.75rem;
 }
 
 .char-manager__empty {
   color: var(--color-text-secondary);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .char-manager__list {
@@ -58,7 +58,7 @@
   justify-content: space-between;
   padding: 0.5rem 0.75rem;
   border-bottom: 1px solid var(--color-border);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .char-manager__item:last-child {

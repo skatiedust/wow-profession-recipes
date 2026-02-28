@@ -17,6 +17,11 @@ interface ImportPayload {
   recipes: string[];
 }
 
+function formatImportError(baseMessage: string, requestId: string | null): string {
+  if (!requestId) return baseMessage;
+  return `${baseMessage} (Request ID: ${requestId})`;
+}
+
 function getString(obj: Record<string, unknown>, keys: string[]): string | null {
   for (const key of keys) {
     const value = obj[key];
@@ -115,9 +120,10 @@ export default function ImportRecipes({
       });
 
       const data = await res.json();
+      const requestId = res.headers?.get?.("x-request-id") ?? null;
 
       if (!res.ok) {
-        setError(data.error || "Import failed");
+        setError(formatImportError(data.error || "Import failed", requestId));
         return;
       }
 
@@ -210,7 +216,7 @@ export default function ImportRecipes({
             {loading ? "Importing…" : "Import"}
           </button>
           <button className="import-recipes__cancel" onClick={handleClose}>
-            Cancel
+            {result ? "Done" : "Cancel"}
           </button>
         </div>
       </div>
