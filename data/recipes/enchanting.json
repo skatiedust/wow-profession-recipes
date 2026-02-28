@@ -5,7 +5,7 @@
     "zone": "The Steamvault",
     "reputation_requirement": null,
     "dropped_by": ["Coilfang Oracle"],
-    "url": "https://www.wowhead.com/tbc/item=22881/enchant-bracer-fortitude",
+    "url": "https://www.wowhead.com/tbc/item=22533/formula-enchant-bracer-fortitude",
     "rarity": "uncommon"
   },
   {
@@ -14,7 +14,7 @@
     "zone": "Netherstorm",
     "reputation_requirement": null,
     "dropped_by": ["Ethereum Nullifier", "Ethereum Jailor"],
-    "url": "https://www.wowhead.com/tbc/item=22882/enchant-bracer-major-defense",
+    "url": "https://www.wowhead.com/tbc/item=22530/formula-enchant-bracer-major-defense",
     "rarity": "uncommon"
   },
   {
@@ -23,7 +23,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22883/enchant-bracer-restore-mana-prime",
+    "url": "https://www.wowhead.com/tbc/item=22532/formula-enchant-bracer-restore-mana-prime",
     "rarity": "uncommon"
   },
   {
@@ -32,7 +32,7 @@
     "zone": "Blade's Edge Mountains",
     "reputation_requirement": null,
     "dropped_by": ["Bloodmaul Geomancer"],
-    "url": "https://www.wowhead.com/tbc/item=22884/enchant-bracer-spellpower",
+    "url": "https://www.wowhead.com/tbc/item=22534/formula-enchant-bracer-spellpower",
     "rarity": "uncommon"
   },
   {
@@ -41,8 +41,8 @@
     "zone": "",
     "reputation_requirement": "Thrallmar - Friendly",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22885/enchant-bracer-superior-healing",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=22531/formula-enchant-bracer-superior-healing",
+    "rarity": "common"
   },
   {
     "name": "Enchant Boots - Boar's Speed",
@@ -50,7 +50,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22886/enchant-boots-boars-speed",
+    "url": "https://www.wowhead.com/tbc/item=28280/formula-enchant-boots-boars-speed",
     "rarity": "rare"
   },
   {
@@ -59,7 +59,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22887/enchant-boots-cats-swiftness",
+    "url": "https://www.wowhead.com/tbc/item=28279/formula-enchant-boots-cats-swiftness",
     "rarity": "rare"
   },
   {
@@ -68,7 +68,7 @@
     "zone": "Mana-Tombs",
     "reputation_requirement": null,
     "dropped_by": ["Ethereal Priest"],
-    "url": "https://www.wowhead.com/tbc/item=22888/enchant-boots-fortitude",
+    "url": "https://www.wowhead.com/tbc/item=22543/formula-enchant-boots-fortitude",
     "rarity": "uncommon"
   },
   {
@@ -77,7 +77,7 @@
     "zone": "Auchenai Crypts",
     "reputation_requirement": null,
     "dropped_by": ["Raging Skeleton"],
-    "url": "https://www.wowhead.com/tbc/item=22889/enchant-boots-dexterity",
+    "url": "https://www.wowhead.com/tbc/item=22544/formula-enchant-boots-dexterity",
     "rarity": "uncommon"
   },
   {
@@ -86,7 +86,7 @@
     "zone": "Karazhan",
     "reputation_requirement": null,
     "dropped_by": ["Phantom Stagehand"],
-    "url": "https://www.wowhead.com/tbc/item=22890/enchant-boots-surefooted",
+    "url": "https://www.wowhead.com/tbc/item=22545/formula-enchant-boots-surefooted",
     "rarity": "uncommon"
   },
   {
@@ -95,7 +95,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22891/enchant-boots-vitality",
+    "url": "https://www.wowhead.com/tbc/item=22542/formula-enchant-boots-vitality",
     "rarity": "uncommon"
   },
   {
@@ -104,8 +104,8 @@
     "zone": "",
     "reputation_requirement": "Thrallmar - Revered",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22892/enchant-chest-exceptional-stats",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=22547/formula-enchant-chest-exceptional-stats",
+    "rarity": "common"
   },
   {
     "name": "Enchant Chest - Major Resilience",
@@ -113,7 +113,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22893/enchant-chest-major-resilience",
+    "url": "https://www.wowhead.com/tbc/item=28270/formula-enchant-chest-major-resilience",
     "rarity": "uncommon"
   },
   {
@@ -122,8 +122,8 @@
     "zone": "",
     "reputation_requirement": "Lower City - Exalted",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22894/enchant-cloak-dodge",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=33148/formula-enchant-cloak-dodge",
+    "rarity": "rare"
   },
   {
     "name": "Enchant Cloak - Greater Arcane Resistance",
@@ -131,7 +131,7 @@
     "zone": "Shadowmoon Valley",
     "reputation_requirement": null,
     "dropped_by": ["Eclipsion Archmage"],
-    "url": "https://www.wowhead.com/tbc/item=22895/enchant-cloak-greater-arcane-resistance",
+    "url": "https://www.wowhead.com/tbc/item=28276/formula-enchant-cloak-greater-arcane-resistance",
     "rarity": "rare"
   },
   {
@@ -140,7 +140,7 @@
     "zone": "Netherstorm",
     "reputation_requirement": null,
     "dropped_by": ["Voidshrieker"],
-    "url": "https://www.wowhead.com/tbc/item=22896/enchant-cloak-greater-shadow-resistance",
+    "url": "https://www.wowhead.com/tbc/item=28277/formula-enchant-cloak-greater-shadow-resistance",
     "rarity": "rare"
   },
   {
@@ -149,7 +149,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22897/enchant-cloak-major-resistance",
+    "url": "https://www.wowhead.com/tbc/item=22548/formula-enchant-cloak-major-resistance",
     "rarity": "uncommon"
   },
   {
@@ -158,7 +158,7 @@
     "zone": "",
     "reputation_requirement": "The Consortium - Friendly",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22898/enchant-cloak-spell-penetration",
+    "url": "https://www.wowhead.com/tbc/item=28274/formula-enchant-cloak-spell-penetration",
     "rarity": "uncommon"
   },
   {
@@ -167,8 +167,8 @@
     "zone": "",
     "reputation_requirement": "Cenarion Expedition - Exalted",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22899/enchant-cloak-stealth",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=33149/formula-enchant-cloak-stealth",
+    "rarity": "rare"
   },
   {
     "name": "Enchant Cloak - Steelweave",
@@ -176,7 +176,7 @@
     "zone": "Magister's Terrace",
     "reputation_requirement": null,
     "dropped_by": ["Priestess Delrissa"],
-    "url": "https://www.wowhead.com/tbc/item=22900/enchant-cloak-steelweave",
+    "url": "https://www.wowhead.com/tbc/item=35756/formula-enchant-cloak-steelweave",
     "rarity": "rare"
   },
   {
@@ -185,8 +185,8 @@
     "zone": "",
     "reputation_requirement": "Thrallmar - Exalted",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22901/enchant-cloak-subtlety",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=33150/formula-enchant-cloak-subtlety",
+    "rarity": "rare"
   },
   {
     "name": "Enchant Gloves - Major Healing",
@@ -194,7 +194,7 @@
     "zone": "",
     "reputation_requirement": "The Sha'tar - Honored",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22902/enchant-gloves-major-healing",
+    "url": "https://www.wowhead.com/tbc/item=28273/formula-enchant-gloves-major-healing",
     "rarity": "uncommon"
   },
   {
@@ -203,7 +203,7 @@
     "zone": "",
     "reputation_requirement": "Keepers of Time - Honored",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22903/enchant-gloves-major-spellpower",
+    "url": "https://www.wowhead.com/tbc/item=28272/formula-enchant-gloves-major-spellpower",
     "rarity": "uncommon"
   },
   {
@@ -212,7 +212,7 @@
     "zone": "",
     "reputation_requirement": "Cenarion Expedition - Revered",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22904/enchant-gloves-spell-strike",
+    "url": "https://www.wowhead.com/tbc/item=28271/formula-enchant-gloves-spell-strike",
     "rarity": "uncommon"
   },
   {
@@ -221,17 +221,17 @@
     "zone": "",
     "reputation_requirement": "Keepers of Time - Exalted",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22905/enchant-gloves-superior-agility",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=33152/formula-enchant-gloves-superior-agility",
+    "rarity": "rare"
   },
-  {
+  { 
     "name": "Enchant Gloves - Threat",
     "source": "reputation",
     "zone": "",
     "reputation_requirement": "The Sha'tar - Exalted",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22906/enchant-gloves-threat",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=33153/formula-enchant-gloves-threat",
+    "rarity": "rare"
   },
   {
     "name": "Enchant Shield - Shield Block",
@@ -239,7 +239,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22907/enchant-shield-shield-block",
+    "url": "https://www.wowhead.com/tbc/item=22540/formula-enchant-shield-shield-block",
     "rarity": "uncommon"
   },
   {
@@ -248,7 +248,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22908/enchant-shield-resistance",
+    "url": "https://www.wowhead.com/tbc/item=22541/formula-enchant-shield-resistance",
     "rarity": "uncommon"
   },
   {
@@ -257,7 +257,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22909/enchant-weapon-battlemaster",
+    "url": "https://www.wowhead.com/tbc/item=22557/formula-enchant-weapon-battlemaster",
     "rarity": "uncommon"
   },
   {
@@ -266,7 +266,7 @@
     "zone": "Slave Pens",
     "reputation_requirement": null,
     "dropped_by": ["Ahune"],
-    "url": "https://www.wowhead.com/tbc/item=22910/enchant-weapon-deathfrost",
+    "url": "https://www.wowhead.com/tbc/item=35498/formula-enchant-weapon-deathfrost",
     "rarity": "rare"
   },
   {
@@ -275,8 +275,8 @@
     "zone": "Zul'Aman",
     "reputation_requirement": null,
     "dropped_by": ["All Bosses"],
-    "url": "https://www.wowhead.com/tbc/item=22911/enchant-weapon-executioner",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=33307/formula-enchant-weapon-executioner",
+    "rarity": "rare"
   },
   {
     "name": "Enchant Weapon - Greater Agility",
@@ -284,8 +284,8 @@
     "zone": "",
     "reputation_requirement": "The Violet Eye - Exalted",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22912/enchant-weapon-greater-agility",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=33165/formula-enchant-weapon-greater-agility",
+    "rarity": "common"
   },
   {
     "name": "Enchant Weapon - Major Healing",
@@ -293,7 +293,7 @@
     "zone": "",
     "reputation_requirement": "The Sha'tar - Revered",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22913/enchant-weapon-major-healing",
+    "url": "https://www.wowhead.com/tbc/item=28281/formula-enchant-weapon-major-healing",
     "rarity": "uncommon"
   },
   {
@@ -302,7 +302,7 @@
     "zone": "Netherstorm",
     "reputation_requirement": null,
     "dropped_by": ["Sunfury Researcher"],
-    "url": "https://www.wowhead.com/tbc/item=22914/enchant-weapon-major-intellect",
+    "url": "https://www.wowhead.com/tbc/item=22551/formula-enchant-weapon-major-intellect",
     "rarity": "uncommon"
   },
   {
@@ -311,7 +311,7 @@
     "zone": "Blade's Edge Mountains",
     "reputation_requirement": null,
     "dropped_by": ["Bash'ir Spell-Thief"],
-    "url": "https://www.wowhead.com/tbc/item=22915/enchant-weapon-major-spellpower",
+    "url": "https://www.wowhead.com/tbc/item=22555/formula-enchant-weapon-major-spellpower",
     "rarity": "uncommon"
   },
   {
@@ -320,8 +320,8 @@
     "zone": "",
     "reputation_requirement": "The Consortium - Honored",
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22916/enchant-weapon-major-striking",
-    "rarity": "uncommon"
+    "url": "https://www.wowhead.com/tbc/item=22552/formula-enchant-weapon-major-striking",
+    "rarity": "common"
   },
   {
     "name": "Enchant Weapon - Mongoose",
@@ -329,7 +329,7 @@
     "zone": "Karazhan",
     "reputation_requirement": null,
     "dropped_by": ["Moroes"],
-    "url": "https://www.wowhead.com/tbc/item=22917/enchant-weapon-mongoose",
+    "url": "https://www.wowhead.com/tbc/item=22559/formula-enchant-weapon-mongoose",
     "rarity": "rare"
   },
   {
@@ -338,7 +338,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22918/enchant-weapon-potency",
+    "url": "https://www.wowhead.com/tbc/item=22553/formula-enchant-weapon-potency",
     "rarity": "uncommon"
   },
   {
@@ -347,7 +347,7 @@
     "zone": "Random instance drop (rarely in zones)",
     "reputation_requirement": null,
     "dropped_by": null,
-    "url": "https://www.wowhead.com/tbc/item=22919/enchant-weapon-spellsurge",
+    "url": "https://www.wowhead.com/tbc/item=22558/formula-enchant-weapon-spellsurge",
     "rarity": "uncommon"
   },
   {
@@ -356,7 +356,7 @@
     "zone": "Karazhan",
     "reputation_requirement": null,
     "dropped_by": ["Terestian Illhoof"],
-    "url": "https://www.wowhead.com/tbc/item=22920/enchant-weapon-soulfrost",
+    "url": "https://www.wowhead.com/tbc/item=22561/formula-enchant-weapon-soulfrost",
     "rarity": "rare"
   },
   {
@@ -365,7 +365,7 @@
     "zone": "Karazhan",
     "reputation_requirement": null,
     "dropped_by": ["Shade of Aran"],
-    "url": "https://www.wowhead.com/tbc/item=22921/enchant-weapon-sunfire",
+    "url": "https://www.wowhead.com/tbc/item=22560/formula-enchant-weapon-sunfire",
     "rarity": "rare"
   },
   {
@@ -374,7 +374,7 @@
     "zone": "The Arcatraz",
     "reputation_requirement": null,
     "dropped_by": ["Eredar Deathbringer"],
-    "url": "https://www.wowhead.com/tbc/item=22922/enchant-2h-weapon-major-agility",
+    "url": "https://www.wowhead.com/tbc/item=22556/formula-enchant-2h-weapon-major-agility",
     "rarity": "uncommon"
   },
   {
@@ -383,7 +383,7 @@
     "zone": "The Shattered Halls",
     "reputation_requirement": null,
     "dropped_by": ["Shattered Hand Centurion"],
-    "url": "https://www.wowhead.com/tbc/item=22923/enchant-2h-weapon-savagery",
+    "url": "https://www.wowhead.com/tbc/item=22554/formula-enchant-2h-weapon-savagery",
     "rarity": "uncommon"
   }
 ]

@@ -1,47 +1,146 @@
 [
   {
-    "name": "Stabilized Eternium Scope",
+    "name": "Crashin' Thrashin' Robot",
     "source": "drop",
-    "zone": "Black Temple",
+    "zone": "Instance drop (rarely in zones)",
     "reputation_requirement": null,
-    "dropped_by": ["Black Temple Trash"],
-    "url": null,
-    "rarity": null
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23810/schematic-crashin-thrashin-robot",
+    "rarity": "uncommon"
   },
   {
-    "name": "Quad Deathblow X44 Goggles",
+    "name": "Healing Potion Injector",
     "source": "drop",
-    "zone": "Black Temple",
+    "zone": "Instance drop (rarely in zones)",
     "reputation_requirement": null,
-    "dropped_by": ["Mother Shahraz"],
-    "url": null,
-    "rarity": null
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23883/schematic-healing-potion-injector",
+    "rarity": "rare"
+  },
+  {
+    "name": "Purple Smoke Flare",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25887/schematic-purple-smoke-flare",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Mana Potion Injector",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23884/schematic-mana-potion-injector",
+    "rarity": "rare"
+  },
+  {
+    "name": "Adamantite Arrow Maker",
+    "source": "drop",
+    "zone": "Netherstorm",
+    "reputation_requirement": null,
+    "dropped_by": ["Sunfury Archer"],
+    "url": "https://www.wowhead.com/tbc/item=33804/schematic-adamantite-arrow-maker",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Purple Smoke Flare",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=25887/schematic-purple-smoke-flare",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Power Amplification Goggles",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23804/schematic-power-amplification-goggles",
+    "rarity": "rare"
+  },
+  {
+    "name": "Rocket Boots Xtreme",
+    "source": "drop",
+    "zone": "The Steamvault",
+    "reputation_requirement": null,
+    "dropped_by": ["Mekgineer Steamrigger"],
+    "url": "https://www.wowhead.com/tbc/item=23887/schematic-rocket-boots-xtreme",
+    "rarity": "rare"
+  },
+  {
+    "name": "Felsteel Boomstick",
+    "source": "drop",
+    "zone": "Blade's Edge Mountains",
+    "reputation_requirement": null,
+    "dropped_by": ["Doomforge Engineer"],
+    "url": "https://www.wowhead.com/tbc/item=23800/schematic-felsteel-boomstick",
+    "rarity": "rare"
   },
   {
     "name": "Hyper-Vision Goggles",
     "source": "drop",
-    "zone": "Black Temple",
+    "zone": "Shadowmoon Valley",
     "reputation_requirement": null,
-    "dropped_by": ["Gurtogg Bloodboil"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Mo'arg Weaponsmith"],
+    "url": "https://www.wowhead.com/tbc/item=23806/schematic-hyper-vision-goggles",
+    "rarity": "rare"
   },
   {
     "name": "Khorium Scope",
     "source": "drop",
-    "zone": "Blade's Edge Mountains",
+    "zone": "Netherstorm",
     "reputation_requirement": null,
-    "dropped_by": ["Various Outland mobs"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Sunfury Bowman"],
+    "url": "https://www.wowhead.com/tbc/item=23808/schematic-khorium-scope",
+    "rarity": "rare"
   },
   {
-    "name": "Crashin' Thrashin' Robot",
+    "name": "Field Repair Bot 110G",
     "source": "drop",
-    "zone": "Nagrand",
+    "zone": "Blade's Edge Mountains",
     "reputation_requirement": null,
-    "dropped_by": ["Various Outland mobs"],
-    "url": null,
-    "rarity": null
+    "dropped_by": ["Gan'arg Analyzer"],
+    "url": "https://www.wowhead.com/tbc/item=34114/schematic-field-repair-bot-110g",
+    "rarity": "uncommon"
+  },
+  {
+    "name": "Ornate Khorium Rifle",
+    "source": "drop",
+    "zone": "Instance drop (rarely in zones)",
+    "reputation_requirement": null,
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23802/schematic-ornate-khorium-rifle",
+    "rarity": "rare"
+  },
+  {
+    "name": "Stabilized Eternium Scope",
+    "source": "drop",
+    "zone": "Karazhan",
+    "reputation_requirement": null,
+    "dropped_by": ["Attumen the Huntsman"],
+    "url": "https://www.wowhead.com/tbc/item=23809/schematic-stabilized-eternium-scope",
+    "rarity": "rare"
+  },
+  {
+    "name": "Elemental Seaforium Charge",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "The Consortium - Revered",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23874/schematic-elemental-seaforium-charge",
+    "rarity": "common"
+  },
+  {
+    "name": "Green Smoke Flare",
+    "source": "reputation",
+    "zone": null,
+    "reputation_requirement": "Cenarion Expedition - Friendly",
+    "dropped_by": null,
+    "url": "https://www.wowhead.com/tbc/item=23814/schematic-green-smoke-flare",
+    "rarity": "common"
   }
 ]

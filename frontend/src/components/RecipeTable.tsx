@@ -1,7 +1,14 @@
+import { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import type { Recipe } from "../hooks/useRecipes";
 import CrafterList from "./CrafterList";
 import "./RecipeTable.css";
+
+declare global {
+  interface Window {
+    $WowheadPower?: { refreshLinks: () => void };
+  }
+}
 
 interface RecipeTableProps {
   recipes: Recipe[];
@@ -36,6 +43,10 @@ function rarityClass(rarity: string | null): string {
 export default function RecipeTable({ recipes, knownMap, onToggle }: RecipeTableProps) {
   const { isLoggedIn } = useAuth();
   const canToggle = isLoggedIn && knownMap && onToggle;
+
+  useEffect(() => {
+    window.$WowheadPower?.refreshLinks();
+  }, [recipes]);
 
   return (
     <div className="recipe-table-wrap">
