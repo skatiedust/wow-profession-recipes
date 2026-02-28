@@ -1,0 +1,7 @@
+## Interface: 20505
+## Title: Profession Exporter
+## Notes: Export your known recipes to JSON for use with wow-professions
+## Author: wow-professions
+## Version: 1.0.0
+
+ProfessionExporter.lua

@@ -10,6 +10,7 @@ Designed for easy self-hosting: fork this repo, fill in your credentials, and de
 - **Backend:** Node.js + TypeScript + Express
 - **Database:** PostgreSQL (Cloud SQL)
 - **Auth:** Battle.net OAuth 2.0
+- **Addon:** ProfessionExporter — WoW TBC Anniversary addon for exporting recipes to JSON
 - **Infrastructure:** Terraform on Google Cloud (Cloud Run, Cloud SQL, Secret Manager)
 
 ## Prerequisites
@@ -229,10 +230,24 @@ Go to your repo's Settings > Secrets and variables > Actions, or use the CLI:
 
 You can also set secrets via the CLI: `gh secret set SECRET_NAME --body "value"`
 
+## Importing Recipes from the Addon
+
+Guild members can import their known recipes from the in-game ProfessionExporter addon instead of toggling each recipe manually:
+
+1. **Install the addon:** Copy the `addon/ProfessionExporter` folder into your WoW addons directory:
+   - **Windows:** `World of Warcraft\_classic_\Interface\AddOns\ProfessionExporter\`
+   - **Mac:** `World of Warcraft/_classic_/Interface/AddOns/ProfessionExporter/`
+2. **Export in-game:** Open your profession window (press P, click a profession), type `/exportrecipes`, then copy the JSON (Ctrl+A, Ctrl+C).
+3. **Import in the app:** Log in, go to the main page (click "Guild Recipes" if you have a profession selected), and click "Import from Addon". Paste the JSON and click Import.
+
+The addon exports JSON with `character`, `realm`, `profession`, and `recipes` fields. The app matches recipe names (with prefix stripping for "Recipe:", "Plans:", etc.) and bulk-inserts into your character's known recipes.
+
 ## Project Structure
 
 ```
 wow-professions/
+├── addon/
+│   └── ProfessionExporter/     # WoW addon for exporting recipes
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml        # CI/CD: Terraform apply + Cloud Run deploy (optional)

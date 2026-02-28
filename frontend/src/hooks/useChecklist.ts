@@ -6,7 +6,10 @@ export function useChecklist(characterId: number | null) {
   const { authHeaders } = useAuth();
   const [knownMap, setKnownMap] = useState<Map<number, boolean>>(new Map());
   const [loading, setLoading] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
   const activeCharRef = useRef(characterId);
+
+  const refresh = useCallback(() => setRefreshKey((k) => k + 1), []);
 
   useEffect(() => {
     activeCharRef.current = characterId;
@@ -41,7 +44,7 @@ export function useChecklist(characterId: number | null) {
     return () => {
       cancelled = true;
     };
-  }, [characterId, authHeaders]);
+  }, [characterId, authHeaders, refreshKey]);
 
   const toggleRecipe = useCallback(
     async (recipeId: number, known: boolean) => {
@@ -77,5 +80,5 @@ export function useChecklist(characterId: number | null) {
     [authHeaders]
   );
 
-  return { knownMap, loading: loading, toggleRecipe };
+  return { knownMap, loading: loading, toggleRecipe, refresh };
 }

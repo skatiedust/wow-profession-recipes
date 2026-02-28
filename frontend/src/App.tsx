@@ -10,6 +10,7 @@ import Sidebar from "./components/Sidebar";
 import RecipeTable from "./components/RecipeTable";
 import Toast from "./components/Toast";
 import RecipeSearch from "./components/RecipeSearch";
+import ImportRecipes from "./components/ImportRecipes";
 
 function MainContent() {
   const { isLoggedIn } = useAuth();
@@ -18,12 +19,19 @@ function MainContent() {
   const [selectedProfessionId, setSelectedProfessionId] = useState<number | null>(null);
   const [selectedCharacterKey, setSelectedCharacterKey] = useState<string | null>(null);
   const [resolvedCharacterId, setResolvedCharacterId] = useState<number | null>(null);
-  const { recipes, loading } = useRecipes(selectedProfessionId, searchQuery);
-  const { uniqueCharacters, characters, ensureWithProfession } = useCharacters();
-  const { knownMap, toggleRecipe } = useChecklist(
+  const { recipes, loading, refresh: refreshRecipes } = useRecipes(selectedProfessionId, searchQuery);
+  const { uniqueCharacters, characters, ensureWithProfession, refresh: refreshCharacters } = useCharacters();
+  const { knownMap, toggleRecipe, refresh: refreshChecklist } = useChecklist(
     isLoggedIn ? resolvedCharacterId : null
   );
   const toast = useToast();
+  const [showImportModal, setShowImportModal] = useState(false);
+
+  const handleImportSuccess = useCallback(() => {
+    refreshCharacters();
+    refreshRecipes();
+    refreshChecklist();
+  }, [refreshCharacters, refreshRecipes, refreshChecklist]);
 
   const handleToggle = useCallback(
     (recipeId: number, known: boolean) => {
@@ -111,6 +119,12 @@ function MainContent() {
           characters={isLoggedIn ? uniqueCharacters : undefined}
           selectedCharacterKey={selectedCharacterKey}
           onSelectCharacter={setSelectedCharacterKey}
+          hasProfessionSelected={!!selectedProfessionId}
+          onTitleClick={() => {
+            setSelectedProfessionId(null);
+            setSearchQuery("");
+            setKnownOnly(false);
+          }}
         />
       }
       sidebar={
@@ -152,10 +166,46 @@ function MainContent() {
           )}
         </>
       ) : (
-        <div className="app-main__empty">
-          <p>Select a profession from the sidebar to browse recipes.</p>
+        <div className="app-main__empty app-main__home">
+          {!isLoggedIn ? (
+            <>
+              <p className="app-main__home-title">Browse Guild Recipes</p>
+              <p>
+                Select a profession from the sidebar to browse recipes and see
+                who can craft them.
+              </p>
+              <p className="app-main__home-hint">
+                Log in with Battle.net to track your own recipes and import from
+                the ProfessionExporter addon.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="app-main__home-title">Import or Browse Recipes</p>
+              <p>
+                Install the ProfessionExporter addon in WoW, open your profession
+                window, type <code>/exportrecipes</code>, then copy the JSON
+                (Ctrl+A, Ctrl+C) and paste it below.
+              </p>
+              <button
+                className="app-main__import-btn"
+                onClick={() => setShowImportModal(true)}
+              >
+                Import from Addon
+              </button>
+              <p className="app-main__home-hint">
+                Or select a profession from the sidebar to browse and toggle
+                recipes manually.
+              </p>
+            </>
+          )}
         </div>
       )}
+      <ImportRecipes
+        isOpen={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        onSuccess={handleImportSuccess}
+      />
       <Toast message={toast.message} visible={toast.visible} />
     </AppShell>
   );

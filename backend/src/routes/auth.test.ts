@@ -190,7 +190,9 @@ describe("GET /callback", () => {
     consoleSpy.mockRestore();
 
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ error: "Authentication failed" });
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ error: "Authentication failed" })
+    );
   });
 });
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { API_BASE } from "../config";
 
 export interface Crafter {
@@ -21,6 +21,9 @@ export interface Recipe {
 export function useRecipes(professionId: number | null, searchQuery: string) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const refresh = useCallback(() => setRefreshKey((k) => k + 1), []);
 
   useEffect(() => {
     if (professionId == null) {
@@ -46,7 +49,7 @@ export function useRecipes(professionId: number | null, searchQuery: string) {
     return () => {
       cancelled = true;
     };
-  }, [professionId]);
+  }, [professionId, refreshKey]);
 
   const filtered = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -54,5 +57,5 @@ export function useRecipes(professionId: number | null, searchQuery: string) {
     return recipes.filter((r) => r.name.toLowerCase().includes(q));
   }, [recipes, searchQuery]);
 
-  return { recipes: filtered, allRecipes: recipes, loading };
+  return { recipes: filtered, allRecipes: recipes, loading, refresh };
 }

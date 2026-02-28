@@ -75,8 +75,12 @@ router.get("/callback", async (req: Request, res: Response) => {
     ).replace(/\/+$/, "");
     res.redirect(`${frontendUrl}/#access_token=${tokenData.access_token}`);
   } catch (err) {
+    const message = err instanceof Error ? err.message : "Unknown error";
     console.error("OAuth callback error:", err);
-    res.status(500).json({ error: "Authentication failed" });
+    res.status(500).json({
+      error: "Authentication failed",
+      ...(process.env.NODE_ENV !== "production" && { detail: message }),
+    });
   }
 });
 
