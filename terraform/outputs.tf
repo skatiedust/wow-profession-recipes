@@ -13,6 +13,16 @@ output "cloud_sql_connection_name" {
   value       = module.cloud_sql.connection_name
 }
 
+output "addon_artifacts_bucket_name" {
+  description = "Name of the public GCS bucket that hosts downloadable addon artifacts"
+  value       = google_storage_bucket.addon_artifacts.name
+}
+
+output "addon_artifacts_base_url" {
+  description = "Public base URL for addon artifact downloads"
+  value       = "https://storage.googleapis.com/${google_storage_bucket.addon_artifacts.name}"
+}
+
 output "workload_identity_provider" {
   description = "Full resource name of the WIF provider (needed for GitHub Actions secret)"
   value       = var.github_repo != "" ? module.github_oidc[0].workload_identity_provider : null

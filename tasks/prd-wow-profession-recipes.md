@@ -175,6 +175,7 @@ erDiagram
 - **Recipe seeding:** On deploy, a migration script reads the JSON files from `data/recipes/` and upserts them into the `recipes` table. Recipes removed from the JSON are soft-deleted (or flagged) so that historical character-recipe links are not lost.
 - **CORS:** The frontend and backend may run on different Cloud Run URLs. Configure CORS on the backend to allow the frontend origin.
 - **Secrets:** Battle.net OAuth client ID and secret must be stored in GCP Secret Manager and injected into the backend Cloud Run service as environment variables via Terraform.
+- **Addon distribution:** CI should package `addon/ProfessionExporter` as a zip and publish it to a publicly readable Cloud Storage bucket so guild members can download a stable `latest` artifact URL.
 
 ### Terraform Modules
 

@@ -19,8 +19,9 @@ provider "google" {
 }
 
 locals {
-  database_name = "wow_professions"
-  database_user = "wow_app"
+  database_name               = "wow_professions"
+  database_user               = "wow_app"
+  addon_artifacts_bucket_name = var.addon_artifacts_bucket_name != "" ? var.addon_artifacts_bucket_name : "${var.gcp_project_id}-wow-professions-addon-artifacts"
 }
 
 module "networking" {
@@ -85,6 +86,20 @@ module "frontend" {
   }
 
   secret_env_vars = {}
+}
+
+# Public bucket for downloadable addon zip artifacts.
+resource "google_storage_bucket" "addon_artifacts" {
+  name                        = local.addon_artifacts_bucket_name
+  project                     = var.gcp_project_id
+  location                    = var.gcp_region
+  uniform_bucket_level_access = true
+}
+
+resource "google_storage_bucket_iam_member" "addon_artifacts_public_read" {
+  bucket = google_storage_bucket.addon_artifacts.name
+  role   = "roles/storage.objectViewer"
+  member = "allUsers"
 }
 
 # --- IAM Bindings ---
