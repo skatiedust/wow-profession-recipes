@@ -1,7 +1,8 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { query } from "../db";
 import { requireAuth, AuthenticatedRequest } from "../middleware/auth";
 import { fetchGuildCharacters } from "../services/blizzard";
+import { logError, logInfo, logWarning } from "../logger";
 
 const router = Router();
 
@@ -150,150 +151,200 @@ function stripRecipePrefix(name: string): string {
   return trimmed;
 }
 
-router.post("/import", requireAuth, async (req: Request, res: Response) => {
+router.post("/import", requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   const { user, accessToken } = req as AuthenticatedRequest;
   const { character, realm, profession, recipes } = req.body;
+  const requestId = res.locals?.requestId as string | undefined;
 
-  if (
-    typeof character !== "string" ||
-    typeof realm !== "string" ||
-    typeof profession !== "string" ||
-    !Array.isArray(recipes)
-  ) {
-    res.status(400).json({
-      error: "Invalid body: character, realm, and profession must be strings; recipes must be an array of strings",
+  try {
+    if (
+      typeof character !== "string" ||
+      typeof realm !== "string" ||
+      typeof profession !== "string" ||
+      !Array.isArray(recipes)
+    ) {
+      logWarning("recipes.import.invalid_body", {
+        request_id: requestId,
+        user_id: user.id,
+      });
+      res.status(400).json({
+        error: "Invalid body: character, realm, and profession must be strings; recipes must be an array of strings",
+      });
+      return;
+    }
+
+    if (!recipes.every((r: unknown) => typeof r === "string")) {
+      logWarning("recipes.import.invalid_recipe_entries", {
+        request_id: requestId,
+        user_id: user.id,
+      });
+      res.status(400).json({ error: "recipes must contain only strings" });
+      return;
+    }
+
+    logInfo("recipes.import.start", {
+      request_id: requestId,
+      user_id: user.id,
+      character: character.trim(),
+      realm: realm.trim(),
+      profession: profession.trim(),
+      recipe_count: recipes.length,
     });
-    return;
-  }
 
-  if (!recipes.every((r: unknown) => typeof r === "string")) {
-    res.status(400).json({ error: "recipes must contain only strings" });
-    return;
-  }
+    const guildName = process.env.GUILD || "Red Sun";
+    const guildCharacters = await fetchGuildCharacters(accessToken, guildName);
+    const inGuild = guildCharacters.some(
+      (c) =>
+        c.name.trim().toLowerCase() === character.trim().toLowerCase() &&
+        c.realm.trim().toLowerCase() === realm.trim().toLowerCase()
+    );
+    if (!inGuild) {
+      logWarning("recipes.import.guild_restriction", {
+        request_id: requestId,
+        user_id: user.id,
+        character: character.trim(),
+        realm: realm.trim(),
+        guild: guildName,
+      });
+      res.status(403).json({ error: `Recipe import is restricted to ${guildName} guild characters` });
+      return;
+    }
 
-  const guildName = process.env.GUILD || "Red Sun";
-  const guildCharacters = await fetchGuildCharacters(accessToken, guildName);
-  const inGuild = guildCharacters.some(
-    (c) =>
-      c.name.trim().toLowerCase() === character.trim().toLowerCase() &&
-      c.realm.trim().toLowerCase() === realm.trim().toLowerCase()
-  );
-  if (!inGuild) {
-    res.status(403).json({ error: `Recipe import is restricted to ${guildName} guild characters` });
-    return;
-  }
+    const professionResult = await query<{ id: number }>(
+      "SELECT id FROM professions WHERE LOWER(name) = LOWER($1)",
+      [profession]
+    );
 
-  const professionResult = await query<{ id: number }>(
-    "SELECT id FROM professions WHERE LOWER(name) = LOWER($1)",
-    [profession]
-  );
+    if (professionResult.rows.length === 0) {
+      logWarning("recipes.import.unknown_profession", {
+        request_id: requestId,
+        user_id: user.id,
+        profession: profession.trim(),
+      });
+      res.status(400).json({ error: `Unknown profession: ${profession}` });
+      return;
+    }
 
-  if (professionResult.rows.length === 0) {
-    res.status(400).json({ error: `Unknown profession: ${profession}` });
-    return;
-  }
+    const professionId = professionResult.rows[0].id;
 
-  const professionId = professionResult.rows[0].id;
-
-  const charResult = await query<{ id: number }>(
-    `SELECT id FROM characters
-     WHERE user_id = $1 AND LOWER(name) = LOWER($2) AND LOWER(realm) = LOWER($3) AND profession_id = $4`,
-    [user.id, character.trim(), realm.trim(), professionId]
-  );
-
-  let characterId: number;
-
-  if (charResult.rows.length > 0) {
-    characterId = charResult.rows[0].id;
-  } else {
-    const insertResult = await query<{ id: number }>(
-      `INSERT INTO characters (user_id, name, realm, profession_id)
-       VALUES ($1, $2, $3, $4)
-       RETURNING id`,
+    const charResult = await query<{ id: number }>(
+      `SELECT id FROM characters
+       WHERE user_id = $1 AND LOWER(name) = LOWER($2) AND LOWER(realm) = LOWER($3) AND profession_id = $4`,
       [user.id, character.trim(), realm.trim(), professionId]
     );
-    characterId = insertResult.rows[0].id;
-  }
 
-  const recipeRows = await query<{ id: number; name: string }>(
-    "SELECT id, name FROM recipes WHERE profession_id = $1 AND deleted_at IS NULL",
-    [professionId]
-  );
+    let characterId: number;
 
-  const recipeByName = new Map<string, number>();
-  const recipeNameById = new Map<number, string>();
-  for (const row of recipeRows.rows) {
-    recipeByName.set(row.name.toLowerCase(), row.id);
-    recipeByName.set(stripRecipePrefix(row.name).toLowerCase(), row.id);
-    recipeNameById.set(row.id, row.name);
-  }
-
-  const matched: number[] = [];
-  const unmatched: string[] = [];
-  let skipped = 0;
-
-  for (const addonName of recipes as string[]) {
-    const stripped = stripRecipePrefix(addonName);
-    const key = stripped.toLowerCase();
-    const recipeId = recipeByName.get(key);
-
-    if (recipeId) {
-      matched.push(recipeId);
+    if (charResult.rows.length > 0) {
+      characterId = charResult.rows[0].id;
     } else {
-      unmatched.push(addonName);
+      const insertResult = await query<{ id: number }>(
+        `INSERT INTO characters (user_id, name, realm, profession_id)
+         VALUES ($1, $2, $3, $4)
+         RETURNING id`,
+        [user.id, character.trim(), realm.trim(), professionId]
+      );
+      characterId = insertResult.rows[0].id;
     }
-  }
 
-  const uniqueMatched = [...new Set(matched)];
-
-  const existingResult = await query<{ recipe_id: number }>(
-    `SELECT recipe_id FROM character_recipes
-     WHERE character_id = $1 AND recipe_id = ANY($2)`,
-    [characterId, uniqueMatched]
-  );
-  skipped = existingResult?.rows?.length ?? 0;
-
-  if (uniqueMatched.length > 0) {
-    await query(
-      `DELETE FROM character_recipes cr
-       USING recipes r
-       WHERE cr.recipe_id = r.id
-         AND cr.character_id = $1
-         AND r.profession_id = $2
-         AND r.deleted_at IS NULL
-         AND cr.recipe_id <> ALL($3::int[])`,
-      [characterId, professionId, uniqueMatched]
+    const recipeRows = await query<{ id: number; name: string }>(
+      "SELECT id, name FROM recipes WHERE profession_id = $1 AND deleted_at IS NULL",
+      [professionId]
     );
-  } else {
-    await query(
-      `DELETE FROM character_recipes cr
-       USING recipes r
-       WHERE cr.recipe_id = r.id
-         AND cr.character_id = $1
-         AND r.profession_id = $2
-         AND r.deleted_at IS NULL`,
-      [characterId, professionId]
-    );
-  }
 
-  for (const recipeId of uniqueMatched) {
-    await query(
-      `INSERT INTO character_recipes (character_id, recipe_id)
-       VALUES ($1, $2)
-       ON CONFLICT (character_id, recipe_id) DO NOTHING`,
-      [characterId, recipeId]
-    );
-  }
+    const recipeByName = new Map<string, number>();
+    const recipeNameById = new Map<number, string>();
+    for (const row of recipeRows.rows) {
+      recipeByName.set(row.name.toLowerCase(), row.id);
+      recipeByName.set(stripRecipePrefix(row.name).toLowerCase(), row.id);
+      recipeNameById.set(row.id, row.name);
+    }
 
-  res.json({
-    character_id: characterId,
-    matched: uniqueMatched.length,
-    matched_recipes: uniqueMatched
-      .map((id) => recipeNameById.get(id))
-      .filter((name): name is string => Boolean(name)),
-    skipped,
-    unmatched,
-  });
+    const matched: number[] = [];
+    const unmatched: string[] = [];
+    let skipped = 0;
+
+    for (const addonName of recipes as string[]) {
+      const stripped = stripRecipePrefix(addonName);
+      const key = stripped.toLowerCase();
+      const recipeId = recipeByName.get(key);
+
+      if (recipeId) {
+        matched.push(recipeId);
+      } else {
+        unmatched.push(addonName);
+      }
+    }
+
+    const uniqueMatched = [...new Set(matched)];
+
+    const existingResult = await query<{ recipe_id: number }>(
+      `SELECT recipe_id FROM character_recipes
+       WHERE character_id = $1 AND recipe_id = ANY($2)`,
+      [characterId, uniqueMatched]
+    );
+    skipped = existingResult?.rows?.length ?? 0;
+
+    if (uniqueMatched.length > 0) {
+      await query(
+        `DELETE FROM character_recipes cr
+         USING recipes r
+         WHERE cr.recipe_id = r.id
+           AND cr.character_id = $1
+           AND r.profession_id = $2
+           AND r.deleted_at IS NULL
+           AND cr.recipe_id <> ALL($3::int[])`,
+        [characterId, professionId, uniqueMatched]
+      );
+    } else {
+      await query(
+        `DELETE FROM character_recipes cr
+         USING recipes r
+         WHERE cr.recipe_id = r.id
+           AND cr.character_id = $1
+           AND r.profession_id = $2
+           AND r.deleted_at IS NULL`,
+        [characterId, professionId]
+      );
+    }
+
+    for (const recipeId of uniqueMatched) {
+      await query(
+        `INSERT INTO character_recipes (character_id, recipe_id)
+         VALUES ($1, $2)
+         ON CONFLICT (character_id, recipe_id) DO NOTHING`,
+        [characterId, recipeId]
+      );
+    }
+
+    logInfo("recipes.import.finish", {
+      request_id: requestId,
+      user_id: user.id,
+      character_id: characterId,
+      profession: profession.trim(),
+      input_count: recipes.length,
+      matched_count: uniqueMatched.length,
+      skipped_count: skipped,
+      unmatched_count: unmatched.length,
+    });
+
+    res.json({
+      character_id: characterId,
+      matched: uniqueMatched.length,
+      matched_recipes: uniqueMatched
+        .map((id) => recipeNameById.get(id))
+        .filter((name): name is string => Boolean(name)),
+      skipped,
+      unmatched,
+    });
+  } catch (error) {
+    logError("recipes.import.error", error, {
+      request_id: requestId,
+      user_id: user?.id,
+      profession: typeof profession === "string" ? profession.trim() : undefined,
+    });
+    next(error);
+  }
 });
 
 export default router;

@@ -1,6 +1,6 @@
 .sidebar__heading {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -23,7 +23,7 @@
   min-height: 44px;
   cursor: pointer;
   color: var(--color-text-secondary);
-  font-size: 0.875rem;
+  font-size: 1rem;
   border-left: 3px solid transparent;
   transition:
     background-color var(--transition-fast),
@@ -61,5 +61,5 @@
 .sidebar__loading {
   padding: 1rem;
   color: var(--color-text-muted);
-  font-size: 0.8125rem;
+  font-size: 1rem;
 }

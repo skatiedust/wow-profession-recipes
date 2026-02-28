@@ -39,7 +39,7 @@
   align-items: center;
   gap: 0.5rem;
   color: var(--color-text-secondary);
-  font-size: 0.8125rem;
+  font-size: 1rem;
 }
 
 .topbar__battletag {
@@ -48,18 +48,18 @@
 }
 
 .topbar__char-select {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   padding: 0.25rem 0.5rem;
   max-width: 200px;
 }
 
 .topbar__logout {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   padding: 0.3rem 0.625rem;
 }
 
 .topbar__login {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   padding: 0.3rem 0.625rem;
 }
 

@@ -145,6 +145,7 @@ describe("ImportRecipes", () => {
     expect(await screen.findByText(/Matched: 2/)).toBeInTheDocument();
     expect(screen.getByText("Haste Potion")).toBeInTheDocument();
     expect(screen.getByText("Destruction Potion")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Done" })).toBeInTheDocument();
     expect(mockOnSuccess).toHaveBeenCalled();
   });
 
@@ -231,6 +232,41 @@ describe("ImportRecipes", () => {
 
     expect(await screen.findByText(/Unknown profession: Foo/)).toBeInTheDocument();
     expect(mockOnSuccess).not.toHaveBeenCalled();
+  });
+
+  it("shows request ID in error when provided by backend", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: false,
+      json: async () => ({ error: "Import failed" }),
+      headers: {
+        get: (key: string) => (key.toLowerCase() === "x-request-id" ? "req-123" : null),
+      },
+    });
+
+    render(
+      <ImportRecipes
+        isOpen={true}
+        onClose={mockOnClose}
+        authHeaders={() => ({})}
+        onSuccess={mockOnSuccess}
+      />
+    );
+    const textarea = screen.getByPlaceholderText(
+      /"character":"Name","realm":"Realm"/
+    );
+    fireEvent.change(textarea, {
+      target: {
+        value: JSON.stringify({
+          character: "X",
+          realm: "Y",
+          profession: "Alchemy",
+          recipes: [],
+        }),
+      },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /Import/ }));
+
+    expect(await screen.findByText(/Import failed \(Request ID: req-123\)/)).toBeInTheDocument();
   });
 
   it("calls onClose when Cancel is clicked", () => {

@@ -182,6 +182,21 @@ cd ../frontend
 gcloud run deploy wow-professions-web --source . --region us-central1
 ```
 
+### Viewing logs in Google Cloud
+
+The backend emits structured JSON logs to stdout/stderr, which Cloud Run automatically forwards to **Cloud Logging**.
+
+- Open Logs Explorer in your GCP project.
+- Filter by service name `wow-professions-api`.
+- Each backend response includes an `X-Request-Id` header. Capture that value when reporting issues so you can quickly find all related logs.
+- Useful messages include:
+  - `http.request.start` / `http.request.finish`
+  - `http.request.error`
+  - `recipes.import.start` / `recipes.import.finish`
+  - `recipes.import.invalid_body`, `recipes.import.guild_restriction`, `recipes.import.unknown_profession`
+
+This makes it easier to troubleshoot unexpected behavior during guild testing, especially addon imports.
+
 ## CI/CD with GitHub Actions (Optional)
 
 If you just want to deploy once and manage updates manually with `terraform apply` and `gcloud run deploy`, you can skip this section entirely. Everything above is sufficient for a working deployment.

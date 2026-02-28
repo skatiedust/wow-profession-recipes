@@ -47,7 +47,7 @@
 .app-sidebar__placeholder {
   padding: 0 1rem;
   color: var(--color-text-secondary);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 /* ── Main Content ── */
@@ -64,7 +64,7 @@
   justify-content: center;
   height: 100%;
   color: var(--color-text-muted);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 
 .app-main__home {
@@ -110,7 +110,7 @@
 
 .app-main__home-hint {
   color: var(--color-text-secondary);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 /* ── Mobile Overlay (backdrop when sidebar drawer is open) ── */
