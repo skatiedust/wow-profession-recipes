@@ -29,6 +29,7 @@ export function useCharacters() {
   const { authHeaders, isLoggedIn } = useAuth();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
+  const [guildCharacterKeys, setGuildCharacterKeys] = useState<Set<string>>(new Set());
   const autoImportedRef = useRef(false);
 
   const fetchCharacters = useCallback(async () => {
@@ -85,6 +86,11 @@ export function useCharacters() {
         if (!importRes.ok) return;
         const blizzChars: { name: string; realm: string }[] =
           await importRes.json();
+        if (!cancelled) {
+          setGuildCharacterKeys(
+            new Set(blizzChars.map((c) => charKey(c.name, c.realm)))
+          );
+        }
         if (cancelled || blizzChars.length === 0) return;
 
         // Refetch to get current state before dedup
@@ -126,16 +132,24 @@ export function useCharacters() {
     };
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setGuildCharacterKeys(new Set());
+      autoImportedRef.current = false;
+    }
+  }, [isLoggedIn]);
+
   const uniqueCharacters = useMemo<UniqueCharacter[]>(() => {
     const seen = new Map<string, UniqueCharacter>();
     for (const c of characters) {
       const k = charKey(c.name, c.realm);
+      if (!guildCharacterKeys.has(k)) continue;
       if (!seen.has(k)) {
         seen.set(k, { name: c.name, realm: c.realm, key: k });
       }
     }
     return Array.from(seen.values());
-  }, [characters]);
+  }, [characters, guildCharacterKeys]);
 
   const importFromBlizzard = useCallback(async (): Promise<
     ImportableCharacter[]

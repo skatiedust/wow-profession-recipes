@@ -112,7 +112,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 2.11 Run `terraform init` and `terraform plan` to validate the configuration
   - [x] 2.12 Run `terraform apply` to provision infrastructure, then deploy the skeleton backend and frontend using `gcloud run deploy --source .` and verify the health endpoint is reachable at the Cloud Run URL
 
-- [ ] 3.0 Database schema, migrations, and recipe seed data
+- [x] 3.0 Database schema, migrations, and recipe seed data
   - [x] 3.1 Create `backend/src/db.ts` — a connection pool using `pg.Pool` configured from `DATABASE_URL` env var
   - [x] 3.2 Create `backend/src/migrate.ts` — a migration script that creates the `users`, `characters`, `professions`, `recipes`, and `character_recipes` tables with the schema from the PRD data model; include `created_at`/`updated_at` timestamps
   - [x] 3.3 Include an `INSERT` in the migration for the 8 TBC professions (Alchemy, Blacksmithing, Enchanting, Engineering, Jewelcrafting, Leatherworking, Tailoring, Cooking) with placeholder icon URLs
@@ -122,7 +122,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 3.7 Run the migration and seed scripts against the live Cloud SQL instance and verify the tables and data exist
   - [x] 3.8 Write tests for `seed.ts` — verify JSON parsing, upsert logic, and soft-delete behavior using a test database or mocked pool
 
-- [ ] 4.0 Backend API — Authentication and character management
+- [x] 4.0 Backend API — Authentication and character management
   - [x] 4.1 Register a Battle.net OAuth application at the Blizzard developer portal; note the client ID, client secret, and configure the redirect URI to point at the backend's callback route
   - [x] 4.2 Create `backend/src/routes/auth.ts` — implement `GET /api/auth/login` (redirects to Battle.net OAuth authorize URL), `GET /api/auth/callback` (exchanges code for token, creates/updates user record, sets session), and `POST /api/auth/logout` (destroys session)
   - [x] 4.3 Create `backend/src/middleware/auth.ts` — middleware that checks for a valid session and attaches the user to `req.user`; returns 401 if not authenticated
@@ -133,7 +133,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 4.8 Deploy the backend to Cloud Run and test the full OAuth login flow end-to-end in a browser (login → callback → session → /api/auth/me)
   - [x] 4.9 Write tests for auth routes (mock OAuth flow), auth middleware (valid/invalid sessions), and the Blizzard API service (mock HTTP responses)
 
-- [ ] 5.0 Frontend — Minimal UI for testing auth and character endpoints (no styling)
+- [x] 5.0 Frontend — Minimal UI for testing auth and character endpoints (no styling)
   - [x] 5.1 Create `frontend/src/hooks/useAuth.ts` — a React context + hook that calls `GET /api/auth/me` on mount to determine if the user is logged in; exposes `user`, `isLoggedIn`, `login()` (redirects to `/api/auth/login`), and `logout()` (calls `POST /api/auth/logout`)
   - [x] 5.2 Create `frontend/src/components/LoginButton.tsx` — shows "Login with Battle.net" when logged out, and the user's BattleTag + "Logout" when logged in
   - [x] 5.3 Create `frontend/src/hooks/useCharacters.ts` — hook that fetches the user's saved characters (`GET /api/characters`), exposes import from Blizzard (`GET /api/characters/import`), and create (`POST /api/characters`) / delete (`DELETE /api/characters/:id`) functions
@@ -149,7 +149,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 6.5 Deploy and test: verify the public recipe list returns recipes with crafter names, and the checklist toggle persists correctly
   - [x] 6.6 Write tests for all recipe routes — mock the database layer and verify correct SQL queries, auth enforcement, and response shapes
 
-- [ ] 7.0 Frontend — Styling, public recipe browse, and recipe checklist
+- [x] 7.0 Frontend — Styling, public recipe browse, and recipe checklist
   - [x] 7.1 Set up global styles in `frontend/src/styles/global.css` — dark background, light text, gold accent color, responsive typography, and CSS variables for the theme
   - [x] 7.2 Create `frontend/src/components/AppShell.tsx` — top-level layout with three zones: fixed top bar, left sidebar (240px, collapsible on mobile), and main content panel. Wire into `App.tsx`, replacing React Router routes with a single-shell view
   - [x] 7.3 Create `frontend/src/components/TopBar.tsx` — site name (Cormorant Garamond), global search input (prominent, debounced), login/logout button (Battle.net), user BattleTag when logged in. Nothing else
@@ -175,7 +175,7 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 8.8 Write tests for `ImportRecipes` component in `frontend/src/components/ImportRecipes.test.tsx` — mock the fetch call, verify JSON validation feedback, successful import result display, and error handling
   - [x] 8.9 Update `tasks/prd-wow-profession-recipes.md` and `README.md` to document the addon-based import flow — mention the addon in the project overview, add it to the tech stack, and include setup/usage instructions in the README
 
-- [ ] 9.0 Wowhead recipe tooltips — hover over a recipe name to see what it does
+- [x] 9.0 Wowhead recipe tooltips — hover over a recipe name to see what it does
   - [x] 9.1 ~Removed~ — `spell_url` column not needed; the existing `url` column is used for Wowhead links instead
   - [x] 9.2 Ensure recipe entries in `data/recipes/` have a `url` field pointing to the Wowhead TBC page; only add where there isn't a `url` already
   - [x] 9.3 Verified `backend/src/seed.ts` already includes `url` in the `RecipeEntry` interface and both UPDATE and INSERT queries — no `spell_url` needed
@@ -183,5 +183,5 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 9.5 Verified `frontend/src/hooks/useRecipes.ts` already has `url: string | null` in the `Recipe` interface — no `spell_url` needed
   - [x] 9.6 Add the Wowhead tooltip script to `frontend/index.html` — include `<script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: false };</script>` and `<script src="https://wow.zamimg.com/js/tooltips.js"></script>` in `<head>`
   - [x] 9.7 Update `frontend/src/components/RecipeTable.tsx` — use `url` as the `<a>` href for recipe names so the Wowhead tooltip shows on hover; add a `useEffect` that calls `window.$WowheadPower.refreshLinks()` whenever the recipe list changes, so newly rendered links get tooltips
-  - [ ] 9.8 Run the migration (`npm run migrate` in `backend/`) and seed (`npm run seed` in `backend/`) to add the column and populate `spell_url` values in the database
-  - [ ] 9.9 Deploy and verify: hover over a recipe name and confirm the Wowhead tooltip appears showing the spell effect (e.g., an enchanting recipe shows what the enchant does)
+  - [x] 9.8 Run the migration (`npm run migrate` in `backend/`) and seed (`npm run seed` in `backend/`) to add the column and populate `spell_url` values in the database
+  - [x] 9.9 Deploy and verify: hover over a recipe name and confirm the Wowhead tooltip appears showing the spell effect (e.g., an enchanting recipe shows what the enchant does)

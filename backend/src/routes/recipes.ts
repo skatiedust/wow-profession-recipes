@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import { query } from "../db";
 import { requireAuth, AuthenticatedRequest } from "../middleware/auth";
+import { fetchGuildCharacters } from "../services/blizzard";
 
 const router = Router();
 
@@ -150,7 +151,7 @@ function stripRecipePrefix(name: string): string {
 }
 
 router.post("/import", requireAuth, async (req: Request, res: Response) => {
-  const { user } = req as AuthenticatedRequest;
+  const { user, accessToken } = req as AuthenticatedRequest;
   const { character, realm, profession, recipes } = req.body;
 
   if (
@@ -167,6 +168,18 @@ router.post("/import", requireAuth, async (req: Request, res: Response) => {
 
   if (!recipes.every((r: unknown) => typeof r === "string")) {
     res.status(400).json({ error: "recipes must contain only strings" });
+    return;
+  }
+
+  const guildName = process.env.GUILD || "Red Sun";
+  const guildCharacters = await fetchGuildCharacters(accessToken, guildName);
+  const inGuild = guildCharacters.some(
+    (c) =>
+      c.name.trim().toLowerCase() === character.trim().toLowerCase() &&
+      c.realm.trim().toLowerCase() === realm.trim().toLowerCase()
+  );
+  if (!inGuild) {
+    res.status(403).json({ error: `Recipe import is restricted to ${guildName} guild characters` });
     return;
   }
 

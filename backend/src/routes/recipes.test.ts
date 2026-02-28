@@ -2,6 +2,10 @@ import { Request, Response } from "express";
 
 const mockQuery = jest.fn();
 jest.mock("../db", () => ({ query: (...args: unknown[]) => mockQuery(...args) }));
+const mockFetchGuildCharacters = jest.fn();
+jest.mock("../services/blizzard", () => ({
+  fetchGuildCharacters: (...args: unknown[]) => mockFetchGuildCharacters(...args),
+}));
 
 jest.mock("../middleware/auth", () => ({
   requireAuth: jest.fn((_req: unknown, _res: unknown, next: () => void) => next()),
@@ -46,6 +50,11 @@ function buildRes(): Response {
 
 beforeEach(() => {
   jest.clearAllMocks();
+  process.env.GUILD = "Red Sun";
+  mockFetchGuildCharacters.mockResolvedValue([
+    { name: "MyChar", realm: "Whitemane" },
+    { name: "X", realm: "Y" },
+  ]);
 });
 
 describe("GET /", () => {
@@ -325,6 +334,7 @@ describe("POST /import", () => {
         profession: "Alchemy",
         recipes: ["Haste Potion", "Destruction Potion", "Unknown Recipe"],
       },
+      accessToken: "token",
       user: { id: 42, battleTag: "Player#1234" },
     });
     const res = buildRes();
@@ -373,6 +383,7 @@ describe("POST /import", () => {
         profession: "Alchemy",
         recipes: ["Recipe: Haste Potion"],
       },
+      accessToken: "token",
       user: { id: 1, battleTag: "Test#1" },
     });
     const res = buildRes();
@@ -391,6 +402,7 @@ describe("POST /import", () => {
   it("returns 400 for invalid JSON structure", async () => {
     const req = buildReq({
       body: { character: "X", realm: "Y" },
+      accessToken: "token",
       user: { id: 1, battleTag: "Test#1" },
     });
     const res = buildRes();
@@ -416,6 +428,7 @@ describe("POST /import", () => {
         profession: "UnknownProf",
         recipes: [],
       },
+      accessToken: "token",
       user: { id: 1, battleTag: "Test#1" },
     });
     const res = buildRes();
@@ -426,5 +439,31 @@ describe("POST /import", () => {
     expect(res.json).toHaveBeenCalledWith({
       error: "Unknown profession: UnknownProf",
     });
+  });
+
+  it("returns 403 when character is not in configured guild", async () => {
+    mockFetchGuildCharacters.mockResolvedValueOnce([
+      { name: "Guildie", realm: "Whitemane" },
+    ]);
+
+    const req = buildReq({
+      body: {
+        character: "NotGuild",
+        realm: "Whitemane",
+        profession: "Alchemy",
+        recipes: [],
+      },
+      accessToken: "token",
+      user: { id: 1, battleTag: "Test#1" },
+    });
+    const res = buildRes();
+
+    await handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(403);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Recipe import is restricted to Red Sun guild characters",
+    });
+    expect(mockQuery).not.toHaveBeenCalled();
   });
 });
