@@ -315,6 +315,7 @@ describe("POST /import", () => {
       })
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rowCount: 1 })
+      .mockResolvedValueOnce({ rowCount: 1 })
       .mockResolvedValueOnce({ rowCount: 1 });
 
     const req = buildReq({
@@ -338,10 +339,15 @@ describe("POST /import", () => {
       expect.stringContaining("INSERT INTO characters"),
       expect.arrayContaining([42, "MyChar", "Whitemane", 2])
     );
+    expect(mockQuery).toHaveBeenCalledWith(
+      expect.stringContaining("DELETE FROM character_recipes cr"),
+      [99, 2, [10, 11]]
+    );
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         character_id: expect.any(Number),
         matched: 2,
+        matched_recipes: ["Haste Potion", "Destruction Potion"],
         skipped: 0,
         unmatched: ["Unknown Recipe"],
       })
@@ -357,6 +363,7 @@ describe("POST /import", () => {
         rows: [{ id: 5, name: "Haste Potion" }],
       })
       .mockResolvedValueOnce({ rows: [] })
+      .mockResolvedValueOnce({ rowCount: 1 })
       .mockResolvedValueOnce({ rowCount: 1 });
 
     const req = buildReq({
@@ -375,6 +382,7 @@ describe("POST /import", () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         matched: 1,
+        matched_recipes: ["Haste Potion"],
         unmatched: [],
       })
     );

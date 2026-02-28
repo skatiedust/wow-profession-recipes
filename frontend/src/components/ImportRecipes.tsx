@@ -1,22 +1,81 @@
 import { useState, useCallback } from "react";
 import "./ImportRecipes.css";
+import { API_BASE } from "../config";
 
 export interface ImportResult {
   character_id: number;
   matched: number;
+  matched_recipes: string[];
   skipped: number;
   unmatched: string[];
+}
+
+interface ImportPayload {
+  character: string;
+  realm: string;
+  profession: string;
+  recipes: string[];
+}
+
+function getString(obj: Record<string, unknown>, keys: string[]): string | null {
+  for (const key of keys) {
+    const value = obj[key];
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+  return null;
+}
+
+function normalizeRecipes(value: unknown): string[] | null {
+  if (!Array.isArray(value)) return null;
+
+  const normalized = value
+    .map((entry) => {
+      if (typeof entry === "string") return entry.trim();
+      if (entry && typeof entry === "object") {
+        const maybeName = (entry as Record<string, unknown>).name;
+        if (typeof maybeName === "string") return maybeName.trim();
+      }
+      return null;
+    })
+    .filter((entry): entry is string => Boolean(entry));
+
+  return normalized.length === value.length ? normalized : null;
+}
+
+function normalizeAddonExport(parsed: unknown): ImportPayload | null {
+  const source =
+    parsed && typeof parsed === "object" && "data" in parsed
+      ? (parsed as { data: unknown }).data
+      : parsed;
+
+  if (!source || typeof source !== "object" || Array.isArray(source)) return null;
+
+  const obj = source as Record<string, unknown>;
+
+  const character = getString(obj, ["character", "character_name", "characterName"]);
+  const realm = getString(obj, ["realm", "realm_name", "realmName"]);
+  const profession = getString(obj, ["profession", "profession_name", "professionName"]);
+  const recipes =
+    normalizeRecipes(obj.recipes) ??
+    normalizeRecipes(obj.recipe_names) ??
+    normalizeRecipes(obj.knownRecipes);
+
+  if (!character || !realm || !profession || !recipes) return null;
+
+  return { character, realm, profession, recipes };
 }
 
 interface ImportRecipesProps {
   isOpen: boolean;
   onClose: () => void;
+  authHeaders: () => Record<string, string>;
   onSuccess?: () => void;
 }
 
 export default function ImportRecipes({
   isOpen,
   onClose,
+  authHeaders,
   onSuccess,
 }: ImportRecipesProps) {
   const [jsonInput, setJsonInput] = useState("");
@@ -25,21 +84,10 @@ export default function ImportRecipes({
   const [result, setResult] = useState<ImportResult | null>(null);
 
   const validateJson = useCallback(
-    (text: string): { character: string; realm: string; profession: string; recipes: string[] } | null => {
+    (text: string): ImportPayload | null => {
       try {
         const parsed = JSON.parse(text);
-        if (
-          typeof parsed.character !== "string" ||
-          typeof parsed.realm !== "string" ||
-          typeof parsed.profession !== "string" ||
-          !Array.isArray(parsed.recipes)
-        ) {
-          return null;
-        }
-        if (!parsed.recipes.every((r: unknown) => typeof r === "string")) {
-          return null;
-        }
-        return parsed;
+        return normalizeAddonExport(parsed);
       } catch {
         return null;
       }
@@ -59,9 +107,9 @@ export default function ImportRecipes({
 
     setLoading(true);
     try {
-      const res = await fetch("/api/recipes/import", {
+      const res = await fetch(`${API_BASE}/api/recipes/import`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...authHeaders() },
         credentials: "include",
         body: JSON.stringify(validated),
       });
@@ -81,7 +129,7 @@ export default function ImportRecipes({
     } finally {
       setLoading(false);
     }
-  }, [jsonInput, validateJson, onSuccess]);
+  }, [jsonInput, validateJson, authHeaders, onSuccess]);
 
   const handleClose = useCallback(() => {
     setJsonInput("");
@@ -130,12 +178,10 @@ export default function ImportRecipes({
           <div className="import-recipes__result">
             <p>
               Matched: {result.matched} · Skipped: {result.skipped}
-              {result.unmatched.length > 0 &&
-                ` · Unmatched: ${result.unmatched.length}`}
             </p>
-            {result.unmatched.length > 0 && (
+            {result.matched_recipes.length > 0 && (
               <ul className="import-recipes__unmatched">
-                {result.unmatched.map((name, i) => (
+                {result.matched_recipes.map((name, i) => (
                   <li key={i}>{name}</li>
                 ))}
               </ul>
