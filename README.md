@@ -37,6 +37,8 @@ Designed for easy self-hosting: fork this repo, fill in your credentials, and de
    cp .env.example .env
    ```
 
+   Set `GUILD=Red Sun` (or your guild name). The character selector only shows Blizzard account characters that are also present in that guild's roster.
+
 3. Start the Cloud SQL proxy in a terminal running outside sandbox mode:
 
    ```bash
@@ -248,7 +250,7 @@ Guild members can import their known recipes from the in-game ProfessionExporter
 2. **Export in-game:** Open your profession window (press P, click a profession), type `/exportrecipes`, then copy the JSON (Ctrl+A, Ctrl+C).
 3. **Import in the app:** Log in, go to the main page (click "Guild Recipes" if you have a profession selected), and click "Import from Addon". Paste the JSON and click Import.
 
-The addon exports JSON with `character`, `realm`, `profession`, and `recipes` fields. The app matches recipe names (with prefix stripping for "Recipe:", "Plans:", etc.), inserts newly matched recipes, and removes previously known recipes for that character/profession if they are no longer present in the latest import.
+The addon exports JSON with `character`, `realm`, `profession`, and `recipes` fields. The app matches recipe names (with prefix stripping for "Recipe:", "Plans:", etc.), inserts newly matched recipes, and removes previously known recipes for that character/profession if they are no longer present in the latest import. Recipe import is restricted to characters that are in the configured `GUILD`.
 
 ## Project Structure
 

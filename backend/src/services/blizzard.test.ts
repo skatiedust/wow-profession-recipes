@@ -2,6 +2,7 @@ import {
   exchangeCodeForToken,
   fetchUserInfo,
   fetchWowCharacters,
+  fetchGuildCharacters,
   revokeToken,
 } from "./blizzard";
 
@@ -102,12 +103,18 @@ describe("fetchWowCharacters", () => {
           wow_accounts: [
             {
               characters: [
-                { name: "Arthas", realm: { slug: "mograine", name: "Mograine" } },
+                {
+                  name: "Arthas",
+                  realm: { slug: "mograine", name: "Mograine" },
+                },
               ],
             },
             {
               characters: [
-                { name: "Jaina", realm: { slug: "whitemane", name: "Whitemane" } },
+                {
+                  name: "Jaina",
+                  realm: { slug: "whitemane", name: "Whitemane" },
+                },
               ],
             },
           ],
@@ -117,8 +124,16 @@ describe("fetchWowCharacters", () => {
     const result = await fetchWowCharacters("token");
 
     expect(result).toEqual([
-      { name: "Arthas", realm: "Mograine" },
-      { name: "Jaina", realm: "Whitemane" },
+      {
+        name: "Arthas",
+        realm: "Mograine",
+        realmSlug: "mograine",
+      },
+      {
+        name: "Jaina",
+        realm: "Whitemane",
+        realmSlug: "whitemane",
+      },
     ]);
   });
 
@@ -156,7 +171,78 @@ describe("fetchWowCharacters", () => {
     });
 
     const result = await fetchWowCharacters("token");
-    expect(result).toEqual([{ name: "Thrall", realm: "Faerlina" }]);
+    expect(result).toEqual([
+      { name: "Thrall", realm: "Faerlina", realmSlug: "faerlina" },
+    ]);
+  });
+});
+
+describe("fetchGuildCharacters", () => {
+  it("filters by guild roster membership", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () =>
+        Promise.resolve({
+          wow_accounts: [
+            {
+              characters: [
+                {
+                  name: "Avarrai",
+                  realm: { slug: "dreamscythe", name: "Dreamscythe" },
+                },
+                {
+                  name: "Alt",
+                  realm: { slug: "dreamscythe", name: "Dreamscythe" },
+                },
+              ],
+            },
+          ],
+        }),
+    });
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () =>
+        Promise.resolve({
+          members: [
+            {
+              character: {
+                name: "Avarrai",
+                realm: { name: "Dreamscythe" },
+              },
+            },
+          ],
+        }),
+    });
+
+    const result = await fetchGuildCharacters("token", "Red Sun");
+    expect(result).toEqual([{ name: "Avarrai", realm: "Dreamscythe" }]);
+  });
+
+  it("returns empty when roster lookup fails", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () =>
+        Promise.resolve({
+          wow_accounts: [
+            {
+              characters: [
+                {
+                  name: "Avarrai",
+                  realm: { slug: "dreamscythe", name: "Dreamscythe" },
+                },
+                {
+                  name: "Alt",
+                  realm: { slug: "dreamscythe", name: "Dreamscythe" },
+                },
+              ],
+            },
+          ],
+        }),
+    });
+    mockFetch.mockResolvedValueOnce({ ok: false });
+
+    const result = await fetchGuildCharacters("token", "Red Sun");
+    expect(result).toEqual([]);
   });
 });
 

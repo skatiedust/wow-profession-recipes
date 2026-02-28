@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
 import { query } from "../db";
 import { requireAuth, AuthenticatedRequest } from "../middleware/auth";
-import { fetchWowCharacters } from "../services/blizzard";
+import { fetchGuildCharacters } from "../services/blizzard";
 
 const router = Router();
 
@@ -30,9 +30,10 @@ router.get("/", async (req, res: Response) => {
 
 router.get("/import", async (req: Request, res: Response) => {
   const { accessToken } = req as AuthenticatedRequest;
+  const guildName = (process.env.GUILD || "Red Sun").trim().toLowerCase();
 
   try {
-    const characters = await fetchWowCharacters(accessToken);
+    const characters = await fetchGuildCharacters(accessToken, guildName);
     res.json(characters);
   } catch {
     res.json([]);

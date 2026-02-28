@@ -52,35 +52,38 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 6. The app must display the character list and let the user select which character to manage.
 7. If the Blizzard API does not return character data (e.g., API limitations for BC Anniversary), the app must fall back to letting the user manually enter a character name and realm.
 8. A user must be able to manage multiple characters across separate sessions or from a character-switcher UI.
+9. Character selection must be restricted to characters in the configured guild, controlled by a backend environment variable `GUILD` (default `Red Sun`).
+10. The character dropdown must only show characters that match the configured guild filter.
 
 ### Profession Selection
 
-9. After selecting a character, the user must choose which profession that character has from the list of TBC professions (Alchemy, Blacksmithing, Enchanting, Engineering, Jewelcrafting, Leatherworking, Tailoring, Cooking).
-10. The selected profession is stored with the character record so it persists across sessions.
+11. After selecting a character, the user must choose which profession that character has from the list of TBC professions (Alchemy, Blacksmithing, Enchanting, Engineering, Jewelcrafting, Leatherworking, Tailoring, Cooking).
+12. The selected profession is stored with the character record so it persists across sessions.
 
 ### Recipe Checklist (Authenticated)
 
-11. After selecting a character and profession, the app must display the curated list of rare recipes for that profession.
-12. Each recipe in the list must show: recipe name (linked to Wowhead if URL is available), source (e.g., drop, vendor, quest, reputation), zone, reputation requirement (if applicable), rarity (if available), and dropped-by enemies (if applicable).
-13. The user must be able to toggle individual recipes on/off to indicate whether their character knows them.
-14. Toggling a recipe must persist the change to the database immediately (optimistic UI update with server confirmation).
-15. The addon import flow must sync the character's known recipes for the selected profession: add matched recipes and remove previously known recipes for that same profession that are absent from the latest import.
-16. After addon import, the confirmation UI must show which recipes were successfully matched/imported.
+13. After selecting a character and profession, the app must display the curated list of rare recipes for that profession.
+14. Each recipe in the list must show: recipe name (linked to Wowhead if URL is available), source (e.g., drop, vendor, quest, reputation), zone, reputation requirement (if applicable), rarity (if available), and dropped-by enemies (if applicable).
+15. The user must be able to toggle individual recipes on/off to indicate whether their character knows them.
+16. Toggling a recipe must persist the change to the database immediately (optimistic UI update with server confirmation).
+17. The addon import flow must sync the character's known recipes for the selected profession: add matched recipes and remove previously known recipes for that same profession that are absent from the latest import.
+18. After addon import, the confirmation UI must show which recipes were successfully matched/imported.
+19. Addon recipe import must be allowed only for characters that are in the configured guild (`GUILD`).
 
 ### Public Browse & Search
 
-17. The app must display a profession picker on the home page (accessible without login).
-18. After selecting a profession, the app must display all tracked recipes for that profession.
-19. Each recipe row must show: recipe name, source, zone, reputation requirement, dropped-by enemies (if any), and a list of character names who know it.
-20. The app must provide a search/filter input that filters the recipe list by recipe name in real time (client-side filtering).
-21. When a user is logged in and has a character selected, the app must show a "Known only" toggle next to the search input that filters the recipe list to only recipes that character knows. The toggle must not be visible to logged-out users or when no character is selected. Switching characters must reset the toggle and refresh the checklist data.
-22. If no characters know a recipe, the row must still appear but indicate that no crafters are available.
+20. The app must display a profession picker on the home page (accessible without login).
+21. After selecting a profession, the app must display all tracked recipes for that profession.
+22. Each recipe row must show: recipe name, source, zone, reputation requirement, dropped-by enemies (if any), and a list of character names who know it.
+23. The app must provide a search/filter input that filters the recipe list by recipe name in real time (client-side filtering).
+24. When a user is logged in and has a character selected, the app must show a "Known only" toggle next to the search input that filters the recipe list to only recipes that character knows. The toggle must not be visible to logged-out users or when no character is selected. Switching characters must reset the toggle and refresh the checklist data.
+25. If no characters know a recipe, the row must still appear but indicate that no crafters are available.
 
 ### Recipe Seed Data
 
-23. Recipe data must be stored in static JSON files in the repository, organized by profession (e.g., `data/recipes/alchemy.json`).
-24. Each recipe entry in the JSON must include: `name` (string, without profession prefix like "Recipe:" or "Plans:"), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), `dropped_by` (array of strings, nullable — enemy types that drop the recipe), `url` (string, nullable — Wowhead link), and `rarity` (string, nullable — item rarity).
-25. A database seed/migration script must load these JSON files into the database on deployment or when recipe data changes.
+26. Recipe data must be stored in static JSON files in the repository, organized by profession (e.g., `data/recipes/alchemy.json`).
+27. Each recipe entry in the JSON must include: `name` (string, without profession prefix like "Recipe:" or "Plans:"), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), `dropped_by` (array of strings, nullable — enemy types that drop the recipe), `url` (string, nullable — Wowhead link), and `rarity` (string, nullable — item rarity).
+28. A database seed/migration script must load these JSON files into the database on deployment or when recipe data changes.
 
 ## 5. Non-Goals (Out of Scope)
 
@@ -167,6 +170,8 @@ erDiagram
 ### Key Technical Notes
 
 - **Blizzard API fallback:** The app should gracefully handle the case where the Blizzard API does not return BC Anniversary character data. If the character list endpoint returns empty or errors, present a manual character-name/realm input form instead.
+- **Guild filter:** Character import/filtering must use an environment variable `GUILD` and Blizzard's guild roster API to constrain the character selector to one guild per deployment.
+- **Blizzard namespace:** Profile and roster API calls should use the BC Anniversary namespace `profile-classicann-us`.
 - **Recipe seeding:** On deploy, a migration script reads the JSON files from `data/recipes/` and upserts them into the `recipes` table. Recipes removed from the JSON are soft-deleted (or flagged) so that historical character-recipe links are not lost.
 - **CORS:** The frontend and backend may run on different Cloud Run URLs. Configure CORS on the backend to allow the frontend origin.
 - **Secrets:** Battle.net OAuth client ID and secret must be stored in GCP Secret Manager and injected into the backend Cloud Run service as environment variables via Terraform.

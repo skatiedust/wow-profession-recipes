@@ -12,3 +12,4 @@ terraform.tfvars
 terraform/backend.tf
 *.tfplan
 tfplan
+sample-data.json
