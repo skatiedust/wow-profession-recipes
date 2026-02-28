@@ -208,9 +208,11 @@ router.post("/import", requireAuth, async (req: Request, res: Response) => {
   );
 
   const recipeByName = new Map<string, number>();
+  const recipeNameById = new Map<number, string>();
   for (const row of recipeRows.rows) {
     recipeByName.set(row.name.toLowerCase(), row.id);
     recipeByName.set(stripRecipePrefix(row.name).toLowerCase(), row.id);
+    recipeNameById.set(row.id, row.name);
   }
 
   const matched: number[] = [];
@@ -238,6 +240,29 @@ router.post("/import", requireAuth, async (req: Request, res: Response) => {
   );
   skipped = existingResult?.rows?.length ?? 0;
 
+  if (uniqueMatched.length > 0) {
+    await query(
+      `DELETE FROM character_recipes cr
+       USING recipes r
+       WHERE cr.recipe_id = r.id
+         AND cr.character_id = $1
+         AND r.profession_id = $2
+         AND r.deleted_at IS NULL
+         AND cr.recipe_id <> ALL($3::int[])`,
+      [characterId, professionId, uniqueMatched]
+    );
+  } else {
+    await query(
+      `DELETE FROM character_recipes cr
+       USING recipes r
+       WHERE cr.recipe_id = r.id
+         AND cr.character_id = $1
+         AND r.profession_id = $2
+         AND r.deleted_at IS NULL`,
+      [characterId, professionId]
+    );
+  }
+
   for (const recipeId of uniqueMatched) {
     await query(
       `INSERT INTO character_recipes (character_id, recipe_id)
@@ -250,6 +275,9 @@ router.post("/import", requireAuth, async (req: Request, res: Response) => {
   res.json({
     character_id: characterId,
     matched: uniqueMatched.length,
+    matched_recipes: uniqueMatched
+      .map((id) => recipeNameById.get(id))
+      .filter((name): name is string => Boolean(name)),
     skipped,
     unmatched,
   });

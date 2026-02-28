@@ -64,21 +64,23 @@ The project is designed to be self-hostable on Google Cloud via Terraform, so ot
 12. Each recipe in the list must show: recipe name (linked to Wowhead if URL is available), source (e.g., drop, vendor, quest, reputation), zone, reputation requirement (if applicable), rarity (if available), and dropped-by enemies (if applicable).
 13. The user must be able to toggle individual recipes on/off to indicate whether their character knows them.
 14. Toggling a recipe must persist the change to the database immediately (optimistic UI update with server confirmation).
+15. The addon import flow must sync the character's known recipes for the selected profession: add matched recipes and remove previously known recipes for that same profession that are absent from the latest import.
+16. After addon import, the confirmation UI must show which recipes were successfully matched/imported.
 
 ### Public Browse & Search
 
-15. The app must display a profession picker on the home page (accessible without login).
-16. After selecting a profession, the app must display all tracked recipes for that profession.
-17. Each recipe row must show: recipe name, source, zone, reputation requirement, dropped-by enemies (if any), and a list of character names who know it.
-18. The app must provide a search/filter input that filters the recipe list by recipe name in real time (client-side filtering).
-19. When a user is logged in and has a character selected, the app must show a "Known only" toggle next to the search input that filters the recipe list to only recipes that character knows. The toggle must not be visible to logged-out users or when no character is selected. Switching characters must reset the toggle and refresh the checklist data.
-20. If no characters know a recipe, the row must still appear but indicate that no crafters are available.
+17. The app must display a profession picker on the home page (accessible without login).
+18. After selecting a profession, the app must display all tracked recipes for that profession.
+19. Each recipe row must show: recipe name, source, zone, reputation requirement, dropped-by enemies (if any), and a list of character names who know it.
+20. The app must provide a search/filter input that filters the recipe list by recipe name in real time (client-side filtering).
+21. When a user is logged in and has a character selected, the app must show a "Known only" toggle next to the search input that filters the recipe list to only recipes that character knows. The toggle must not be visible to logged-out users or when no character is selected. Switching characters must reset the toggle and refresh the checklist data.
+22. If no characters know a recipe, the row must still appear but indicate that no crafters are available.
 
 ### Recipe Seed Data
 
-21. Recipe data must be stored in static JSON files in the repository, organized by profession (e.g., `data/recipes/alchemy.json`).
-22. Each recipe entry in the JSON must include: `name` (string, without profession prefix like "Recipe:" or "Plans:"), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), `dropped_by` (array of strings, nullable — enemy types that drop the recipe), `url` (string, nullable — Wowhead link), and `rarity` (string, nullable — item rarity).
-23. A database seed/migration script must load these JSON files into the database on deployment or when recipe data changes.
+23. Recipe data must be stored in static JSON files in the repository, organized by profession (e.g., `data/recipes/alchemy.json`).
+24. Each recipe entry in the JSON must include: `name` (string, without profession prefix like "Recipe:" or "Plans:"), `source` (enum: drop, vendor, quest, reputation), `zone` (string), `reputation_requirement` (string, nullable), `dropped_by` (array of strings, nullable — enemy types that drop the recipe), `url` (string, nullable — Wowhead link), and `rarity` (string, nullable — item rarity).
+25. A database seed/migration script must load these JSON files into the database on deployment or when recipe data changes.
 
 ## 5. Non-Goals (Out of Scope)
 

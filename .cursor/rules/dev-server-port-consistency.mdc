@@ -1,0 +1,11 @@
+---
+description: Keep local dev servers on consistent ports
+alwaysApply: true
+---
+
+# Dev Server Port Consistency
+
+- When starting or restarting local dev servers, use the project's standard ports instead of spinning up alternates.
+- For frontend Vite, always start on port `5173` with strict port binding (for example, `--port 5173 --strictPort`).
+- If port conflicts exist, stop old dev server processes first, then start a single server on the standard port.
+- Avoid leaving multiple frontend dev servers running on `5173`, `5174`, `5175`, etc. Keep one active instance on the canonical port.

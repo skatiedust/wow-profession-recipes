@@ -13,7 +13,7 @@ import RecipeSearch from "./components/RecipeSearch";
 import ImportRecipes from "./components/ImportRecipes";
 
 function MainContent() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, authHeaders } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [knownOnly, setKnownOnly] = useState(false);
   const [selectedProfessionId, setSelectedProfessionId] = useState<number | null>(null);
@@ -204,6 +204,7 @@ function MainContent() {
       <ImportRecipes
         isOpen={showImportModal}
         onClose={() => setShowImportModal(false)}
+        authHeaders={authHeaders}
         onSuccess={handleImportSuccess}
       />
       <Toast message={toast.message} visible={toast.visible} />
