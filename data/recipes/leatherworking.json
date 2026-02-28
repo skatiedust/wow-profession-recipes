@@ -22,7 +22,7 @@
     "source": "drop",
     "zone": "The Steamvault",
     "reputation_requirement": null,
-    "dropped_by": "Hydromancer Thespia",
+    "dropped_by": ["Hydromancer Thespia"],
     "url": "https://www.wowhead.com/tbc/item=29673/pattern-frost-armor-kit",
     "rarity": "uncommon"
   },
