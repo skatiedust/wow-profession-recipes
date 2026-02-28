@@ -114,6 +114,8 @@ bnet_client_secret = "your-battle-net-client-secret"
 database_password  = "a-strong-random-password"
 session_secret     = "a-different-random-string"
 frontend_url       = ""
+# Optional: set a globally unique name for the public addon downloads bucket.
+# addon_artifacts_bucket_name = "my-wow-professions-addon-artifacts"
 ```
 
 Generate random values for `database_password` and `session_secret`:
@@ -139,6 +141,8 @@ When complete, Terraform will output:
 backend_url  = "https://wow-professions-api-XXXXXXXXXX-uc.a.run.app"
 frontend_url = "https://wow-professions-web-XXXXXXXXXX-uc.a.run.app"
 cloud_sql_connection_name = "your-project:us-central1:wow-professions-db"
+addon_artifacts_bucket_name = "your-project-wow-professions-addon-artifacts"
+addon_artifacts_base_url = "https://storage.googleapis.com/your-project-wow-professions-addon-artifacts"
 ```
 
 ### Step 7: Update Battle.net redirect URL
@@ -190,7 +194,10 @@ Every push to `main` (including merged pull requests) triggers `.github/workflow
 
 1. Authenticates to Google Cloud via **Workload Identity Federation** (no service account keys)
 2. Runs `terraform apply` to sync infrastructure
-3. Deploys the backend and frontend to Cloud Run via `gcloud run deploy --source`
+3. Packages the `addon/ProfessionExporter` folder and uploads:
+   - versioned zip: `releases/<addon-version>/ProfessionExporter-<addon-version>.zip`
+   - latest zip: `latest/ProfessionExporter.zip`
+4. Deploys the backend and frontend to Cloud Run via `gcloud run deploy --source`
 
 ### Setup Steps
 
@@ -244,7 +251,10 @@ You can also set secrets via the CLI: `gh secret set SECRET_NAME --body "value"`
 
 Guild members can import their known recipes from the in-game ProfessionExporter addon instead of toggling each recipe manually:
 
-1. **Install the addon:** Copy the `addon/ProfessionExporter` folder into your WoW addons directory:
+1. **Install the addon:** Download the latest zip from:
+   - `https://storage.googleapis.com/<your-addon-bucket>/latest/ProfessionExporter.zip`
+   - You can get `<your-addon-bucket>` with: `cd terraform && terraform output -raw addon_artifacts_bucket_name`
+   Then copy the `ProfessionExporter` folder into your WoW addons directory:
    - **Windows:** `World of Warcraft\_classic_\Interface\AddOns\ProfessionExporter\`
    - **Mac:** `World of Warcraft/_classic_/Interface/AddOns/ProfessionExporter/`
 2. **Export in-game:** Open your profession window (press P, click a profession), type `/exportrecipes`, then copy the JSON (Ctrl+A, Ctrl+C).

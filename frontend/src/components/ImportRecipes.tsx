@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import "./ImportRecipes.css";
-import { API_BASE } from "../config";
+import { API_BASE, ADDON_DOWNLOAD_URL } from "../config";
 
 export interface ImportResult {
   character_id: number;
@@ -162,6 +162,18 @@ export default function ImportRecipes({
           type <code>/exportrecipes</code>, then copy the JSON (Ctrl+A, Ctrl+C)
           and paste it below.
         </p>
+        {ADDON_DOWNLOAD_URL && (
+          <div className="import-recipes__download">
+            <a
+              className="import-recipes__download-link"
+              href={ADDON_DOWNLOAD_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download Addon
+            </a>
+          </div>
+        )}
 
         <textarea
           className="import-recipes__textarea"

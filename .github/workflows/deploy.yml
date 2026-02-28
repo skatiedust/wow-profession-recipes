@@ -65,6 +65,13 @@ jobs:
         working-directory: terraform
         run: terraform apply -auto-approve
 
+      - name: Get addon artifacts bucket name
+        id: addon-bucket
+        working-directory: terraform
+        run: |
+          BUCKET_NAME=$(terraform output -raw addon_artifacts_bucket_name)
+          echo "bucket_name=$BUCKET_NAME" >> "$GITHUB_OUTPUT"
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -95,6 +102,23 @@ jobs:
         env:
           DATABASE_URL: postgresql://wow_app:${{ secrets.DATABASE_PASSWORD }}@127.0.0.1:5432/wow_professions
 
+      - name: Package and upload addon artifact
+        run: |
+          ADDON_VERSION=$(awk -F': ' '/^## Version:/ {print $2}' addon/ProfessionExporter/ProfessionExporter.toc | tr -d '\r')
+          if [ -z "$ADDON_VERSION" ]; then
+            ADDON_VERSION="${GITHUB_SHA::7}"
+          fi
+
+          ARTIFACT_NAME="ProfessionExporter-${ADDON_VERSION}.zip"
+          (cd addon && zip -r "../$ARTIFACT_NAME" ProfessionExporter -x "*.DS_Store")
+
+          BUCKET="${{ steps.addon-bucket.outputs.bucket_name }}"
+          gcloud storage cp "$ARTIFACT_NAME" "gs://${BUCKET}/releases/${ADDON_VERSION}/$ARTIFACT_NAME"
+          gcloud storage cp "$ARTIFACT_NAME" "gs://${BUCKET}/latest/ProfessionExporter.zip"
+
+          echo "Addon release URL: https://storage.googleapis.com/${BUCKET}/releases/${ADDON_VERSION}/$ARTIFACT_NAME"
+          echo "Addon latest URL: https://storage.googleapis.com/${BUCKET}/latest/ProfessionExporter.zip"
+
       - name: Deploy Backend to Cloud Run
         run: |
           gcloud run deploy wow-professions-api \
@@ -118,5 +142,5 @@ jobs:
             --source ./frontend \
             --region ${{ secrets.GCP_REGION }} \
             --project ${{ secrets.GCP_PROJECT_ID }} \
-            --set-build-env-vars "VITE_API_URL=${{ steps.backend-url.outputs.url }}" \
+            --set-build-env-vars "VITE_API_URL=${{ steps.backend-url.outputs.url }},VITE_ADDON_DOWNLOAD_URL=https://storage.googleapis.com/${{ steps.addon-bucket.outputs.bucket_name }}/latest/ProfessionExporter.zip" \
             --quiet

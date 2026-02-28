@@ -44,3 +44,9 @@ variable "github_repo" {
   type        = string
   default     = ""
 }
+
+variable "addon_artifacts_bucket_name" {
+  description = "Optional GCS bucket name for publicly downloadable addon artifacts (leave empty to use a default name based on project ID)"
+  type        = string
+  default     = ""
+}

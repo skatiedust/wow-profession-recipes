@@ -59,6 +59,24 @@
   border-radius: 4px;
 }
 
+.import-recipes__download {
+  padding: 0 1.25rem 1rem;
+}
+
+.import-recipes__download-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.import-recipes__download-link:hover {
+  opacity: 0.9;
+}
+
 .import-recipes__textarea {
   display: block;
   width: calc(100% - 2.5rem);

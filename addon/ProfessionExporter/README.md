@@ -4,12 +4,17 @@ A WoW addon for TBC Anniversary that exports your known profession recipes to JS
 
 ## Installation
 
-1. Download or clone this addon.
+1. Download the latest addon zip from your public artifacts URL:
+   - `https://storage.googleapis.com/<your-addon-bucket>/latest/ProfessionExporter.zip`
+   - You can get `<your-addon-bucket>` from Terraform output:
+     - `cd terraform && terraform output -raw addon_artifacts_bucket_name`
 2. Copy the `ProfessionExporter` folder into your WoW addons directory:
    - **Windows:** `World of Warcraft\_classic_\Interface\AddOns\ProfessionExporter\`
    - **Mac:** `World of Warcraft/_classic_/Interface/AddOns/ProfessionExporter/`
 3. Ensure the folder contains `ProfessionExporter.toc` and `ProfessionExporter.lua`.
 4. Restart WoW or run `/reload`.
+
+To update, download the latest zip again and replace the existing `ProfessionExporter` folder.
 
 ## Usage
 
